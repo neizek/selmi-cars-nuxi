@@ -1,0 +1,17 @@
+{
+	"password": "Parole",
+	"signIn": "Pieslēgties",
+	"signUp": "Reģistrēties",
+	"signOut": "Izrakstieties",
+	"addAd": "Pievienot sludinājumu",
+	"email": "E-pasts",
+	"or": "vai",
+	"phoneNumber": "Tālr. numurs",
+	"signInPage": {
+		"useThisFormToSignIn": "Izmantojiet veidlapu, lai pieteiktos savā kontā",
+		"dontHaveAcc": "Vai jums nav konta?",
+		"rememberMe": "Atcerieties mani",
+		"forgotPassword": "Aizmirsāt paroli?"
+	}
+
+}

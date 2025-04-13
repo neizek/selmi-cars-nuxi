@@ -1,0 +1,16 @@
+{
+	"password": "Password",
+	"signIn": "Sign in",
+	"signUp": "Sign up",
+	"signOut": "Sign out",
+	"addAd": "Add advertisement",
+	"email": "Email",
+	"or": "or",
+	"phoneNumber": "Phone number",
+	"signInPage": {
+		"useThisFormToSignIn": "Use the form below to access your account",
+		"dontHaveAcc": "Don't have an account?",
+		"rememberMe": "Remember me",
+		"forgotPassword": "Forgot password?"
+	}
+}
