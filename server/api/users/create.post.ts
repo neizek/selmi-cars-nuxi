@@ -3,11 +3,22 @@ import prisma from "~/utils/prisma"
 
 export default defineEventHandler(async (event) => {
 	const user = await readBody(event) as UserSignUpPayload
-
+	
 	if (!user) {
 		throw createError({
 			statusCode: 400,
 			message: 'User data is required'
+		})
+	}
+
+	const ifUserExists = await prisma.user.findUnique({
+		where: {email: user.email}
+	});
+
+	if (ifUserExists) {
+		throw createError({
+			statusCode: 400,
+			message: 'User already exists'
 		})
 	}
 
@@ -19,13 +30,14 @@ export default defineEventHandler(async (event) => {
 			message: 'All fields are required'
 		})
 	}
+	const hashedPassword = await hashPassword(password);
 
 	const newUser = await prisma.user.create({
 		data: {
 			firstname: firstName,
 			lastname: lastName,
 			email,
-			password
+			password: hashedPassword
 		}
 	})
 
