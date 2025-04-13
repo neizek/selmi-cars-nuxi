@@ -9,7 +9,7 @@
     <q-header class="bg-white">
       <q-toolbar class="q-pa-sm q-gutter-sm">
 		<NuxtLink :to="$localePath('/')" style="display: flex; width: 100px;">
-			<img src="~/assets/logo.svg" />
+			<img src="~/assets/logo.svg">
 		</NuxtLink>
         <q-space />
 		<q-btn

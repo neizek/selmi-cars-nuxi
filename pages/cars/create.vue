@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 	import { useFetch } from 'nuxt/app';
-	import { ref, type Reactive } from 'vue';
+	import { ref } from 'vue';
 	import type { Car, CreateCar, Make, Model } from '~/types/cars';
 
 	definePageMeta({
@@ -36,7 +36,7 @@
 		};
 	}) : undefined;
 
-	const allModels: Ref<any[] | undefined> = ref(undefined)
+	const allModels: Ref<Car[] | undefined> = ref(undefined)
 
 	const createCar: Ref<CreateCar> = ref({
 		makeId: undefined,
@@ -51,7 +51,7 @@
 	})
 
 	async function handleCreateCar() {
-		const { data } = await useFetch('/api/cars/create', {
+		await useFetch('/api/cars/create', {
 			method: 'POST',
 			body: createCar.value
 		})
@@ -59,39 +59,41 @@
 </script>
 
 <template>
-	<h3>Новое объявление</h3>
-	<q-card class="absolute-center q-pa-md" style="width: 350px;">
-		<q-form @submit="handleCreateCar">
-			<q-card-section>
-				<q-select
-					v-model="createCar.makeId"
-					:options="allMakes"
-					label="Марка авто"
-				/>
-				<q-select
-					v-model="createCar.modelId"
-					:options="allModels"
-					label="Модель авто"
-				/>
-				<q-input
-					type="number"
-					v-model="createCar.price"
-					label="Цена"
-				/>
-				<q-input
-					type="number"
-					v-model="createCar.year"
-					label="Год"
-				/>
-				<q-input
-					type="number"
-					v-model="createCar.mileage"
-					label="Пробег"
-				/>
-			</q-card-section>
-			<q-card-actions>
-				<q-btn type="submit" label="Добавить авто" />
-			</q-card-actions>
-		</q-form>
-	</q-card>
+	<PageWrap>
+		<h3>Новое объявление</h3>
+		<q-card class="absolute-center q-pa-md" style="width: 350px;">
+			<q-form @submit="handleCreateCar">
+				<q-card-section>
+					<q-select
+						v-model="createCar.makeId"
+						:options="allMakes"
+						label="Марка авто"
+					/>
+					<q-select
+						v-model="createCar.modelId"
+						:options="allModels"
+						label="Модель авто"
+					/>
+					<q-input
+						v-model="createCar.price"
+						type="number"
+						label="Цена"
+					/>
+					<q-input
+						v-model="createCar.year"
+						type="number"
+						label="Год"
+					/>
+					<q-input
+						v-model="createCar.mileage"
+						type="number"
+						label="Пробег"
+					/>
+				</q-card-section>
+				<q-card-actions>
+					<q-btn type="submit" label="Добавить авто" />
+				</q-card-actions>
+			</q-form>
+		</q-card>
+	</PageWrap>
 </template>

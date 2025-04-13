@@ -44,27 +44,27 @@
 					:label="$t('email')"
 					:rules="[required, isEmail]"
 				>
-					<template v-slot:prepend>
+					<template #prepend>
 						<q-icon name="mail" />
 					</template>
 				</q-input>
 				<q-input v-model="user.firstName" :label="$t('firstName')" :rules="[required]">
-					<template v-slot:prepend>
+					<template #prepend>
 						<q-icon name="person" />
 					</template>
 				</q-input>
 				<q-input v-model="user.lastName" :label="$t('lastName')" :rules="[required]">
-					<template v-slot:prepend>
+					<template #prepend>
 						<q-icon name="person" />
 					</template>
 				</q-input>
 				<q-input v-model="user.password" :label="$t('password')" :rules="[required]">
-					<template v-slot:prepend>
+					<template #prepend>
 						<q-icon name="lock" />
 					</template>
 				</q-input>
 				<q-input v-model="user.repeatPassword" :label="$t('repeatPassword')" :rules="[required]">
-					<template v-slot:prepend>
+					<template #prepend>
 						<q-icon name="lock" />
 					</template>
 				</q-input>

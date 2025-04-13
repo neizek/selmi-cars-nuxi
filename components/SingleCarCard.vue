@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-	const { car } = defineProps(['car']);
+	const { car } = defineProps<{ car: Car[] }>();
 	const img = 'https://stimg.cardekho.com/images/carexteriorimages/930x620/BMW/X5-2023/10452/1688992642182/front-left-side-47.jpg';
 </script>
 
 <template>
-	<q-card flat v-if="car !== undefined">
+	<q-card v-if="car !== undefined" :key="car.id" flat>
 		<div style="aspect-ratio: 4 / 3; width: 100%;">
 			<q-img
 				class="rounded-borders"

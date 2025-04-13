@@ -21,3 +21,12 @@ export interface CreateCar {
 	year?: number;
 	mileage?: number;
 }
+
+export interface Filter {
+	where?: {
+		[prop: string]: string | number | boolean | null;
+	}[],
+	orderBy?: {
+		[prop: string]: 'asc' | 'desc';
+	}
+}

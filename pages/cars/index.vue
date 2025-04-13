@@ -11,40 +11,43 @@
 		where: undefined
 	})
 
-	const {data: cars} = await useFetch('/api/cars', {
+	const {data: cars, status} = await useFetch('/api/cars', {
 		method: 'POST',
 		body: computed(() => (filters.value)),
-		watch: [filters]
+		watch: [filters],
+		lazy: true
 	});
 
 	const { data: makes } = useFetch('/api/cars/make', {
-		method: 'get'
+		method: 'get',
+		lazy: true
 	})
 </script>
 
 <template>
-	<CarCardsSection :cars="cars">
-		<template #header>
-			<div class="row">
-				<span class="text-h4">Каталог</span>
-				<q-space></q-space>
+	<PageWrap>
+		<CarCardsSection :cars="cars" :is-loading="status !== 'success'" :expected-cars="20">
+			<template #header>
 				<div class="row">
-					<q-select 
-						v-model="filters.orderBy" 
-						:options="sortOptions"
-					/>
-					<q-select 
-						v-model="filters.where" 
-						:options="makes?.map(make => {
-							return {
-								value: {makeId: make.id},
-								label: make.name
-							}
-						})"
-					/>
+					<span class="text-h4">Каталог</span>
+					<q-space/>
+					<div class="row">
+						<q-select 
+							v-model="filters.orderBy" 
+							:options="sortOptions"
+						/>
+						<q-select 
+							v-model="filters.where" 
+							:options="makes?.map(make => {
+								return {
+									value: {makeId: make.id},
+									label: make.name
+								}
+							})"
+						/>
+					</div>
 				</div>
-			</div>
-		</template>
-	</CarCardsSection>
-	<q-drawer></q-drawer>
+			</template>
+		</CarCardsSection>
+	</PageWrap>
 </template>
