@@ -6,8 +6,10 @@ export interface SingleUser {
 	password: string;
 }
 
-export type UserSignInPayload = Pick<SingleUser, 'email' | 'password'>;
+export type UserSession = Omit<SingleUser, "password">;
 
-export type UserSignUpPayload = Omit<SingleUser, 'id'> & {
+export type UserSignInPayload = Pick<SingleUser, "email" | "password">;
+
+export type UserSignUpPayload = Omit<SingleUser, "id"> & {
 	repeatPassword: string;
-}
+};

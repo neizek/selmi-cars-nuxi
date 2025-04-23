@@ -43,9 +43,12 @@ model Cars {
     price     Int
     year      Int
     mileage   Int
+	userId    Int
+	user	  User @relation(fields: [userId], references: [id])
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
+	@@index([userId])
     @@index([makeId])
     @@index([modelId])
     @@map("cars")
@@ -60,6 +63,7 @@ model User {
     role      Role     @default(USER)
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+	cars      Cars[]
 
     @@map("users")
 }
@@ -69,6 +73,19 @@ model Entity {
     registrationnumber String
 
     @@map("entities")
+}
+
+model File {
+    id          Int    @id @default(autoincrement())
+	name		String
+	url			String
+	mimeType	String
+	size		String
+	uploadedAt  DateTime  @default(now())
+  	updatedAt   DateTime  @updatedAt
+	toDeleteAt	DateTime  @default(now())
+
+	@@map("files")
 }
 
 enum Role {
