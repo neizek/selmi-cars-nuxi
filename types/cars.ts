@@ -1,33 +1,31 @@
 export interface Make {
-	id: number;
+	id?: number;
 	name: string;
+	models?: Model[];
 }
 
 export interface Model {
-	id: number;
+	id?: number;
 	name: string;
 }
 
-export interface Car {
-	id: number;
-	makeId: number;
-	modelId: number;
-}
+// export interface Car {
+// 	id: number;
+// 	makeId: number;
+// 	modelId: number;
+// }
 
 export interface CreateCar {
 	makeId?: number;
+	make?: Make;
 	modelId?: number;
+	model?: Model;
 	price?: number;
 	year?: number;
 	mileage?: number;
-	userId?: string;
+	userId?: number;
 }
 
-export interface Filter {
-	where?: {
-		[prop: string]: string | number | boolean | null;
-	}[];
-	orderBy?: {
-		[prop: string]: "asc" | "desc";
-	};
+export interface Car extends Required<CreateCar> {
+	id: number;
 }

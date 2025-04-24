@@ -5,7 +5,7 @@ import prisma from "~/utils/prisma";
 export default defineEventHandler(async (event) => {
 	try {
 		const formData = await readMultipartFormData(event);
-		console.log(formData);
+
 		if (!formData || formData.length === 0) {
 			return {
 				statusCode: 400,

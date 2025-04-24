@@ -1,56 +1,52 @@
 <script setup lang="ts">
-import CarCardsSection from "~/components/CarCardsSection.vue";
+	import type { QSelectOption } from 'quasar';
+	import CarCardsSection from '~/components/CarCardsSection.vue';
+	import type { Filter } from '~/types/cars';
 
-const sortOptions = [
-	{ label: "Сначала дорогие", value: { price: "desc" } },
-	{ label: "Сначала дешёвые", value: { price: "asc" } },
-];
+	const sortOptions: QSelectOption<{ [prop: string]: 'desc' | 'asc' }>[] = [
+		{ label: 'Сначала дорогие', value: { price: 'desc' } },
+		{ label: 'Сначала дешёвые', value: { price: 'asc' } },
+	];
 
-const filters = ref({
-	orderBy: sortOptions[0].value,
-	where: undefined,
-});
+	const filters: Ref<Filter> = ref({
+		orderBy: sortOptions[0].value,
+		where: undefined,
+	});
 
-const { data: cars, status } = await useFetch("/api/cars", {
-	method: "POST",
-	body: computed(() => filters.value),
-	watch: [filters],
-	lazy: true,
-});
+	const { data: cars, status } = await useFetch('/api/cars', {
+		method: 'POST',
+		body: computed(() => filters.value),
+		watch: [filters],
+		lazy: true,
+	});
 
-const { data: makes } = useFetch("/api/cars/make", {
-	method: "get",
-	lazy: true,
-});
+	watch(filters, () => {
+		console.log(filters);
+	});
+
+	const areFiltersOpen: Ref<boolean> = ref(false);
 </script>
 
 <template>
 	<PageWrap>
-		<CarCardsSection
-			:cars="cars || []"
-			:is-loading="status !== 'success'"
-			:expected-cars="20"
-		>
+		<CarCardsSection :cars="cars || []" :is-loading="status !== 'success'" :expected-cars="20">
 			<template #header>
 				<div class="row">
-					<span class="text-h4">Каталог</span>
+					<span class="text-h2">Каталог</span>
 					<q-space />
-					<div class="row">
-						<q-select v-model="filters.orderBy" :options="sortOptions" />
-						<q-select
-							v-model="filters.where"
-							:options="
-								makes?.map((make) => {
-									return {
-										value: { makeId: make.id },
-										label: make.name,
-									};
-								})
-							"
-						/>
+					<div class="row q-gutter-x-sm">
+						<q-select v-model="filters.orderBy" dense :options="sortOptions" />
+						<q-btn
+							flat
+							icon="tune"
+							style="height: 40px"
+							@click="areFiltersOpen = !areFiltersOpen" />
 					</div>
 				</div>
 			</template>
 		</CarCardsSection>
+		<q-dialog v-model="areFiltersOpen" :position="$q.screen.gt.xs ? 'right' : 'bottom'">
+			<FilterDrawer :filters="filters" @update-value="filters = $event" />
+		</q-dialog>
 	</PageWrap>
 </template>

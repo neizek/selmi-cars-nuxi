@@ -12,9 +12,13 @@ const { data: cars, status } = await useFetch("/api/cars", {
 </script>
 
 <template>
-	<CarCardsSection
-		:cars="cars || []"
-		:is-loading="status !== 'success'"
-		:expected-cars="4"
-	/>
+	<PageWrap>
+		<CarCardsSection
+			:cars="cars || []"
+			:is-loading="status !== 'success'"
+			:expected-cars="4"
+		>
+			<template #header> <h2>Мои объявления</h2></template>
+		</CarCardsSection>
+	</PageWrap>
 </template>

@@ -1,4 +1,4 @@
-import type { UserSession } from "#auth-utils";
+import type { UserSession } from "./users";
 
 // auth.d.ts
 declare module "#auth-utils" {
