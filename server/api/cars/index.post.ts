@@ -15,6 +15,34 @@ export default defineEventHandler(async (event) => {
 					name: true,
 				},
 			},
+			carImages: {
+				select: {
+					images: {
+						select: {
+							s480File: {
+								select: {
+									url: true,
+								},
+							},
+							s240File: {
+								select: {
+									url: true,
+								},
+							},
+							s720File: {
+								select: {
+									url: true,
+								},
+							},
+							s1080File: {
+								select: {
+									url: true,
+								},
+							},
+						},
+					},
+				},
+			},
 		},
 		orderBy: filters.orderBy,
 		where: filters.where ?? {},

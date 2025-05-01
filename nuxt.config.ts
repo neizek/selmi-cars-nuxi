@@ -19,8 +19,11 @@ export default defineNuxtConfig({
 			{ code: 'en', name: 'English', file: 'en.json' },
 		],
 	},
+	css: ['~/assets/styles/quasar-variables.scss'],
 	quasar: {
-		sassVariables: '~/assets/styles/quasar-variables.scss',
+		// sassVariables: '~/assets/styles/quasar-variables.scss',
+		// sassVariables: true,
+		cssAddon: true,
 		components: {
 			defaults: {
 				QBtn: {
@@ -38,6 +41,7 @@ export default defineNuxtConfig({
 				},
 				QInput: {
 					outlined: true,
+					dense: true,
 				},
 			},
 		},

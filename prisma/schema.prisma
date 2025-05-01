@@ -45,6 +45,7 @@ model Cars {
     mileage   Int
 	userId    Int
 	user	  User @relation(fields: [userId], references: [id])
+	carImages CarImages[]
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
@@ -52,6 +53,18 @@ model Cars {
     @@index([makeId])
     @@index([modelId])
     @@map("cars")
+}
+
+model CarImages {
+    id        Int      @id @default(autoincrement())
+	carId	  Int
+	car		  Cars @relation(fields: [carId], references: [id])
+	imageId	  Int
+	images	  Image  @relation(fields: [imageId], references: [id])
+
+	@@index([carId])
+	@@map("car_images")
+	@@index([imageId])
 }
 
 model User {
@@ -77,15 +90,37 @@ model Entity {
 
 model File {
     id          Int    @id @default(autoincrement())
-	name		String
-	url			String
-	mimeType	String
-	size		String
-	uploadedAt  DateTime  @default(now())
-  	updatedAt   DateTime  @updatedAt
-	toDeleteAt	DateTime  @default(now())
+    url			String
+    mimeType	String
+    size		Int
+    createdAt   DateTime  @default(now())
+    toDeleteAt	DateTime  @default(now())
+    s240Images	Image[] @relation("S240FileRelation")
+	s480Images	Image[] @relation("S480FileRelation")
+	s720Images	Image[] @relation("S720FileRelation")
+	s1080Images	Image[] @relation("S1080FileRelation")
 
-	@@map("files")
+    @@map("files")
+}
+
+model Image {
+	id          Int    @id @default(autoincrement())
+	s240FileId	Int
+    s240File	File	@relation("S240FileRelation", fields: [s240FileId], references: [id])
+    s480FileId	Int
+    s480File	File	@relation("S480FileRelation", fields: [s480FileId], references: [id])
+	s720FileId	Int
+	s720File	File	@relation("S720FileRelation", fields: [s720FileId], references: [id])
+	s1080FileId	Int
+	s1080File	File	@relation("S1080FileRelation", fields: [s1080FileId], references: [id])
+	CarImages   CarImages[]
+
+
+	@@map("images")
+	@@index([s240FileId])
+	@@index([s480FileId])
+	@@index([s720FileId])
+	@@index([s1080FileId])
 }
 
 enum Role {

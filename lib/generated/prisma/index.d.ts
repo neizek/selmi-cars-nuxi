@@ -29,6 +29,11 @@ export type CarModel = $Result.DefaultSelection<Prisma.$CarModelPayload>
  */
 export type Cars = $Result.DefaultSelection<Prisma.$CarsPayload>
 /**
+ * Model CarImages
+ * 
+ */
+export type CarImages = $Result.DefaultSelection<Prisma.$CarImagesPayload>
+/**
  * Model User
  * 
  */
@@ -43,6 +48,11 @@ export type Entity = $Result.DefaultSelection<Prisma.$EntityPayload>
  * 
  */
 export type File = $Result.DefaultSelection<Prisma.$FilePayload>
+/**
+ * Model Image
+ * 
+ */
+export type Image = $Result.DefaultSelection<Prisma.$ImagePayload>
 
 /**
  * Enums
@@ -270,6 +280,16 @@ export class PrismaClient<
   get cars(): Prisma.CarsDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.carImages`: Exposes CRUD operations for the **CarImages** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CarImages
+    * const carImages = await prisma.carImages.findMany()
+    * ```
+    */
+  get carImages(): Prisma.CarImagesDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.user`: Exposes CRUD operations for the **User** model.
     * Example usage:
     * ```ts
@@ -298,6 +318,16 @@ export class PrismaClient<
     * ```
     */
   get file(): Prisma.FileDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.image`: Exposes CRUD operations for the **Image** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Images
+    * const images = await prisma.image.findMany()
+    * ```
+    */
+  get image(): Prisma.ImageDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -356,8 +386,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.6.0
-   * Query Engine version: f676762280b54cd07c770017ed3711ddde35f37a
+   * Prisma Client JS version: 6.7.0
+   * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
    */
   export type PrismaVersion = {
     client: string
@@ -741,9 +771,11 @@ export namespace Prisma {
     CarMake: 'CarMake',
     CarModel: 'CarModel',
     Cars: 'Cars',
+    CarImages: 'CarImages',
     User: 'User',
     Entity: 'Entity',
-    File: 'File'
+    File: 'File',
+    Image: 'Image'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -762,7 +794,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "carMake" | "carModel" | "cars" | "user" | "entity" | "file"
+      modelProps: "carMake" | "carModel" | "cars" | "carImages" | "user" | "entity" | "file" | "image"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -988,6 +1020,80 @@ export namespace Prisma {
           }
         }
       }
+      CarImages: {
+        payload: Prisma.$CarImagesPayload<ExtArgs>
+        fields: Prisma.CarImagesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CarImagesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CarImagesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CarImagesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CarImagesPayload>
+          }
+          findFirst: {
+            args: Prisma.CarImagesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CarImagesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CarImagesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CarImagesPayload>
+          }
+          findMany: {
+            args: Prisma.CarImagesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CarImagesPayload>[]
+          }
+          create: {
+            args: Prisma.CarImagesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CarImagesPayload>
+          }
+          createMany: {
+            args: Prisma.CarImagesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CarImagesCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CarImagesPayload>[]
+          }
+          delete: {
+            args: Prisma.CarImagesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CarImagesPayload>
+          }
+          update: {
+            args: Prisma.CarImagesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CarImagesPayload>
+          }
+          deleteMany: {
+            args: Prisma.CarImagesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CarImagesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CarImagesUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CarImagesPayload>[]
+          }
+          upsert: {
+            args: Prisma.CarImagesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CarImagesPayload>
+          }
+          aggregate: {
+            args: Prisma.CarImagesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCarImages>
+          }
+          groupBy: {
+            args: Prisma.CarImagesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CarImagesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CarImagesCountArgs<ExtArgs>
+            result: $Utils.Optional<CarImagesCountAggregateOutputType> | number
+          }
+        }
+      }
       User: {
         payload: Prisma.$UserPayload<ExtArgs>
         fields: Prisma.UserFieldRefs
@@ -1210,6 +1316,80 @@ export namespace Prisma {
           }
         }
       }
+      Image: {
+        payload: Prisma.$ImagePayload<ExtArgs>
+        fields: Prisma.ImageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ImageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ImageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImagePayload>
+          }
+          findFirst: {
+            args: Prisma.ImageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ImageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImagePayload>
+          }
+          findMany: {
+            args: Prisma.ImageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImagePayload>[]
+          }
+          create: {
+            args: Prisma.ImageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImagePayload>
+          }
+          createMany: {
+            args: Prisma.ImageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ImageCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImagePayload>[]
+          }
+          delete: {
+            args: Prisma.ImageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImagePayload>
+          }
+          update: {
+            args: Prisma.ImageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImagePayload>
+          }
+          deleteMany: {
+            args: Prisma.ImageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ImageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ImageUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImagePayload>[]
+          }
+          upsert: {
+            args: Prisma.ImageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ImagePayload>
+          }
+          aggregate: {
+            args: Prisma.ImageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateImage>
+          }
+          groupBy: {
+            args: Prisma.ImageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ImageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ImageCountArgs<ExtArgs>
+            result: $Utils.Optional<ImageCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1297,9 +1477,11 @@ export namespace Prisma {
     carMake?: CarMakeOmit
     carModel?: CarModelOmit
     cars?: CarsOmit
+    carImages?: CarImagesOmit
     user?: UserOmit
     entity?: EntityOmit
     file?: FileOmit
+    image?: ImageOmit
   }
 
   /* Types for Logging */
@@ -1461,6 +1643,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type CarsCountOutputType
+   */
+
+  export type CarsCountOutputType = {
+    carImages: number
+  }
+
+  export type CarsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    carImages?: boolean | CarsCountOutputTypeCountCarImagesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CarsCountOutputType without action
+   */
+  export type CarsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CarsCountOutputType
+     */
+    select?: CarsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CarsCountOutputType without action
+   */
+  export type CarsCountOutputTypeCountCarImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CarImagesWhereInput
+  }
+
+
+  /**
    * Count Type UserCountOutputType
    */
 
@@ -1488,6 +1701,95 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountCarsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CarsWhereInput
+  }
+
+
+  /**
+   * Count Type FileCountOutputType
+   */
+
+  export type FileCountOutputType = {
+    s240Images: number
+    s480Images: number
+    s720Images: number
+    s1080Images: number
+  }
+
+  export type FileCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    s240Images?: boolean | FileCountOutputTypeCountS240ImagesArgs
+    s480Images?: boolean | FileCountOutputTypeCountS480ImagesArgs
+    s720Images?: boolean | FileCountOutputTypeCountS720ImagesArgs
+    s1080Images?: boolean | FileCountOutputTypeCountS1080ImagesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FileCountOutputType without action
+   */
+  export type FileCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FileCountOutputType
+     */
+    select?: FileCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FileCountOutputType without action
+   */
+  export type FileCountOutputTypeCountS240ImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ImageWhereInput
+  }
+
+  /**
+   * FileCountOutputType without action
+   */
+  export type FileCountOutputTypeCountS480ImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ImageWhereInput
+  }
+
+  /**
+   * FileCountOutputType without action
+   */
+  export type FileCountOutputTypeCountS720ImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ImageWhereInput
+  }
+
+  /**
+   * FileCountOutputType without action
+   */
+  export type FileCountOutputTypeCountS1080ImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ImageWhereInput
+  }
+
+
+  /**
+   * Count Type ImageCountOutputType
+   */
+
+  export type ImageCountOutputType = {
+    CarImages: number
+  }
+
+  export type ImageCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    CarImages?: boolean | ImageCountOutputTypeCountCarImagesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ImageCountOutputType without action
+   */
+  export type ImageCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ImageCountOutputType
+     */
+    select?: ImageCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ImageCountOutputType without action
+   */
+  export type ImageCountOutputTypeCountCarImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CarImagesWhereInput
   }
 
 
@@ -3997,6 +4299,8 @@ export namespace Prisma {
     make?: boolean | CarMakeDefaultArgs<ExtArgs>
     model?: boolean | CarModelDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    carImages?: boolean | Cars$carImagesArgs<ExtArgs>
+    _count?: boolean | CarsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["cars"]>
 
   export type CarsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4046,6 +4350,8 @@ export namespace Prisma {
     make?: boolean | CarMakeDefaultArgs<ExtArgs>
     model?: boolean | CarModelDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    carImages?: boolean | Cars$carImagesArgs<ExtArgs>
+    _count?: boolean | CarsCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CarsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     make?: boolean | CarMakeDefaultArgs<ExtArgs>
@@ -4064,6 +4370,7 @@ export namespace Prisma {
       make: Prisma.$CarMakePayload<ExtArgs>
       model: Prisma.$CarModelPayload<ExtArgs>
       user: Prisma.$UserPayload<ExtArgs>
+      carImages: Prisma.$CarImagesPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -4472,6 +4779,7 @@ export namespace Prisma {
     make<T extends CarMakeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CarMakeDefaultArgs<ExtArgs>>): Prisma__CarMakeClient<$Result.GetResult<Prisma.$CarMakePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     model<T extends CarModelDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CarModelDefaultArgs<ExtArgs>>): Prisma__CarModelClient<$Result.GetResult<Prisma.$CarModelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    carImages<T extends Cars$carImagesArgs<ExtArgs> = {}>(args?: Subset<T, Cars$carImagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CarImagesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4906,6 +5214,30 @@ export namespace Prisma {
   }
 
   /**
+   * Cars.carImages
+   */
+  export type Cars$carImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CarImages
+     */
+    select?: CarImagesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CarImages
+     */
+    omit?: CarImagesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CarImagesInclude<ExtArgs> | null
+    where?: CarImagesWhereInput
+    orderBy?: CarImagesOrderByWithRelationInput | CarImagesOrderByWithRelationInput[]
+    cursor?: CarImagesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CarImagesScalarFieldEnum | CarImagesScalarFieldEnum[]
+  }
+
+  /**
    * Cars without action
    */
   export type CarsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4921,6 +5253,1088 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: CarsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CarImages
+   */
+
+  export type AggregateCarImages = {
+    _count: CarImagesCountAggregateOutputType | null
+    _avg: CarImagesAvgAggregateOutputType | null
+    _sum: CarImagesSumAggregateOutputType | null
+    _min: CarImagesMinAggregateOutputType | null
+    _max: CarImagesMaxAggregateOutputType | null
+  }
+
+  export type CarImagesAvgAggregateOutputType = {
+    id: number | null
+    carId: number | null
+    imageId: number | null
+  }
+
+  export type CarImagesSumAggregateOutputType = {
+    id: number | null
+    carId: number | null
+    imageId: number | null
+  }
+
+  export type CarImagesMinAggregateOutputType = {
+    id: number | null
+    carId: number | null
+    imageId: number | null
+  }
+
+  export type CarImagesMaxAggregateOutputType = {
+    id: number | null
+    carId: number | null
+    imageId: number | null
+  }
+
+  export type CarImagesCountAggregateOutputType = {
+    id: number
+    carId: number
+    imageId: number
+    _all: number
+  }
+
+
+  export type CarImagesAvgAggregateInputType = {
+    id?: true
+    carId?: true
+    imageId?: true
+  }
+
+  export type CarImagesSumAggregateInputType = {
+    id?: true
+    carId?: true
+    imageId?: true
+  }
+
+  export type CarImagesMinAggregateInputType = {
+    id?: true
+    carId?: true
+    imageId?: true
+  }
+
+  export type CarImagesMaxAggregateInputType = {
+    id?: true
+    carId?: true
+    imageId?: true
+  }
+
+  export type CarImagesCountAggregateInputType = {
+    id?: true
+    carId?: true
+    imageId?: true
+    _all?: true
+  }
+
+  export type CarImagesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CarImages to aggregate.
+     */
+    where?: CarImagesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CarImages to fetch.
+     */
+    orderBy?: CarImagesOrderByWithRelationInput | CarImagesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CarImagesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CarImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CarImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CarImages
+    **/
+    _count?: true | CarImagesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CarImagesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CarImagesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CarImagesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CarImagesMaxAggregateInputType
+  }
+
+  export type GetCarImagesAggregateType<T extends CarImagesAggregateArgs> = {
+        [P in keyof T & keyof AggregateCarImages]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCarImages[P]>
+      : GetScalarType<T[P], AggregateCarImages[P]>
+  }
+
+
+
+
+  export type CarImagesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CarImagesWhereInput
+    orderBy?: CarImagesOrderByWithAggregationInput | CarImagesOrderByWithAggregationInput[]
+    by: CarImagesScalarFieldEnum[] | CarImagesScalarFieldEnum
+    having?: CarImagesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CarImagesCountAggregateInputType | true
+    _avg?: CarImagesAvgAggregateInputType
+    _sum?: CarImagesSumAggregateInputType
+    _min?: CarImagesMinAggregateInputType
+    _max?: CarImagesMaxAggregateInputType
+  }
+
+  export type CarImagesGroupByOutputType = {
+    id: number
+    carId: number
+    imageId: number
+    _count: CarImagesCountAggregateOutputType | null
+    _avg: CarImagesAvgAggregateOutputType | null
+    _sum: CarImagesSumAggregateOutputType | null
+    _min: CarImagesMinAggregateOutputType | null
+    _max: CarImagesMaxAggregateOutputType | null
+  }
+
+  type GetCarImagesGroupByPayload<T extends CarImagesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CarImagesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CarImagesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CarImagesGroupByOutputType[P]>
+            : GetScalarType<T[P], CarImagesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CarImagesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    carId?: boolean
+    imageId?: boolean
+    car?: boolean | CarsDefaultArgs<ExtArgs>
+    images?: boolean | ImageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["carImages"]>
+
+  export type CarImagesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    carId?: boolean
+    imageId?: boolean
+    car?: boolean | CarsDefaultArgs<ExtArgs>
+    images?: boolean | ImageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["carImages"]>
+
+  export type CarImagesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    carId?: boolean
+    imageId?: boolean
+    car?: boolean | CarsDefaultArgs<ExtArgs>
+    images?: boolean | ImageDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["carImages"]>
+
+  export type CarImagesSelectScalar = {
+    id?: boolean
+    carId?: boolean
+    imageId?: boolean
+  }
+
+  export type CarImagesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "carId" | "imageId", ExtArgs["result"]["carImages"]>
+  export type CarImagesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    car?: boolean | CarsDefaultArgs<ExtArgs>
+    images?: boolean | ImageDefaultArgs<ExtArgs>
+  }
+  export type CarImagesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    car?: boolean | CarsDefaultArgs<ExtArgs>
+    images?: boolean | ImageDefaultArgs<ExtArgs>
+  }
+  export type CarImagesIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    car?: boolean | CarsDefaultArgs<ExtArgs>
+    images?: boolean | ImageDefaultArgs<ExtArgs>
+  }
+
+  export type $CarImagesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CarImages"
+    objects: {
+      car: Prisma.$CarsPayload<ExtArgs>
+      images: Prisma.$ImagePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      carId: number
+      imageId: number
+    }, ExtArgs["result"]["carImages"]>
+    composites: {}
+  }
+
+  type CarImagesGetPayload<S extends boolean | null | undefined | CarImagesDefaultArgs> = $Result.GetResult<Prisma.$CarImagesPayload, S>
+
+  type CarImagesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CarImagesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CarImagesCountAggregateInputType | true
+    }
+
+  export interface CarImagesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CarImages'], meta: { name: 'CarImages' } }
+    /**
+     * Find zero or one CarImages that matches the filter.
+     * @param {CarImagesFindUniqueArgs} args - Arguments to find a CarImages
+     * @example
+     * // Get one CarImages
+     * const carImages = await prisma.carImages.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CarImagesFindUniqueArgs>(args: SelectSubset<T, CarImagesFindUniqueArgs<ExtArgs>>): Prisma__CarImagesClient<$Result.GetResult<Prisma.$CarImagesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CarImages that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CarImagesFindUniqueOrThrowArgs} args - Arguments to find a CarImages
+     * @example
+     * // Get one CarImages
+     * const carImages = await prisma.carImages.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CarImagesFindUniqueOrThrowArgs>(args: SelectSubset<T, CarImagesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CarImagesClient<$Result.GetResult<Prisma.$CarImagesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CarImages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CarImagesFindFirstArgs} args - Arguments to find a CarImages
+     * @example
+     * // Get one CarImages
+     * const carImages = await prisma.carImages.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CarImagesFindFirstArgs>(args?: SelectSubset<T, CarImagesFindFirstArgs<ExtArgs>>): Prisma__CarImagesClient<$Result.GetResult<Prisma.$CarImagesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CarImages that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CarImagesFindFirstOrThrowArgs} args - Arguments to find a CarImages
+     * @example
+     * // Get one CarImages
+     * const carImages = await prisma.carImages.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CarImagesFindFirstOrThrowArgs>(args?: SelectSubset<T, CarImagesFindFirstOrThrowArgs<ExtArgs>>): Prisma__CarImagesClient<$Result.GetResult<Prisma.$CarImagesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CarImages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CarImagesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CarImages
+     * const carImages = await prisma.carImages.findMany()
+     * 
+     * // Get first 10 CarImages
+     * const carImages = await prisma.carImages.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const carImagesWithIdOnly = await prisma.carImages.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CarImagesFindManyArgs>(args?: SelectSubset<T, CarImagesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CarImagesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CarImages.
+     * @param {CarImagesCreateArgs} args - Arguments to create a CarImages.
+     * @example
+     * // Create one CarImages
+     * const CarImages = await prisma.carImages.create({
+     *   data: {
+     *     // ... data to create a CarImages
+     *   }
+     * })
+     * 
+     */
+    create<T extends CarImagesCreateArgs>(args: SelectSubset<T, CarImagesCreateArgs<ExtArgs>>): Prisma__CarImagesClient<$Result.GetResult<Prisma.$CarImagesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CarImages.
+     * @param {CarImagesCreateManyArgs} args - Arguments to create many CarImages.
+     * @example
+     * // Create many CarImages
+     * const carImages = await prisma.carImages.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CarImagesCreateManyArgs>(args?: SelectSubset<T, CarImagesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CarImages and returns the data saved in the database.
+     * @param {CarImagesCreateManyAndReturnArgs} args - Arguments to create many CarImages.
+     * @example
+     * // Create many CarImages
+     * const carImages = await prisma.carImages.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CarImages and only return the `id`
+     * const carImagesWithIdOnly = await prisma.carImages.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CarImagesCreateManyAndReturnArgs>(args?: SelectSubset<T, CarImagesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CarImagesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CarImages.
+     * @param {CarImagesDeleteArgs} args - Arguments to delete one CarImages.
+     * @example
+     * // Delete one CarImages
+     * const CarImages = await prisma.carImages.delete({
+     *   where: {
+     *     // ... filter to delete one CarImages
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CarImagesDeleteArgs>(args: SelectSubset<T, CarImagesDeleteArgs<ExtArgs>>): Prisma__CarImagesClient<$Result.GetResult<Prisma.$CarImagesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CarImages.
+     * @param {CarImagesUpdateArgs} args - Arguments to update one CarImages.
+     * @example
+     * // Update one CarImages
+     * const carImages = await prisma.carImages.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CarImagesUpdateArgs>(args: SelectSubset<T, CarImagesUpdateArgs<ExtArgs>>): Prisma__CarImagesClient<$Result.GetResult<Prisma.$CarImagesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CarImages.
+     * @param {CarImagesDeleteManyArgs} args - Arguments to filter CarImages to delete.
+     * @example
+     * // Delete a few CarImages
+     * const { count } = await prisma.carImages.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CarImagesDeleteManyArgs>(args?: SelectSubset<T, CarImagesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CarImages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CarImagesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CarImages
+     * const carImages = await prisma.carImages.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CarImagesUpdateManyArgs>(args: SelectSubset<T, CarImagesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CarImages and returns the data updated in the database.
+     * @param {CarImagesUpdateManyAndReturnArgs} args - Arguments to update many CarImages.
+     * @example
+     * // Update many CarImages
+     * const carImages = await prisma.carImages.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CarImages and only return the `id`
+     * const carImagesWithIdOnly = await prisma.carImages.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CarImagesUpdateManyAndReturnArgs>(args: SelectSubset<T, CarImagesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CarImagesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CarImages.
+     * @param {CarImagesUpsertArgs} args - Arguments to update or create a CarImages.
+     * @example
+     * // Update or create a CarImages
+     * const carImages = await prisma.carImages.upsert({
+     *   create: {
+     *     // ... data to create a CarImages
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CarImages we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CarImagesUpsertArgs>(args: SelectSubset<T, CarImagesUpsertArgs<ExtArgs>>): Prisma__CarImagesClient<$Result.GetResult<Prisma.$CarImagesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CarImages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CarImagesCountArgs} args - Arguments to filter CarImages to count.
+     * @example
+     * // Count the number of CarImages
+     * const count = await prisma.carImages.count({
+     *   where: {
+     *     // ... the filter for the CarImages we want to count
+     *   }
+     * })
+    **/
+    count<T extends CarImagesCountArgs>(
+      args?: Subset<T, CarImagesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CarImagesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CarImages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CarImagesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CarImagesAggregateArgs>(args: Subset<T, CarImagesAggregateArgs>): Prisma.PrismaPromise<GetCarImagesAggregateType<T>>
+
+    /**
+     * Group by CarImages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CarImagesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CarImagesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CarImagesGroupByArgs['orderBy'] }
+        : { orderBy?: CarImagesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CarImagesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCarImagesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CarImages model
+   */
+  readonly fields: CarImagesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CarImages.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CarImagesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    car<T extends CarsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CarsDefaultArgs<ExtArgs>>): Prisma__CarsClient<$Result.GetResult<Prisma.$CarsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    images<T extends ImageDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ImageDefaultArgs<ExtArgs>>): Prisma__ImageClient<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CarImages model
+   */
+  interface CarImagesFieldRefs {
+    readonly id: FieldRef<"CarImages", 'Int'>
+    readonly carId: FieldRef<"CarImages", 'Int'>
+    readonly imageId: FieldRef<"CarImages", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CarImages findUnique
+   */
+  export type CarImagesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CarImages
+     */
+    select?: CarImagesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CarImages
+     */
+    omit?: CarImagesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CarImagesInclude<ExtArgs> | null
+    /**
+     * Filter, which CarImages to fetch.
+     */
+    where: CarImagesWhereUniqueInput
+  }
+
+  /**
+   * CarImages findUniqueOrThrow
+   */
+  export type CarImagesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CarImages
+     */
+    select?: CarImagesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CarImages
+     */
+    omit?: CarImagesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CarImagesInclude<ExtArgs> | null
+    /**
+     * Filter, which CarImages to fetch.
+     */
+    where: CarImagesWhereUniqueInput
+  }
+
+  /**
+   * CarImages findFirst
+   */
+  export type CarImagesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CarImages
+     */
+    select?: CarImagesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CarImages
+     */
+    omit?: CarImagesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CarImagesInclude<ExtArgs> | null
+    /**
+     * Filter, which CarImages to fetch.
+     */
+    where?: CarImagesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CarImages to fetch.
+     */
+    orderBy?: CarImagesOrderByWithRelationInput | CarImagesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CarImages.
+     */
+    cursor?: CarImagesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CarImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CarImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CarImages.
+     */
+    distinct?: CarImagesScalarFieldEnum | CarImagesScalarFieldEnum[]
+  }
+
+  /**
+   * CarImages findFirstOrThrow
+   */
+  export type CarImagesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CarImages
+     */
+    select?: CarImagesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CarImages
+     */
+    omit?: CarImagesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CarImagesInclude<ExtArgs> | null
+    /**
+     * Filter, which CarImages to fetch.
+     */
+    where?: CarImagesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CarImages to fetch.
+     */
+    orderBy?: CarImagesOrderByWithRelationInput | CarImagesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CarImages.
+     */
+    cursor?: CarImagesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CarImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CarImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CarImages.
+     */
+    distinct?: CarImagesScalarFieldEnum | CarImagesScalarFieldEnum[]
+  }
+
+  /**
+   * CarImages findMany
+   */
+  export type CarImagesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CarImages
+     */
+    select?: CarImagesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CarImages
+     */
+    omit?: CarImagesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CarImagesInclude<ExtArgs> | null
+    /**
+     * Filter, which CarImages to fetch.
+     */
+    where?: CarImagesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CarImages to fetch.
+     */
+    orderBy?: CarImagesOrderByWithRelationInput | CarImagesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CarImages.
+     */
+    cursor?: CarImagesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CarImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CarImages.
+     */
+    skip?: number
+    distinct?: CarImagesScalarFieldEnum | CarImagesScalarFieldEnum[]
+  }
+
+  /**
+   * CarImages create
+   */
+  export type CarImagesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CarImages
+     */
+    select?: CarImagesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CarImages
+     */
+    omit?: CarImagesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CarImagesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CarImages.
+     */
+    data: XOR<CarImagesCreateInput, CarImagesUncheckedCreateInput>
+  }
+
+  /**
+   * CarImages createMany
+   */
+  export type CarImagesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CarImages.
+     */
+    data: CarImagesCreateManyInput | CarImagesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CarImages createManyAndReturn
+   */
+  export type CarImagesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CarImages
+     */
+    select?: CarImagesSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CarImages
+     */
+    omit?: CarImagesOmit<ExtArgs> | null
+    /**
+     * The data used to create many CarImages.
+     */
+    data: CarImagesCreateManyInput | CarImagesCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CarImagesIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CarImages update
+   */
+  export type CarImagesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CarImages
+     */
+    select?: CarImagesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CarImages
+     */
+    omit?: CarImagesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CarImagesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CarImages.
+     */
+    data: XOR<CarImagesUpdateInput, CarImagesUncheckedUpdateInput>
+    /**
+     * Choose, which CarImages to update.
+     */
+    where: CarImagesWhereUniqueInput
+  }
+
+  /**
+   * CarImages updateMany
+   */
+  export type CarImagesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CarImages.
+     */
+    data: XOR<CarImagesUpdateManyMutationInput, CarImagesUncheckedUpdateManyInput>
+    /**
+     * Filter which CarImages to update
+     */
+    where?: CarImagesWhereInput
+    /**
+     * Limit how many CarImages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CarImages updateManyAndReturn
+   */
+  export type CarImagesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CarImages
+     */
+    select?: CarImagesSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CarImages
+     */
+    omit?: CarImagesOmit<ExtArgs> | null
+    /**
+     * The data used to update CarImages.
+     */
+    data: XOR<CarImagesUpdateManyMutationInput, CarImagesUncheckedUpdateManyInput>
+    /**
+     * Filter which CarImages to update
+     */
+    where?: CarImagesWhereInput
+    /**
+     * Limit how many CarImages to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CarImagesIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CarImages upsert
+   */
+  export type CarImagesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CarImages
+     */
+    select?: CarImagesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CarImages
+     */
+    omit?: CarImagesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CarImagesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CarImages to update in case it exists.
+     */
+    where: CarImagesWhereUniqueInput
+    /**
+     * In case the CarImages found by the `where` argument doesn't exist, create a new CarImages with this data.
+     */
+    create: XOR<CarImagesCreateInput, CarImagesUncheckedCreateInput>
+    /**
+     * In case the CarImages was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CarImagesUpdateInput, CarImagesUncheckedUpdateInput>
+  }
+
+  /**
+   * CarImages delete
+   */
+  export type CarImagesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CarImages
+     */
+    select?: CarImagesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CarImages
+     */
+    omit?: CarImagesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CarImagesInclude<ExtArgs> | null
+    /**
+     * Filter which CarImages to delete.
+     */
+    where: CarImagesWhereUniqueInput
+  }
+
+  /**
+   * CarImages deleteMany
+   */
+  export type CarImagesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CarImages to delete
+     */
+    where?: CarImagesWhereInput
+    /**
+     * Limit how many CarImages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CarImages without action
+   */
+  export type CarImagesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CarImages
+     */
+    select?: CarImagesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CarImages
+     */
+    omit?: CarImagesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CarImagesInclude<ExtArgs> | null
   }
 
 
@@ -7071,42 +8485,38 @@ export namespace Prisma {
 
   export type FileAvgAggregateOutputType = {
     id: number | null
+    size: number | null
   }
 
   export type FileSumAggregateOutputType = {
     id: number | null
+    size: number | null
   }
 
   export type FileMinAggregateOutputType = {
     id: number | null
-    name: string | null
     url: string | null
     mimeType: string | null
-    size: string | null
-    uploadedAt: Date | null
-    updatedAt: Date | null
+    size: number | null
+    createdAt: Date | null
     toDeleteAt: Date | null
   }
 
   export type FileMaxAggregateOutputType = {
     id: number | null
-    name: string | null
     url: string | null
     mimeType: string | null
-    size: string | null
-    uploadedAt: Date | null
-    updatedAt: Date | null
+    size: number | null
+    createdAt: Date | null
     toDeleteAt: Date | null
   }
 
   export type FileCountAggregateOutputType = {
     id: number
-    name: number
     url: number
     mimeType: number
     size: number
-    uploadedAt: number
-    updatedAt: number
+    createdAt: number
     toDeleteAt: number
     _all: number
   }
@@ -7114,42 +8524,38 @@ export namespace Prisma {
 
   export type FileAvgAggregateInputType = {
     id?: true
+    size?: true
   }
 
   export type FileSumAggregateInputType = {
     id?: true
+    size?: true
   }
 
   export type FileMinAggregateInputType = {
     id?: true
-    name?: true
     url?: true
     mimeType?: true
     size?: true
-    uploadedAt?: true
-    updatedAt?: true
+    createdAt?: true
     toDeleteAt?: true
   }
 
   export type FileMaxAggregateInputType = {
     id?: true
-    name?: true
     url?: true
     mimeType?: true
     size?: true
-    uploadedAt?: true
-    updatedAt?: true
+    createdAt?: true
     toDeleteAt?: true
   }
 
   export type FileCountAggregateInputType = {
     id?: true
-    name?: true
     url?: true
     mimeType?: true
     size?: true
-    uploadedAt?: true
-    updatedAt?: true
+    createdAt?: true
     toDeleteAt?: true
     _all?: true
   }
@@ -7242,12 +8648,10 @@ export namespace Prisma {
 
   export type FileGroupByOutputType = {
     id: number
-    name: string
     url: string
     mimeType: string
-    size: string
-    uploadedAt: Date
-    updatedAt: Date
+    size: number
+    createdAt: Date
     toDeleteAt: Date
     _count: FileCountAggregateOutputType | null
     _avg: FileAvgAggregateOutputType | null
@@ -7272,61 +8676,70 @@ export namespace Prisma {
 
   export type FileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
     url?: boolean
     mimeType?: boolean
     size?: boolean
-    uploadedAt?: boolean
-    updatedAt?: boolean
+    createdAt?: boolean
     toDeleteAt?: boolean
+    s240Images?: boolean | File$s240ImagesArgs<ExtArgs>
+    s480Images?: boolean | File$s480ImagesArgs<ExtArgs>
+    s720Images?: boolean | File$s720ImagesArgs<ExtArgs>
+    s1080Images?: boolean | File$s1080ImagesArgs<ExtArgs>
+    _count?: boolean | FileCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["file"]>
 
   export type FileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
     url?: boolean
     mimeType?: boolean
     size?: boolean
-    uploadedAt?: boolean
-    updatedAt?: boolean
+    createdAt?: boolean
     toDeleteAt?: boolean
   }, ExtArgs["result"]["file"]>
 
   export type FileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
     url?: boolean
     mimeType?: boolean
     size?: boolean
-    uploadedAt?: boolean
-    updatedAt?: boolean
+    createdAt?: boolean
     toDeleteAt?: boolean
   }, ExtArgs["result"]["file"]>
 
   export type FileSelectScalar = {
     id?: boolean
-    name?: boolean
     url?: boolean
     mimeType?: boolean
     size?: boolean
-    uploadedAt?: boolean
-    updatedAt?: boolean
+    createdAt?: boolean
     toDeleteAt?: boolean
   }
 
-  export type FileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "url" | "mimeType" | "size" | "uploadedAt" | "updatedAt" | "toDeleteAt", ExtArgs["result"]["file"]>
+  export type FileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "url" | "mimeType" | "size" | "createdAt" | "toDeleteAt", ExtArgs["result"]["file"]>
+  export type FileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    s240Images?: boolean | File$s240ImagesArgs<ExtArgs>
+    s480Images?: boolean | File$s480ImagesArgs<ExtArgs>
+    s720Images?: boolean | File$s720ImagesArgs<ExtArgs>
+    s1080Images?: boolean | File$s1080ImagesArgs<ExtArgs>
+    _count?: boolean | FileCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type FileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type FileIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $FilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "File"
-    objects: {}
+    objects: {
+      s240Images: Prisma.$ImagePayload<ExtArgs>[]
+      s480Images: Prisma.$ImagePayload<ExtArgs>[]
+      s720Images: Prisma.$ImagePayload<ExtArgs>[]
+      s1080Images: Prisma.$ImagePayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      name: string
       url: string
       mimeType: string
-      size: string
-      uploadedAt: Date
-      updatedAt: Date
+      size: number
+      createdAt: Date
       toDeleteAt: Date
     }, ExtArgs["result"]["file"]>
     composites: {}
@@ -7722,6 +9135,10 @@ export namespace Prisma {
    */
   export interface Prisma__FileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    s240Images<T extends File$s240ImagesArgs<ExtArgs> = {}>(args?: Subset<T, File$s240ImagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    s480Images<T extends File$s480ImagesArgs<ExtArgs> = {}>(args?: Subset<T, File$s480ImagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    s720Images<T extends File$s720ImagesArgs<ExtArgs> = {}>(args?: Subset<T, File$s720ImagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    s1080Images<T extends File$s1080ImagesArgs<ExtArgs> = {}>(args?: Subset<T, File$s1080ImagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7752,12 +9169,10 @@ export namespace Prisma {
    */
   interface FileFieldRefs {
     readonly id: FieldRef<"File", 'Int'>
-    readonly name: FieldRef<"File", 'String'>
     readonly url: FieldRef<"File", 'String'>
     readonly mimeType: FieldRef<"File", 'String'>
-    readonly size: FieldRef<"File", 'String'>
-    readonly uploadedAt: FieldRef<"File", 'DateTime'>
-    readonly updatedAt: FieldRef<"File", 'DateTime'>
+    readonly size: FieldRef<"File", 'Int'>
+    readonly createdAt: FieldRef<"File", 'DateTime'>
     readonly toDeleteAt: FieldRef<"File", 'DateTime'>
   }
     
@@ -7775,6 +9190,10 @@ export namespace Prisma {
      * Omit specific fields from the File
      */
     omit?: FileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
     /**
      * Filter, which File to fetch.
      */
@@ -7794,6 +9213,10 @@ export namespace Prisma {
      */
     omit?: FileOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
+    /**
      * Filter, which File to fetch.
      */
     where: FileWhereUniqueInput
@@ -7811,6 +9234,10 @@ export namespace Prisma {
      * Omit specific fields from the File
      */
     omit?: FileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
     /**
      * Filter, which File to fetch.
      */
@@ -7860,6 +9287,10 @@ export namespace Prisma {
      */
     omit?: FileOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
+    /**
      * Filter, which File to fetch.
      */
     where?: FileWhereInput
@@ -7908,6 +9339,10 @@ export namespace Prisma {
      */
     omit?: FileOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
+    /**
      * Filter, which Files to fetch.
      */
     where?: FileWhereInput
@@ -7950,6 +9385,10 @@ export namespace Prisma {
      * Omit specific fields from the File
      */
     omit?: FileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
     /**
      * The data needed to create a File.
      */
@@ -7998,6 +9437,10 @@ export namespace Prisma {
      * Omit specific fields from the File
      */
     omit?: FileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
     /**
      * The data needed to update a File.
      */
@@ -8065,6 +9508,10 @@ export namespace Prisma {
      */
     omit?: FileOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
+    /**
      * The filter to search for the File to update in case it exists.
      */
     where: FileWhereUniqueInput
@@ -8091,6 +9538,10 @@ export namespace Prisma {
      */
     omit?: FileOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
+    /**
      * Filter which File to delete.
      */
     where: FileWhereUniqueInput
@@ -8111,6 +9562,102 @@ export namespace Prisma {
   }
 
   /**
+   * File.s240Images
+   */
+  export type File$s240ImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Image
+     */
+    select?: ImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Image
+     */
+    omit?: ImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ImageInclude<ExtArgs> | null
+    where?: ImageWhereInput
+    orderBy?: ImageOrderByWithRelationInput | ImageOrderByWithRelationInput[]
+    cursor?: ImageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ImageScalarFieldEnum | ImageScalarFieldEnum[]
+  }
+
+  /**
+   * File.s480Images
+   */
+  export type File$s480ImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Image
+     */
+    select?: ImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Image
+     */
+    omit?: ImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ImageInclude<ExtArgs> | null
+    where?: ImageWhereInput
+    orderBy?: ImageOrderByWithRelationInput | ImageOrderByWithRelationInput[]
+    cursor?: ImageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ImageScalarFieldEnum | ImageScalarFieldEnum[]
+  }
+
+  /**
+   * File.s720Images
+   */
+  export type File$s720ImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Image
+     */
+    select?: ImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Image
+     */
+    omit?: ImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ImageInclude<ExtArgs> | null
+    where?: ImageWhereInput
+    orderBy?: ImageOrderByWithRelationInput | ImageOrderByWithRelationInput[]
+    cursor?: ImageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ImageScalarFieldEnum | ImageScalarFieldEnum[]
+  }
+
+  /**
+   * File.s1080Images
+   */
+  export type File$s1080ImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Image
+     */
+    select?: ImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Image
+     */
+    omit?: ImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ImageInclude<ExtArgs> | null
+    where?: ImageWhereInput
+    orderBy?: ImageOrderByWithRelationInput | ImageOrderByWithRelationInput[]
+    cursor?: ImageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ImageScalarFieldEnum | ImageScalarFieldEnum[]
+  }
+
+  /**
    * File without action
    */
   export type FileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8122,6 +9669,1172 @@ export namespace Prisma {
      * Omit specific fields from the File
      */
     omit?: FileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FileInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Image
+   */
+
+  export type AggregateImage = {
+    _count: ImageCountAggregateOutputType | null
+    _avg: ImageAvgAggregateOutputType | null
+    _sum: ImageSumAggregateOutputType | null
+    _min: ImageMinAggregateOutputType | null
+    _max: ImageMaxAggregateOutputType | null
+  }
+
+  export type ImageAvgAggregateOutputType = {
+    id: number | null
+    s240FileId: number | null
+    s480FileId: number | null
+    s720FileId: number | null
+    s1080FileId: number | null
+  }
+
+  export type ImageSumAggregateOutputType = {
+    id: number | null
+    s240FileId: number | null
+    s480FileId: number | null
+    s720FileId: number | null
+    s1080FileId: number | null
+  }
+
+  export type ImageMinAggregateOutputType = {
+    id: number | null
+    s240FileId: number | null
+    s480FileId: number | null
+    s720FileId: number | null
+    s1080FileId: number | null
+  }
+
+  export type ImageMaxAggregateOutputType = {
+    id: number | null
+    s240FileId: number | null
+    s480FileId: number | null
+    s720FileId: number | null
+    s1080FileId: number | null
+  }
+
+  export type ImageCountAggregateOutputType = {
+    id: number
+    s240FileId: number
+    s480FileId: number
+    s720FileId: number
+    s1080FileId: number
+    _all: number
+  }
+
+
+  export type ImageAvgAggregateInputType = {
+    id?: true
+    s240FileId?: true
+    s480FileId?: true
+    s720FileId?: true
+    s1080FileId?: true
+  }
+
+  export type ImageSumAggregateInputType = {
+    id?: true
+    s240FileId?: true
+    s480FileId?: true
+    s720FileId?: true
+    s1080FileId?: true
+  }
+
+  export type ImageMinAggregateInputType = {
+    id?: true
+    s240FileId?: true
+    s480FileId?: true
+    s720FileId?: true
+    s1080FileId?: true
+  }
+
+  export type ImageMaxAggregateInputType = {
+    id?: true
+    s240FileId?: true
+    s480FileId?: true
+    s720FileId?: true
+    s1080FileId?: true
+  }
+
+  export type ImageCountAggregateInputType = {
+    id?: true
+    s240FileId?: true
+    s480FileId?: true
+    s720FileId?: true
+    s1080FileId?: true
+    _all?: true
+  }
+
+  export type ImageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Image to aggregate.
+     */
+    where?: ImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Images to fetch.
+     */
+    orderBy?: ImageOrderByWithRelationInput | ImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Images from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Images.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Images
+    **/
+    _count?: true | ImageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ImageAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ImageSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ImageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ImageMaxAggregateInputType
+  }
+
+  export type GetImageAggregateType<T extends ImageAggregateArgs> = {
+        [P in keyof T & keyof AggregateImage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateImage[P]>
+      : GetScalarType<T[P], AggregateImage[P]>
+  }
+
+
+
+
+  export type ImageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ImageWhereInput
+    orderBy?: ImageOrderByWithAggregationInput | ImageOrderByWithAggregationInput[]
+    by: ImageScalarFieldEnum[] | ImageScalarFieldEnum
+    having?: ImageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ImageCountAggregateInputType | true
+    _avg?: ImageAvgAggregateInputType
+    _sum?: ImageSumAggregateInputType
+    _min?: ImageMinAggregateInputType
+    _max?: ImageMaxAggregateInputType
+  }
+
+  export type ImageGroupByOutputType = {
+    id: number
+    s240FileId: number
+    s480FileId: number
+    s720FileId: number
+    s1080FileId: number
+    _count: ImageCountAggregateOutputType | null
+    _avg: ImageAvgAggregateOutputType | null
+    _sum: ImageSumAggregateOutputType | null
+    _min: ImageMinAggregateOutputType | null
+    _max: ImageMaxAggregateOutputType | null
+  }
+
+  type GetImageGroupByPayload<T extends ImageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ImageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ImageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ImageGroupByOutputType[P]>
+            : GetScalarType<T[P], ImageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ImageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    s240FileId?: boolean
+    s480FileId?: boolean
+    s720FileId?: boolean
+    s1080FileId?: boolean
+    s240File?: boolean | FileDefaultArgs<ExtArgs>
+    s480File?: boolean | FileDefaultArgs<ExtArgs>
+    s720File?: boolean | FileDefaultArgs<ExtArgs>
+    s1080File?: boolean | FileDefaultArgs<ExtArgs>
+    CarImages?: boolean | Image$CarImagesArgs<ExtArgs>
+    _count?: boolean | ImageCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["image"]>
+
+  export type ImageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    s240FileId?: boolean
+    s480FileId?: boolean
+    s720FileId?: boolean
+    s1080FileId?: boolean
+    s240File?: boolean | FileDefaultArgs<ExtArgs>
+    s480File?: boolean | FileDefaultArgs<ExtArgs>
+    s720File?: boolean | FileDefaultArgs<ExtArgs>
+    s1080File?: boolean | FileDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["image"]>
+
+  export type ImageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    s240FileId?: boolean
+    s480FileId?: boolean
+    s720FileId?: boolean
+    s1080FileId?: boolean
+    s240File?: boolean | FileDefaultArgs<ExtArgs>
+    s480File?: boolean | FileDefaultArgs<ExtArgs>
+    s720File?: boolean | FileDefaultArgs<ExtArgs>
+    s1080File?: boolean | FileDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["image"]>
+
+  export type ImageSelectScalar = {
+    id?: boolean
+    s240FileId?: boolean
+    s480FileId?: boolean
+    s720FileId?: boolean
+    s1080FileId?: boolean
+  }
+
+  export type ImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "s240FileId" | "s480FileId" | "s720FileId" | "s1080FileId", ExtArgs["result"]["image"]>
+  export type ImageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    s240File?: boolean | FileDefaultArgs<ExtArgs>
+    s480File?: boolean | FileDefaultArgs<ExtArgs>
+    s720File?: boolean | FileDefaultArgs<ExtArgs>
+    s1080File?: boolean | FileDefaultArgs<ExtArgs>
+    CarImages?: boolean | Image$CarImagesArgs<ExtArgs>
+    _count?: boolean | ImageCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ImageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    s240File?: boolean | FileDefaultArgs<ExtArgs>
+    s480File?: boolean | FileDefaultArgs<ExtArgs>
+    s720File?: boolean | FileDefaultArgs<ExtArgs>
+    s1080File?: boolean | FileDefaultArgs<ExtArgs>
+  }
+  export type ImageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    s240File?: boolean | FileDefaultArgs<ExtArgs>
+    s480File?: boolean | FileDefaultArgs<ExtArgs>
+    s720File?: boolean | FileDefaultArgs<ExtArgs>
+    s1080File?: boolean | FileDefaultArgs<ExtArgs>
+  }
+
+  export type $ImagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Image"
+    objects: {
+      s240File: Prisma.$FilePayload<ExtArgs>
+      s480File: Prisma.$FilePayload<ExtArgs>
+      s720File: Prisma.$FilePayload<ExtArgs>
+      s1080File: Prisma.$FilePayload<ExtArgs>
+      CarImages: Prisma.$CarImagesPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      s240FileId: number
+      s480FileId: number
+      s720FileId: number
+      s1080FileId: number
+    }, ExtArgs["result"]["image"]>
+    composites: {}
+  }
+
+  type ImageGetPayload<S extends boolean | null | undefined | ImageDefaultArgs> = $Result.GetResult<Prisma.$ImagePayload, S>
+
+  type ImageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ImageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ImageCountAggregateInputType | true
+    }
+
+  export interface ImageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Image'], meta: { name: 'Image' } }
+    /**
+     * Find zero or one Image that matches the filter.
+     * @param {ImageFindUniqueArgs} args - Arguments to find a Image
+     * @example
+     * // Get one Image
+     * const image = await prisma.image.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ImageFindUniqueArgs>(args: SelectSubset<T, ImageFindUniqueArgs<ExtArgs>>): Prisma__ImageClient<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Image that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ImageFindUniqueOrThrowArgs} args - Arguments to find a Image
+     * @example
+     * // Get one Image
+     * const image = await prisma.image.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ImageFindUniqueOrThrowArgs>(args: SelectSubset<T, ImageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ImageClient<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Image that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ImageFindFirstArgs} args - Arguments to find a Image
+     * @example
+     * // Get one Image
+     * const image = await prisma.image.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ImageFindFirstArgs>(args?: SelectSubset<T, ImageFindFirstArgs<ExtArgs>>): Prisma__ImageClient<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Image that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ImageFindFirstOrThrowArgs} args - Arguments to find a Image
+     * @example
+     * // Get one Image
+     * const image = await prisma.image.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ImageFindFirstOrThrowArgs>(args?: SelectSubset<T, ImageFindFirstOrThrowArgs<ExtArgs>>): Prisma__ImageClient<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Images that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ImageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Images
+     * const images = await prisma.image.findMany()
+     * 
+     * // Get first 10 Images
+     * const images = await prisma.image.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const imageWithIdOnly = await prisma.image.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ImageFindManyArgs>(args?: SelectSubset<T, ImageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Image.
+     * @param {ImageCreateArgs} args - Arguments to create a Image.
+     * @example
+     * // Create one Image
+     * const Image = await prisma.image.create({
+     *   data: {
+     *     // ... data to create a Image
+     *   }
+     * })
+     * 
+     */
+    create<T extends ImageCreateArgs>(args: SelectSubset<T, ImageCreateArgs<ExtArgs>>): Prisma__ImageClient<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Images.
+     * @param {ImageCreateManyArgs} args - Arguments to create many Images.
+     * @example
+     * // Create many Images
+     * const image = await prisma.image.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ImageCreateManyArgs>(args?: SelectSubset<T, ImageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Images and returns the data saved in the database.
+     * @param {ImageCreateManyAndReturnArgs} args - Arguments to create many Images.
+     * @example
+     * // Create many Images
+     * const image = await prisma.image.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Images and only return the `id`
+     * const imageWithIdOnly = await prisma.image.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ImageCreateManyAndReturnArgs>(args?: SelectSubset<T, ImageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Image.
+     * @param {ImageDeleteArgs} args - Arguments to delete one Image.
+     * @example
+     * // Delete one Image
+     * const Image = await prisma.image.delete({
+     *   where: {
+     *     // ... filter to delete one Image
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ImageDeleteArgs>(args: SelectSubset<T, ImageDeleteArgs<ExtArgs>>): Prisma__ImageClient<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Image.
+     * @param {ImageUpdateArgs} args - Arguments to update one Image.
+     * @example
+     * // Update one Image
+     * const image = await prisma.image.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ImageUpdateArgs>(args: SelectSubset<T, ImageUpdateArgs<ExtArgs>>): Prisma__ImageClient<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Images.
+     * @param {ImageDeleteManyArgs} args - Arguments to filter Images to delete.
+     * @example
+     * // Delete a few Images
+     * const { count } = await prisma.image.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ImageDeleteManyArgs>(args?: SelectSubset<T, ImageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Images.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ImageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Images
+     * const image = await prisma.image.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ImageUpdateManyArgs>(args: SelectSubset<T, ImageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Images and returns the data updated in the database.
+     * @param {ImageUpdateManyAndReturnArgs} args - Arguments to update many Images.
+     * @example
+     * // Update many Images
+     * const image = await prisma.image.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Images and only return the `id`
+     * const imageWithIdOnly = await prisma.image.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ImageUpdateManyAndReturnArgs>(args: SelectSubset<T, ImageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Image.
+     * @param {ImageUpsertArgs} args - Arguments to update or create a Image.
+     * @example
+     * // Update or create a Image
+     * const image = await prisma.image.upsert({
+     *   create: {
+     *     // ... data to create a Image
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Image we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ImageUpsertArgs>(args: SelectSubset<T, ImageUpsertArgs<ExtArgs>>): Prisma__ImageClient<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Images.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ImageCountArgs} args - Arguments to filter Images to count.
+     * @example
+     * // Count the number of Images
+     * const count = await prisma.image.count({
+     *   where: {
+     *     // ... the filter for the Images we want to count
+     *   }
+     * })
+    **/
+    count<T extends ImageCountArgs>(
+      args?: Subset<T, ImageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ImageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Image.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ImageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ImageAggregateArgs>(args: Subset<T, ImageAggregateArgs>): Prisma.PrismaPromise<GetImageAggregateType<T>>
+
+    /**
+     * Group by Image.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ImageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ImageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ImageGroupByArgs['orderBy'] }
+        : { orderBy?: ImageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ImageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetImageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Image model
+   */
+  readonly fields: ImageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Image.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ImageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    s240File<T extends FileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FileDefaultArgs<ExtArgs>>): Prisma__FileClient<$Result.GetResult<Prisma.$FilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    s480File<T extends FileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FileDefaultArgs<ExtArgs>>): Prisma__FileClient<$Result.GetResult<Prisma.$FilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    s720File<T extends FileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FileDefaultArgs<ExtArgs>>): Prisma__FileClient<$Result.GetResult<Prisma.$FilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    s1080File<T extends FileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FileDefaultArgs<ExtArgs>>): Prisma__FileClient<$Result.GetResult<Prisma.$FilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    CarImages<T extends Image$CarImagesArgs<ExtArgs> = {}>(args?: Subset<T, Image$CarImagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CarImagesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Image model
+   */
+  interface ImageFieldRefs {
+    readonly id: FieldRef<"Image", 'Int'>
+    readonly s240FileId: FieldRef<"Image", 'Int'>
+    readonly s480FileId: FieldRef<"Image", 'Int'>
+    readonly s720FileId: FieldRef<"Image", 'Int'>
+    readonly s1080FileId: FieldRef<"Image", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Image findUnique
+   */
+  export type ImageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Image
+     */
+    select?: ImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Image
+     */
+    omit?: ImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ImageInclude<ExtArgs> | null
+    /**
+     * Filter, which Image to fetch.
+     */
+    where: ImageWhereUniqueInput
+  }
+
+  /**
+   * Image findUniqueOrThrow
+   */
+  export type ImageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Image
+     */
+    select?: ImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Image
+     */
+    omit?: ImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ImageInclude<ExtArgs> | null
+    /**
+     * Filter, which Image to fetch.
+     */
+    where: ImageWhereUniqueInput
+  }
+
+  /**
+   * Image findFirst
+   */
+  export type ImageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Image
+     */
+    select?: ImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Image
+     */
+    omit?: ImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ImageInclude<ExtArgs> | null
+    /**
+     * Filter, which Image to fetch.
+     */
+    where?: ImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Images to fetch.
+     */
+    orderBy?: ImageOrderByWithRelationInput | ImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Images.
+     */
+    cursor?: ImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Images from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Images.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Images.
+     */
+    distinct?: ImageScalarFieldEnum | ImageScalarFieldEnum[]
+  }
+
+  /**
+   * Image findFirstOrThrow
+   */
+  export type ImageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Image
+     */
+    select?: ImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Image
+     */
+    omit?: ImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ImageInclude<ExtArgs> | null
+    /**
+     * Filter, which Image to fetch.
+     */
+    where?: ImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Images to fetch.
+     */
+    orderBy?: ImageOrderByWithRelationInput | ImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Images.
+     */
+    cursor?: ImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Images from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Images.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Images.
+     */
+    distinct?: ImageScalarFieldEnum | ImageScalarFieldEnum[]
+  }
+
+  /**
+   * Image findMany
+   */
+  export type ImageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Image
+     */
+    select?: ImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Image
+     */
+    omit?: ImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ImageInclude<ExtArgs> | null
+    /**
+     * Filter, which Images to fetch.
+     */
+    where?: ImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Images to fetch.
+     */
+    orderBy?: ImageOrderByWithRelationInput | ImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Images.
+     */
+    cursor?: ImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Images from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Images.
+     */
+    skip?: number
+    distinct?: ImageScalarFieldEnum | ImageScalarFieldEnum[]
+  }
+
+  /**
+   * Image create
+   */
+  export type ImageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Image
+     */
+    select?: ImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Image
+     */
+    omit?: ImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ImageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Image.
+     */
+    data: XOR<ImageCreateInput, ImageUncheckedCreateInput>
+  }
+
+  /**
+   * Image createMany
+   */
+  export type ImageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Images.
+     */
+    data: ImageCreateManyInput | ImageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Image createManyAndReturn
+   */
+  export type ImageCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Image
+     */
+    select?: ImageSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Image
+     */
+    omit?: ImageOmit<ExtArgs> | null
+    /**
+     * The data used to create many Images.
+     */
+    data: ImageCreateManyInput | ImageCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ImageIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Image update
+   */
+  export type ImageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Image
+     */
+    select?: ImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Image
+     */
+    omit?: ImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ImageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Image.
+     */
+    data: XOR<ImageUpdateInput, ImageUncheckedUpdateInput>
+    /**
+     * Choose, which Image to update.
+     */
+    where: ImageWhereUniqueInput
+  }
+
+  /**
+   * Image updateMany
+   */
+  export type ImageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Images.
+     */
+    data: XOR<ImageUpdateManyMutationInput, ImageUncheckedUpdateManyInput>
+    /**
+     * Filter which Images to update
+     */
+    where?: ImageWhereInput
+    /**
+     * Limit how many Images to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Image updateManyAndReturn
+   */
+  export type ImageUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Image
+     */
+    select?: ImageSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Image
+     */
+    omit?: ImageOmit<ExtArgs> | null
+    /**
+     * The data used to update Images.
+     */
+    data: XOR<ImageUpdateManyMutationInput, ImageUncheckedUpdateManyInput>
+    /**
+     * Filter which Images to update
+     */
+    where?: ImageWhereInput
+    /**
+     * Limit how many Images to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ImageIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Image upsert
+   */
+  export type ImageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Image
+     */
+    select?: ImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Image
+     */
+    omit?: ImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ImageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Image to update in case it exists.
+     */
+    where: ImageWhereUniqueInput
+    /**
+     * In case the Image found by the `where` argument doesn't exist, create a new Image with this data.
+     */
+    create: XOR<ImageCreateInput, ImageUncheckedCreateInput>
+    /**
+     * In case the Image was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ImageUpdateInput, ImageUncheckedUpdateInput>
+  }
+
+  /**
+   * Image delete
+   */
+  export type ImageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Image
+     */
+    select?: ImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Image
+     */
+    omit?: ImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ImageInclude<ExtArgs> | null
+    /**
+     * Filter which Image to delete.
+     */
+    where: ImageWhereUniqueInput
+  }
+
+  /**
+   * Image deleteMany
+   */
+  export type ImageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Images to delete
+     */
+    where?: ImageWhereInput
+    /**
+     * Limit how many Images to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Image.CarImages
+   */
+  export type Image$CarImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CarImages
+     */
+    select?: CarImagesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CarImages
+     */
+    omit?: CarImagesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CarImagesInclude<ExtArgs> | null
+    where?: CarImagesWhereInput
+    orderBy?: CarImagesOrderByWithRelationInput | CarImagesOrderByWithRelationInput[]
+    cursor?: CarImagesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CarImagesScalarFieldEnum | CarImagesScalarFieldEnum[]
+  }
+
+  /**
+   * Image without action
+   */
+  export type ImageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Image
+     */
+    select?: ImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Image
+     */
+    omit?: ImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ImageInclude<ExtArgs> | null
   }
 
 
@@ -8175,6 +10888,15 @@ export namespace Prisma {
   export type CarsScalarFieldEnum = (typeof CarsScalarFieldEnum)[keyof typeof CarsScalarFieldEnum]
 
 
+  export const CarImagesScalarFieldEnum: {
+    id: 'id',
+    carId: 'carId',
+    imageId: 'imageId'
+  };
+
+  export type CarImagesScalarFieldEnum = (typeof CarImagesScalarFieldEnum)[keyof typeof CarImagesScalarFieldEnum]
+
+
   export const UserScalarFieldEnum: {
     id: 'id',
     email: 'email',
@@ -8199,16 +10921,25 @@ export namespace Prisma {
 
   export const FileScalarFieldEnum: {
     id: 'id',
-    name: 'name',
     url: 'url',
     mimeType: 'mimeType',
     size: 'size',
-    uploadedAt: 'uploadedAt',
-    updatedAt: 'updatedAt',
+    createdAt: 'createdAt',
     toDeleteAt: 'toDeleteAt'
   };
 
   export type FileScalarFieldEnum = (typeof FileScalarFieldEnum)[keyof typeof FileScalarFieldEnum]
+
+
+  export const ImageScalarFieldEnum: {
+    id: 'id',
+    s240FileId: 's240FileId',
+    s480FileId: 's480FileId',
+    s720FileId: 's720FileId',
+    s1080FileId: 's1080FileId'
+  };
+
+  export type ImageScalarFieldEnum = (typeof ImageScalarFieldEnum)[keyof typeof ImageScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -8445,6 +11176,7 @@ export namespace Prisma {
     make?: XOR<CarMakeScalarRelationFilter, CarMakeWhereInput>
     model?: XOR<CarModelScalarRelationFilter, CarModelWhereInput>
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    carImages?: CarImagesListRelationFilter
   }
 
   export type CarsOrderByWithRelationInput = {
@@ -8460,6 +11192,7 @@ export namespace Prisma {
     make?: CarMakeOrderByWithRelationInput
     model?: CarModelOrderByWithRelationInput
     user?: UserOrderByWithRelationInput
+    carImages?: CarImagesOrderByRelationAggregateInput
   }
 
   export type CarsWhereUniqueInput = Prisma.AtLeast<{
@@ -8478,6 +11211,7 @@ export namespace Prisma {
     make?: XOR<CarMakeScalarRelationFilter, CarMakeWhereInput>
     model?: XOR<CarModelScalarRelationFilter, CarModelWhereInput>
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    carImages?: CarImagesListRelationFilter
   }, "id">
 
   export type CarsOrderByWithAggregationInput = {
@@ -8510,6 +11244,56 @@ export namespace Prisma {
     userId?: IntWithAggregatesFilter<"Cars"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Cars"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Cars"> | Date | string
+  }
+
+  export type CarImagesWhereInput = {
+    AND?: CarImagesWhereInput | CarImagesWhereInput[]
+    OR?: CarImagesWhereInput[]
+    NOT?: CarImagesWhereInput | CarImagesWhereInput[]
+    id?: IntFilter<"CarImages"> | number
+    carId?: IntFilter<"CarImages"> | number
+    imageId?: IntFilter<"CarImages"> | number
+    car?: XOR<CarsScalarRelationFilter, CarsWhereInput>
+    images?: XOR<ImageScalarRelationFilter, ImageWhereInput>
+  }
+
+  export type CarImagesOrderByWithRelationInput = {
+    id?: SortOrder
+    carId?: SortOrder
+    imageId?: SortOrder
+    car?: CarsOrderByWithRelationInput
+    images?: ImageOrderByWithRelationInput
+  }
+
+  export type CarImagesWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: CarImagesWhereInput | CarImagesWhereInput[]
+    OR?: CarImagesWhereInput[]
+    NOT?: CarImagesWhereInput | CarImagesWhereInput[]
+    carId?: IntFilter<"CarImages"> | number
+    imageId?: IntFilter<"CarImages"> | number
+    car?: XOR<CarsScalarRelationFilter, CarsWhereInput>
+    images?: XOR<ImageScalarRelationFilter, ImageWhereInput>
+  }, "id">
+
+  export type CarImagesOrderByWithAggregationInput = {
+    id?: SortOrder
+    carId?: SortOrder
+    imageId?: SortOrder
+    _count?: CarImagesCountOrderByAggregateInput
+    _avg?: CarImagesAvgOrderByAggregateInput
+    _max?: CarImagesMaxOrderByAggregateInput
+    _min?: CarImagesMinOrderByAggregateInput
+    _sum?: CarImagesSumOrderByAggregateInput
+  }
+
+  export type CarImagesScalarWhereWithAggregatesInput = {
+    AND?: CarImagesScalarWhereWithAggregatesInput | CarImagesScalarWhereWithAggregatesInput[]
+    OR?: CarImagesScalarWhereWithAggregatesInput[]
+    NOT?: CarImagesScalarWhereWithAggregatesInput | CarImagesScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"CarImages"> | number
+    carId?: IntWithAggregatesFilter<"CarImages"> | number
+    imageId?: IntWithAggregatesFilter<"CarImages"> | number
   }
 
   export type UserWhereInput = {
@@ -8628,24 +11412,28 @@ export namespace Prisma {
     OR?: FileWhereInput[]
     NOT?: FileWhereInput | FileWhereInput[]
     id?: IntFilter<"File"> | number
-    name?: StringFilter<"File"> | string
     url?: StringFilter<"File"> | string
     mimeType?: StringFilter<"File"> | string
-    size?: StringFilter<"File"> | string
-    uploadedAt?: DateTimeFilter<"File"> | Date | string
-    updatedAt?: DateTimeFilter<"File"> | Date | string
+    size?: IntFilter<"File"> | number
+    createdAt?: DateTimeFilter<"File"> | Date | string
     toDeleteAt?: DateTimeFilter<"File"> | Date | string
+    s240Images?: ImageListRelationFilter
+    s480Images?: ImageListRelationFilter
+    s720Images?: ImageListRelationFilter
+    s1080Images?: ImageListRelationFilter
   }
 
   export type FileOrderByWithRelationInput = {
     id?: SortOrder
-    name?: SortOrder
     url?: SortOrder
     mimeType?: SortOrder
     size?: SortOrder
-    uploadedAt?: SortOrder
-    updatedAt?: SortOrder
+    createdAt?: SortOrder
     toDeleteAt?: SortOrder
+    s240Images?: ImageOrderByRelationAggregateInput
+    s480Images?: ImageOrderByRelationAggregateInput
+    s720Images?: ImageOrderByRelationAggregateInput
+    s1080Images?: ImageOrderByRelationAggregateInput
   }
 
   export type FileWhereUniqueInput = Prisma.AtLeast<{
@@ -8653,23 +11441,23 @@ export namespace Prisma {
     AND?: FileWhereInput | FileWhereInput[]
     OR?: FileWhereInput[]
     NOT?: FileWhereInput | FileWhereInput[]
-    name?: StringFilter<"File"> | string
     url?: StringFilter<"File"> | string
     mimeType?: StringFilter<"File"> | string
-    size?: StringFilter<"File"> | string
-    uploadedAt?: DateTimeFilter<"File"> | Date | string
-    updatedAt?: DateTimeFilter<"File"> | Date | string
+    size?: IntFilter<"File"> | number
+    createdAt?: DateTimeFilter<"File"> | Date | string
     toDeleteAt?: DateTimeFilter<"File"> | Date | string
+    s240Images?: ImageListRelationFilter
+    s480Images?: ImageListRelationFilter
+    s720Images?: ImageListRelationFilter
+    s1080Images?: ImageListRelationFilter
   }, "id">
 
   export type FileOrderByWithAggregationInput = {
     id?: SortOrder
-    name?: SortOrder
     url?: SortOrder
     mimeType?: SortOrder
     size?: SortOrder
-    uploadedAt?: SortOrder
-    updatedAt?: SortOrder
+    createdAt?: SortOrder
     toDeleteAt?: SortOrder
     _count?: FileCountOrderByAggregateInput
     _avg?: FileAvgOrderByAggregateInput
@@ -8683,13 +11471,80 @@ export namespace Prisma {
     OR?: FileScalarWhereWithAggregatesInput[]
     NOT?: FileScalarWhereWithAggregatesInput | FileScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"File"> | number
-    name?: StringWithAggregatesFilter<"File"> | string
     url?: StringWithAggregatesFilter<"File"> | string
     mimeType?: StringWithAggregatesFilter<"File"> | string
-    size?: StringWithAggregatesFilter<"File"> | string
-    uploadedAt?: DateTimeWithAggregatesFilter<"File"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"File"> | Date | string
+    size?: IntWithAggregatesFilter<"File"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"File"> | Date | string
     toDeleteAt?: DateTimeWithAggregatesFilter<"File"> | Date | string
+  }
+
+  export type ImageWhereInput = {
+    AND?: ImageWhereInput | ImageWhereInput[]
+    OR?: ImageWhereInput[]
+    NOT?: ImageWhereInput | ImageWhereInput[]
+    id?: IntFilter<"Image"> | number
+    s240FileId?: IntFilter<"Image"> | number
+    s480FileId?: IntFilter<"Image"> | number
+    s720FileId?: IntFilter<"Image"> | number
+    s1080FileId?: IntFilter<"Image"> | number
+    s240File?: XOR<FileScalarRelationFilter, FileWhereInput>
+    s480File?: XOR<FileScalarRelationFilter, FileWhereInput>
+    s720File?: XOR<FileScalarRelationFilter, FileWhereInput>
+    s1080File?: XOR<FileScalarRelationFilter, FileWhereInput>
+    CarImages?: CarImagesListRelationFilter
+  }
+
+  export type ImageOrderByWithRelationInput = {
+    id?: SortOrder
+    s240FileId?: SortOrder
+    s480FileId?: SortOrder
+    s720FileId?: SortOrder
+    s1080FileId?: SortOrder
+    s240File?: FileOrderByWithRelationInput
+    s480File?: FileOrderByWithRelationInput
+    s720File?: FileOrderByWithRelationInput
+    s1080File?: FileOrderByWithRelationInput
+    CarImages?: CarImagesOrderByRelationAggregateInput
+  }
+
+  export type ImageWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ImageWhereInput | ImageWhereInput[]
+    OR?: ImageWhereInput[]
+    NOT?: ImageWhereInput | ImageWhereInput[]
+    s240FileId?: IntFilter<"Image"> | number
+    s480FileId?: IntFilter<"Image"> | number
+    s720FileId?: IntFilter<"Image"> | number
+    s1080FileId?: IntFilter<"Image"> | number
+    s240File?: XOR<FileScalarRelationFilter, FileWhereInput>
+    s480File?: XOR<FileScalarRelationFilter, FileWhereInput>
+    s720File?: XOR<FileScalarRelationFilter, FileWhereInput>
+    s1080File?: XOR<FileScalarRelationFilter, FileWhereInput>
+    CarImages?: CarImagesListRelationFilter
+  }, "id">
+
+  export type ImageOrderByWithAggregationInput = {
+    id?: SortOrder
+    s240FileId?: SortOrder
+    s480FileId?: SortOrder
+    s720FileId?: SortOrder
+    s1080FileId?: SortOrder
+    _count?: ImageCountOrderByAggregateInput
+    _avg?: ImageAvgOrderByAggregateInput
+    _max?: ImageMaxOrderByAggregateInput
+    _min?: ImageMinOrderByAggregateInput
+    _sum?: ImageSumOrderByAggregateInput
+  }
+
+  export type ImageScalarWhereWithAggregatesInput = {
+    AND?: ImageScalarWhereWithAggregatesInput | ImageScalarWhereWithAggregatesInput[]
+    OR?: ImageScalarWhereWithAggregatesInput[]
+    NOT?: ImageScalarWhereWithAggregatesInput | ImageScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Image"> | number
+    s240FileId?: IntWithAggregatesFilter<"Image"> | number
+    s480FileId?: IntWithAggregatesFilter<"Image"> | number
+    s720FileId?: IntWithAggregatesFilter<"Image"> | number
+    s1080FileId?: IntWithAggregatesFilter<"Image"> | number
   }
 
   export type CarMakeCreateInput = {
@@ -8811,6 +11666,7 @@ export namespace Prisma {
     make: CarMakeCreateNestedOneWithoutCarsInput
     model: CarModelCreateNestedOneWithoutCarsInput
     user: UserCreateNestedOneWithoutCarsInput
+    carImages?: CarImagesCreateNestedManyWithoutCarInput
   }
 
   export type CarsUncheckedCreateInput = {
@@ -8823,6 +11679,7 @@ export namespace Prisma {
     userId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    carImages?: CarImagesUncheckedCreateNestedManyWithoutCarInput
   }
 
   export type CarsUpdateInput = {
@@ -8834,6 +11691,7 @@ export namespace Prisma {
     make?: CarMakeUpdateOneRequiredWithoutCarsNestedInput
     model?: CarModelUpdateOneRequiredWithoutCarsNestedInput
     user?: UserUpdateOneRequiredWithoutCarsNestedInput
+    carImages?: CarImagesUpdateManyWithoutCarNestedInput
   }
 
   export type CarsUncheckedUpdateInput = {
@@ -8846,6 +11704,7 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    carImages?: CarImagesUncheckedUpdateManyWithoutCarNestedInput
   }
 
   export type CarsCreateManyInput = {
@@ -8878,6 +11737,44 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CarImagesCreateInput = {
+    car: CarsCreateNestedOneWithoutCarImagesInput
+    images: ImageCreateNestedOneWithoutCarImagesInput
+  }
+
+  export type CarImagesUncheckedCreateInput = {
+    id?: number
+    carId: number
+    imageId: number
+  }
+
+  export type CarImagesUpdateInput = {
+    car?: CarsUpdateOneRequiredWithoutCarImagesNestedInput
+    images?: ImageUpdateOneRequiredWithoutCarImagesNestedInput
+  }
+
+  export type CarImagesUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    carId?: IntFieldUpdateOperationsInput | number
+    imageId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CarImagesCreateManyInput = {
+    id?: number
+    carId: number
+    imageId: number
+  }
+
+  export type CarImagesUpdateManyMutationInput = {
+
+  }
+
+  export type CarImagesUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    carId?: IntFieldUpdateOperationsInput | number
+    imageId?: IntFieldUpdateOperationsInput | number
   }
 
   export type UserCreateInput = {
@@ -8991,77 +11888,133 @@ export namespace Prisma {
   }
 
   export type FileCreateInput = {
-    name: string
     url: string
     mimeType: string
-    size: string
-    uploadedAt?: Date | string
-    updatedAt?: Date | string
+    size: number
+    createdAt?: Date | string
     toDeleteAt?: Date | string
+    s240Images?: ImageCreateNestedManyWithoutS240FileInput
+    s480Images?: ImageCreateNestedManyWithoutS480FileInput
+    s720Images?: ImageCreateNestedManyWithoutS720FileInput
+    s1080Images?: ImageCreateNestedManyWithoutS1080FileInput
   }
 
   export type FileUncheckedCreateInput = {
     id?: number
-    name: string
     url: string
     mimeType: string
-    size: string
-    uploadedAt?: Date | string
-    updatedAt?: Date | string
+    size: number
+    createdAt?: Date | string
     toDeleteAt?: Date | string
+    s240Images?: ImageUncheckedCreateNestedManyWithoutS240FileInput
+    s480Images?: ImageUncheckedCreateNestedManyWithoutS480FileInput
+    s720Images?: ImageUncheckedCreateNestedManyWithoutS720FileInput
+    s1080Images?: ImageUncheckedCreateNestedManyWithoutS1080FileInput
   }
 
   export type FileUpdateInput = {
-    name?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     mimeType?: StringFieldUpdateOperationsInput | string
-    size?: StringFieldUpdateOperationsInput | string
-    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    size?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     toDeleteAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    s240Images?: ImageUpdateManyWithoutS240FileNestedInput
+    s480Images?: ImageUpdateManyWithoutS480FileNestedInput
+    s720Images?: ImageUpdateManyWithoutS720FileNestedInput
+    s1080Images?: ImageUpdateManyWithoutS1080FileNestedInput
   }
 
   export type FileUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     mimeType?: StringFieldUpdateOperationsInput | string
-    size?: StringFieldUpdateOperationsInput | string
-    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    size?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     toDeleteAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    s240Images?: ImageUncheckedUpdateManyWithoutS240FileNestedInput
+    s480Images?: ImageUncheckedUpdateManyWithoutS480FileNestedInput
+    s720Images?: ImageUncheckedUpdateManyWithoutS720FileNestedInput
+    s1080Images?: ImageUncheckedUpdateManyWithoutS1080FileNestedInput
   }
 
   export type FileCreateManyInput = {
     id?: number
-    name: string
     url: string
     mimeType: string
-    size: string
-    uploadedAt?: Date | string
-    updatedAt?: Date | string
+    size: number
+    createdAt?: Date | string
     toDeleteAt?: Date | string
   }
 
   export type FileUpdateManyMutationInput = {
-    name?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     mimeType?: StringFieldUpdateOperationsInput | string
-    size?: StringFieldUpdateOperationsInput | string
-    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    size?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     toDeleteAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FileUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     mimeType?: StringFieldUpdateOperationsInput | string
-    size?: StringFieldUpdateOperationsInput | string
-    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    size?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     toDeleteAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ImageCreateInput = {
+    s240File: FileCreateNestedOneWithoutS240ImagesInput
+    s480File: FileCreateNestedOneWithoutS480ImagesInput
+    s720File: FileCreateNestedOneWithoutS720ImagesInput
+    s1080File: FileCreateNestedOneWithoutS1080ImagesInput
+    CarImages?: CarImagesCreateNestedManyWithoutImagesInput
+  }
+
+  export type ImageUncheckedCreateInput = {
+    id?: number
+    s240FileId: number
+    s480FileId: number
+    s720FileId: number
+    s1080FileId: number
+    CarImages?: CarImagesUncheckedCreateNestedManyWithoutImagesInput
+  }
+
+  export type ImageUpdateInput = {
+    s240File?: FileUpdateOneRequiredWithoutS240ImagesNestedInput
+    s480File?: FileUpdateOneRequiredWithoutS480ImagesNestedInput
+    s720File?: FileUpdateOneRequiredWithoutS720ImagesNestedInput
+    s1080File?: FileUpdateOneRequiredWithoutS1080ImagesNestedInput
+    CarImages?: CarImagesUpdateManyWithoutImagesNestedInput
+  }
+
+  export type ImageUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    s240FileId?: IntFieldUpdateOperationsInput | number
+    s480FileId?: IntFieldUpdateOperationsInput | number
+    s720FileId?: IntFieldUpdateOperationsInput | number
+    s1080FileId?: IntFieldUpdateOperationsInput | number
+    CarImages?: CarImagesUncheckedUpdateManyWithoutImagesNestedInput
+  }
+
+  export type ImageCreateManyInput = {
+    id?: number
+    s240FileId: number
+    s480FileId: number
+    s720FileId: number
+    s1080FileId: number
+  }
+
+  export type ImageUpdateManyMutationInput = {
+
+  }
+
+  export type ImageUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    s240FileId?: IntFieldUpdateOperationsInput | number
+    s480FileId?: IntFieldUpdateOperationsInput | number
+    s720FileId?: IntFieldUpdateOperationsInput | number
+    s1080FileId?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -9290,6 +12243,16 @@ export namespace Prisma {
     isNot?: UserWhereInput
   }
 
+  export type CarImagesListRelationFilter = {
+    every?: CarImagesWhereInput
+    some?: CarImagesWhereInput
+    none?: CarImagesWhereInput
+  }
+
+  export type CarImagesOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type CarsCountOrderByAggregateInput = {
     id?: SortOrder
     makeId?: SortOrder
@@ -9344,6 +12307,46 @@ export namespace Prisma {
     year?: SortOrder
     mileage?: SortOrder
     userId?: SortOrder
+  }
+
+  export type CarsScalarRelationFilter = {
+    is?: CarsWhereInput
+    isNot?: CarsWhereInput
+  }
+
+  export type ImageScalarRelationFilter = {
+    is?: ImageWhereInput
+    isNot?: ImageWhereInput
+  }
+
+  export type CarImagesCountOrderByAggregateInput = {
+    id?: SortOrder
+    carId?: SortOrder
+    imageId?: SortOrder
+  }
+
+  export type CarImagesAvgOrderByAggregateInput = {
+    id?: SortOrder
+    carId?: SortOrder
+    imageId?: SortOrder
+  }
+
+  export type CarImagesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    carId?: SortOrder
+    imageId?: SortOrder
+  }
+
+  export type CarImagesMinOrderByAggregateInput = {
+    id?: SortOrder
+    carId?: SortOrder
+    imageId?: SortOrder
+  }
+
+  export type CarImagesSumOrderByAggregateInput = {
+    id?: SortOrder
+    carId?: SortOrder
+    imageId?: SortOrder
   }
 
   export type EnumRoleFilter<$PrismaModel = never> = {
@@ -9427,45 +12430,96 @@ export namespace Prisma {
     id?: SortOrder
   }
 
+  export type ImageListRelationFilter = {
+    every?: ImageWhereInput
+    some?: ImageWhereInput
+    none?: ImageWhereInput
+  }
+
+  export type ImageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type FileCountOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
     url?: SortOrder
     mimeType?: SortOrder
     size?: SortOrder
-    uploadedAt?: SortOrder
-    updatedAt?: SortOrder
+    createdAt?: SortOrder
     toDeleteAt?: SortOrder
   }
 
   export type FileAvgOrderByAggregateInput = {
     id?: SortOrder
+    size?: SortOrder
   }
 
   export type FileMaxOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
     url?: SortOrder
     mimeType?: SortOrder
     size?: SortOrder
-    uploadedAt?: SortOrder
-    updatedAt?: SortOrder
+    createdAt?: SortOrder
     toDeleteAt?: SortOrder
   }
 
   export type FileMinOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
     url?: SortOrder
     mimeType?: SortOrder
     size?: SortOrder
-    uploadedAt?: SortOrder
-    updatedAt?: SortOrder
+    createdAt?: SortOrder
     toDeleteAt?: SortOrder
   }
 
   export type FileSumOrderByAggregateInput = {
     id?: SortOrder
+    size?: SortOrder
+  }
+
+  export type FileScalarRelationFilter = {
+    is?: FileWhereInput
+    isNot?: FileWhereInput
+  }
+
+  export type ImageCountOrderByAggregateInput = {
+    id?: SortOrder
+    s240FileId?: SortOrder
+    s480FileId?: SortOrder
+    s720FileId?: SortOrder
+    s1080FileId?: SortOrder
+  }
+
+  export type ImageAvgOrderByAggregateInput = {
+    id?: SortOrder
+    s240FileId?: SortOrder
+    s480FileId?: SortOrder
+    s720FileId?: SortOrder
+    s1080FileId?: SortOrder
+  }
+
+  export type ImageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    s240FileId?: SortOrder
+    s480FileId?: SortOrder
+    s720FileId?: SortOrder
+    s1080FileId?: SortOrder
+  }
+
+  export type ImageMinOrderByAggregateInput = {
+    id?: SortOrder
+    s240FileId?: SortOrder
+    s480FileId?: SortOrder
+    s720FileId?: SortOrder
+    s1080FileId?: SortOrder
+  }
+
+  export type ImageSumOrderByAggregateInput = {
+    id?: SortOrder
+    s240FileId?: SortOrder
+    s480FileId?: SortOrder
+    s720FileId?: SortOrder
+    s1080FileId?: SortOrder
   }
 
   export type CarModelCreateNestedManyWithoutMakeInput = {
@@ -9646,6 +12700,20 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type CarImagesCreateNestedManyWithoutCarInput = {
+    create?: XOR<CarImagesCreateWithoutCarInput, CarImagesUncheckedCreateWithoutCarInput> | CarImagesCreateWithoutCarInput[] | CarImagesUncheckedCreateWithoutCarInput[]
+    connectOrCreate?: CarImagesCreateOrConnectWithoutCarInput | CarImagesCreateOrConnectWithoutCarInput[]
+    createMany?: CarImagesCreateManyCarInputEnvelope
+    connect?: CarImagesWhereUniqueInput | CarImagesWhereUniqueInput[]
+  }
+
+  export type CarImagesUncheckedCreateNestedManyWithoutCarInput = {
+    create?: XOR<CarImagesCreateWithoutCarInput, CarImagesUncheckedCreateWithoutCarInput> | CarImagesCreateWithoutCarInput[] | CarImagesUncheckedCreateWithoutCarInput[]
+    connectOrCreate?: CarImagesCreateOrConnectWithoutCarInput | CarImagesCreateOrConnectWithoutCarInput[]
+    createMany?: CarImagesCreateManyCarInputEnvelope
+    connect?: CarImagesWhereUniqueInput | CarImagesWhereUniqueInput[]
+  }
+
   export type CarMakeUpdateOneRequiredWithoutCarsNestedInput = {
     create?: XOR<CarMakeCreateWithoutCarsInput, CarMakeUncheckedCreateWithoutCarsInput>
     connectOrCreate?: CarMakeCreateOrConnectWithoutCarsInput
@@ -9668,6 +12736,62 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutCarsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCarsInput, UserUpdateWithoutCarsInput>, UserUncheckedUpdateWithoutCarsInput>
+  }
+
+  export type CarImagesUpdateManyWithoutCarNestedInput = {
+    create?: XOR<CarImagesCreateWithoutCarInput, CarImagesUncheckedCreateWithoutCarInput> | CarImagesCreateWithoutCarInput[] | CarImagesUncheckedCreateWithoutCarInput[]
+    connectOrCreate?: CarImagesCreateOrConnectWithoutCarInput | CarImagesCreateOrConnectWithoutCarInput[]
+    upsert?: CarImagesUpsertWithWhereUniqueWithoutCarInput | CarImagesUpsertWithWhereUniqueWithoutCarInput[]
+    createMany?: CarImagesCreateManyCarInputEnvelope
+    set?: CarImagesWhereUniqueInput | CarImagesWhereUniqueInput[]
+    disconnect?: CarImagesWhereUniqueInput | CarImagesWhereUniqueInput[]
+    delete?: CarImagesWhereUniqueInput | CarImagesWhereUniqueInput[]
+    connect?: CarImagesWhereUniqueInput | CarImagesWhereUniqueInput[]
+    update?: CarImagesUpdateWithWhereUniqueWithoutCarInput | CarImagesUpdateWithWhereUniqueWithoutCarInput[]
+    updateMany?: CarImagesUpdateManyWithWhereWithoutCarInput | CarImagesUpdateManyWithWhereWithoutCarInput[]
+    deleteMany?: CarImagesScalarWhereInput | CarImagesScalarWhereInput[]
+  }
+
+  export type CarImagesUncheckedUpdateManyWithoutCarNestedInput = {
+    create?: XOR<CarImagesCreateWithoutCarInput, CarImagesUncheckedCreateWithoutCarInput> | CarImagesCreateWithoutCarInput[] | CarImagesUncheckedCreateWithoutCarInput[]
+    connectOrCreate?: CarImagesCreateOrConnectWithoutCarInput | CarImagesCreateOrConnectWithoutCarInput[]
+    upsert?: CarImagesUpsertWithWhereUniqueWithoutCarInput | CarImagesUpsertWithWhereUniqueWithoutCarInput[]
+    createMany?: CarImagesCreateManyCarInputEnvelope
+    set?: CarImagesWhereUniqueInput | CarImagesWhereUniqueInput[]
+    disconnect?: CarImagesWhereUniqueInput | CarImagesWhereUniqueInput[]
+    delete?: CarImagesWhereUniqueInput | CarImagesWhereUniqueInput[]
+    connect?: CarImagesWhereUniqueInput | CarImagesWhereUniqueInput[]
+    update?: CarImagesUpdateWithWhereUniqueWithoutCarInput | CarImagesUpdateWithWhereUniqueWithoutCarInput[]
+    updateMany?: CarImagesUpdateManyWithWhereWithoutCarInput | CarImagesUpdateManyWithWhereWithoutCarInput[]
+    deleteMany?: CarImagesScalarWhereInput | CarImagesScalarWhereInput[]
+  }
+
+  export type CarsCreateNestedOneWithoutCarImagesInput = {
+    create?: XOR<CarsCreateWithoutCarImagesInput, CarsUncheckedCreateWithoutCarImagesInput>
+    connectOrCreate?: CarsCreateOrConnectWithoutCarImagesInput
+    connect?: CarsWhereUniqueInput
+  }
+
+  export type ImageCreateNestedOneWithoutCarImagesInput = {
+    create?: XOR<ImageCreateWithoutCarImagesInput, ImageUncheckedCreateWithoutCarImagesInput>
+    connectOrCreate?: ImageCreateOrConnectWithoutCarImagesInput
+    connect?: ImageWhereUniqueInput
+  }
+
+  export type CarsUpdateOneRequiredWithoutCarImagesNestedInput = {
+    create?: XOR<CarsCreateWithoutCarImagesInput, CarsUncheckedCreateWithoutCarImagesInput>
+    connectOrCreate?: CarsCreateOrConnectWithoutCarImagesInput
+    upsert?: CarsUpsertWithoutCarImagesInput
+    connect?: CarsWhereUniqueInput
+    update?: XOR<XOR<CarsUpdateToOneWithWhereWithoutCarImagesInput, CarsUpdateWithoutCarImagesInput>, CarsUncheckedUpdateWithoutCarImagesInput>
+  }
+
+  export type ImageUpdateOneRequiredWithoutCarImagesNestedInput = {
+    create?: XOR<ImageCreateWithoutCarImagesInput, ImageUncheckedCreateWithoutCarImagesInput>
+    connectOrCreate?: ImageCreateOrConnectWithoutCarImagesInput
+    upsert?: ImageUpsertWithoutCarImagesInput
+    connect?: ImageWhereUniqueInput
+    update?: XOR<XOR<ImageUpdateToOneWithWhereWithoutCarImagesInput, ImageUpdateWithoutCarImagesInput>, ImageUncheckedUpdateWithoutCarImagesInput>
   }
 
   export type CarsCreateNestedManyWithoutUserInput = {
@@ -9714,6 +12838,272 @@ export namespace Prisma {
     update?: CarsUpdateWithWhereUniqueWithoutUserInput | CarsUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: CarsUpdateManyWithWhereWithoutUserInput | CarsUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: CarsScalarWhereInput | CarsScalarWhereInput[]
+  }
+
+  export type ImageCreateNestedManyWithoutS240FileInput = {
+    create?: XOR<ImageCreateWithoutS240FileInput, ImageUncheckedCreateWithoutS240FileInput> | ImageCreateWithoutS240FileInput[] | ImageUncheckedCreateWithoutS240FileInput[]
+    connectOrCreate?: ImageCreateOrConnectWithoutS240FileInput | ImageCreateOrConnectWithoutS240FileInput[]
+    createMany?: ImageCreateManyS240FileInputEnvelope
+    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+  }
+
+  export type ImageCreateNestedManyWithoutS480FileInput = {
+    create?: XOR<ImageCreateWithoutS480FileInput, ImageUncheckedCreateWithoutS480FileInput> | ImageCreateWithoutS480FileInput[] | ImageUncheckedCreateWithoutS480FileInput[]
+    connectOrCreate?: ImageCreateOrConnectWithoutS480FileInput | ImageCreateOrConnectWithoutS480FileInput[]
+    createMany?: ImageCreateManyS480FileInputEnvelope
+    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+  }
+
+  export type ImageCreateNestedManyWithoutS720FileInput = {
+    create?: XOR<ImageCreateWithoutS720FileInput, ImageUncheckedCreateWithoutS720FileInput> | ImageCreateWithoutS720FileInput[] | ImageUncheckedCreateWithoutS720FileInput[]
+    connectOrCreate?: ImageCreateOrConnectWithoutS720FileInput | ImageCreateOrConnectWithoutS720FileInput[]
+    createMany?: ImageCreateManyS720FileInputEnvelope
+    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+  }
+
+  export type ImageCreateNestedManyWithoutS1080FileInput = {
+    create?: XOR<ImageCreateWithoutS1080FileInput, ImageUncheckedCreateWithoutS1080FileInput> | ImageCreateWithoutS1080FileInput[] | ImageUncheckedCreateWithoutS1080FileInput[]
+    connectOrCreate?: ImageCreateOrConnectWithoutS1080FileInput | ImageCreateOrConnectWithoutS1080FileInput[]
+    createMany?: ImageCreateManyS1080FileInputEnvelope
+    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+  }
+
+  export type ImageUncheckedCreateNestedManyWithoutS240FileInput = {
+    create?: XOR<ImageCreateWithoutS240FileInput, ImageUncheckedCreateWithoutS240FileInput> | ImageCreateWithoutS240FileInput[] | ImageUncheckedCreateWithoutS240FileInput[]
+    connectOrCreate?: ImageCreateOrConnectWithoutS240FileInput | ImageCreateOrConnectWithoutS240FileInput[]
+    createMany?: ImageCreateManyS240FileInputEnvelope
+    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+  }
+
+  export type ImageUncheckedCreateNestedManyWithoutS480FileInput = {
+    create?: XOR<ImageCreateWithoutS480FileInput, ImageUncheckedCreateWithoutS480FileInput> | ImageCreateWithoutS480FileInput[] | ImageUncheckedCreateWithoutS480FileInput[]
+    connectOrCreate?: ImageCreateOrConnectWithoutS480FileInput | ImageCreateOrConnectWithoutS480FileInput[]
+    createMany?: ImageCreateManyS480FileInputEnvelope
+    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+  }
+
+  export type ImageUncheckedCreateNestedManyWithoutS720FileInput = {
+    create?: XOR<ImageCreateWithoutS720FileInput, ImageUncheckedCreateWithoutS720FileInput> | ImageCreateWithoutS720FileInput[] | ImageUncheckedCreateWithoutS720FileInput[]
+    connectOrCreate?: ImageCreateOrConnectWithoutS720FileInput | ImageCreateOrConnectWithoutS720FileInput[]
+    createMany?: ImageCreateManyS720FileInputEnvelope
+    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+  }
+
+  export type ImageUncheckedCreateNestedManyWithoutS1080FileInput = {
+    create?: XOR<ImageCreateWithoutS1080FileInput, ImageUncheckedCreateWithoutS1080FileInput> | ImageCreateWithoutS1080FileInput[] | ImageUncheckedCreateWithoutS1080FileInput[]
+    connectOrCreate?: ImageCreateOrConnectWithoutS1080FileInput | ImageCreateOrConnectWithoutS1080FileInput[]
+    createMany?: ImageCreateManyS1080FileInputEnvelope
+    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+  }
+
+  export type ImageUpdateManyWithoutS240FileNestedInput = {
+    create?: XOR<ImageCreateWithoutS240FileInput, ImageUncheckedCreateWithoutS240FileInput> | ImageCreateWithoutS240FileInput[] | ImageUncheckedCreateWithoutS240FileInput[]
+    connectOrCreate?: ImageCreateOrConnectWithoutS240FileInput | ImageCreateOrConnectWithoutS240FileInput[]
+    upsert?: ImageUpsertWithWhereUniqueWithoutS240FileInput | ImageUpsertWithWhereUniqueWithoutS240FileInput[]
+    createMany?: ImageCreateManyS240FileInputEnvelope
+    set?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    disconnect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    delete?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    update?: ImageUpdateWithWhereUniqueWithoutS240FileInput | ImageUpdateWithWhereUniqueWithoutS240FileInput[]
+    updateMany?: ImageUpdateManyWithWhereWithoutS240FileInput | ImageUpdateManyWithWhereWithoutS240FileInput[]
+    deleteMany?: ImageScalarWhereInput | ImageScalarWhereInput[]
+  }
+
+  export type ImageUpdateManyWithoutS480FileNestedInput = {
+    create?: XOR<ImageCreateWithoutS480FileInput, ImageUncheckedCreateWithoutS480FileInput> | ImageCreateWithoutS480FileInput[] | ImageUncheckedCreateWithoutS480FileInput[]
+    connectOrCreate?: ImageCreateOrConnectWithoutS480FileInput | ImageCreateOrConnectWithoutS480FileInput[]
+    upsert?: ImageUpsertWithWhereUniqueWithoutS480FileInput | ImageUpsertWithWhereUniqueWithoutS480FileInput[]
+    createMany?: ImageCreateManyS480FileInputEnvelope
+    set?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    disconnect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    delete?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    update?: ImageUpdateWithWhereUniqueWithoutS480FileInput | ImageUpdateWithWhereUniqueWithoutS480FileInput[]
+    updateMany?: ImageUpdateManyWithWhereWithoutS480FileInput | ImageUpdateManyWithWhereWithoutS480FileInput[]
+    deleteMany?: ImageScalarWhereInput | ImageScalarWhereInput[]
+  }
+
+  export type ImageUpdateManyWithoutS720FileNestedInput = {
+    create?: XOR<ImageCreateWithoutS720FileInput, ImageUncheckedCreateWithoutS720FileInput> | ImageCreateWithoutS720FileInput[] | ImageUncheckedCreateWithoutS720FileInput[]
+    connectOrCreate?: ImageCreateOrConnectWithoutS720FileInput | ImageCreateOrConnectWithoutS720FileInput[]
+    upsert?: ImageUpsertWithWhereUniqueWithoutS720FileInput | ImageUpsertWithWhereUniqueWithoutS720FileInput[]
+    createMany?: ImageCreateManyS720FileInputEnvelope
+    set?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    disconnect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    delete?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    update?: ImageUpdateWithWhereUniqueWithoutS720FileInput | ImageUpdateWithWhereUniqueWithoutS720FileInput[]
+    updateMany?: ImageUpdateManyWithWhereWithoutS720FileInput | ImageUpdateManyWithWhereWithoutS720FileInput[]
+    deleteMany?: ImageScalarWhereInput | ImageScalarWhereInput[]
+  }
+
+  export type ImageUpdateManyWithoutS1080FileNestedInput = {
+    create?: XOR<ImageCreateWithoutS1080FileInput, ImageUncheckedCreateWithoutS1080FileInput> | ImageCreateWithoutS1080FileInput[] | ImageUncheckedCreateWithoutS1080FileInput[]
+    connectOrCreate?: ImageCreateOrConnectWithoutS1080FileInput | ImageCreateOrConnectWithoutS1080FileInput[]
+    upsert?: ImageUpsertWithWhereUniqueWithoutS1080FileInput | ImageUpsertWithWhereUniqueWithoutS1080FileInput[]
+    createMany?: ImageCreateManyS1080FileInputEnvelope
+    set?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    disconnect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    delete?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    update?: ImageUpdateWithWhereUniqueWithoutS1080FileInput | ImageUpdateWithWhereUniqueWithoutS1080FileInput[]
+    updateMany?: ImageUpdateManyWithWhereWithoutS1080FileInput | ImageUpdateManyWithWhereWithoutS1080FileInput[]
+    deleteMany?: ImageScalarWhereInput | ImageScalarWhereInput[]
+  }
+
+  export type ImageUncheckedUpdateManyWithoutS240FileNestedInput = {
+    create?: XOR<ImageCreateWithoutS240FileInput, ImageUncheckedCreateWithoutS240FileInput> | ImageCreateWithoutS240FileInput[] | ImageUncheckedCreateWithoutS240FileInput[]
+    connectOrCreate?: ImageCreateOrConnectWithoutS240FileInput | ImageCreateOrConnectWithoutS240FileInput[]
+    upsert?: ImageUpsertWithWhereUniqueWithoutS240FileInput | ImageUpsertWithWhereUniqueWithoutS240FileInput[]
+    createMany?: ImageCreateManyS240FileInputEnvelope
+    set?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    disconnect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    delete?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    update?: ImageUpdateWithWhereUniqueWithoutS240FileInput | ImageUpdateWithWhereUniqueWithoutS240FileInput[]
+    updateMany?: ImageUpdateManyWithWhereWithoutS240FileInput | ImageUpdateManyWithWhereWithoutS240FileInput[]
+    deleteMany?: ImageScalarWhereInput | ImageScalarWhereInput[]
+  }
+
+  export type ImageUncheckedUpdateManyWithoutS480FileNestedInput = {
+    create?: XOR<ImageCreateWithoutS480FileInput, ImageUncheckedCreateWithoutS480FileInput> | ImageCreateWithoutS480FileInput[] | ImageUncheckedCreateWithoutS480FileInput[]
+    connectOrCreate?: ImageCreateOrConnectWithoutS480FileInput | ImageCreateOrConnectWithoutS480FileInput[]
+    upsert?: ImageUpsertWithWhereUniqueWithoutS480FileInput | ImageUpsertWithWhereUniqueWithoutS480FileInput[]
+    createMany?: ImageCreateManyS480FileInputEnvelope
+    set?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    disconnect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    delete?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    update?: ImageUpdateWithWhereUniqueWithoutS480FileInput | ImageUpdateWithWhereUniqueWithoutS480FileInput[]
+    updateMany?: ImageUpdateManyWithWhereWithoutS480FileInput | ImageUpdateManyWithWhereWithoutS480FileInput[]
+    deleteMany?: ImageScalarWhereInput | ImageScalarWhereInput[]
+  }
+
+  export type ImageUncheckedUpdateManyWithoutS720FileNestedInput = {
+    create?: XOR<ImageCreateWithoutS720FileInput, ImageUncheckedCreateWithoutS720FileInput> | ImageCreateWithoutS720FileInput[] | ImageUncheckedCreateWithoutS720FileInput[]
+    connectOrCreate?: ImageCreateOrConnectWithoutS720FileInput | ImageCreateOrConnectWithoutS720FileInput[]
+    upsert?: ImageUpsertWithWhereUniqueWithoutS720FileInput | ImageUpsertWithWhereUniqueWithoutS720FileInput[]
+    createMany?: ImageCreateManyS720FileInputEnvelope
+    set?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    disconnect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    delete?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    update?: ImageUpdateWithWhereUniqueWithoutS720FileInput | ImageUpdateWithWhereUniqueWithoutS720FileInput[]
+    updateMany?: ImageUpdateManyWithWhereWithoutS720FileInput | ImageUpdateManyWithWhereWithoutS720FileInput[]
+    deleteMany?: ImageScalarWhereInput | ImageScalarWhereInput[]
+  }
+
+  export type ImageUncheckedUpdateManyWithoutS1080FileNestedInput = {
+    create?: XOR<ImageCreateWithoutS1080FileInput, ImageUncheckedCreateWithoutS1080FileInput> | ImageCreateWithoutS1080FileInput[] | ImageUncheckedCreateWithoutS1080FileInput[]
+    connectOrCreate?: ImageCreateOrConnectWithoutS1080FileInput | ImageCreateOrConnectWithoutS1080FileInput[]
+    upsert?: ImageUpsertWithWhereUniqueWithoutS1080FileInput | ImageUpsertWithWhereUniqueWithoutS1080FileInput[]
+    createMany?: ImageCreateManyS1080FileInputEnvelope
+    set?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    disconnect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    delete?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
+    update?: ImageUpdateWithWhereUniqueWithoutS1080FileInput | ImageUpdateWithWhereUniqueWithoutS1080FileInput[]
+    updateMany?: ImageUpdateManyWithWhereWithoutS1080FileInput | ImageUpdateManyWithWhereWithoutS1080FileInput[]
+    deleteMany?: ImageScalarWhereInput | ImageScalarWhereInput[]
+  }
+
+  export type FileCreateNestedOneWithoutS240ImagesInput = {
+    create?: XOR<FileCreateWithoutS240ImagesInput, FileUncheckedCreateWithoutS240ImagesInput>
+    connectOrCreate?: FileCreateOrConnectWithoutS240ImagesInput
+    connect?: FileWhereUniqueInput
+  }
+
+  export type FileCreateNestedOneWithoutS480ImagesInput = {
+    create?: XOR<FileCreateWithoutS480ImagesInput, FileUncheckedCreateWithoutS480ImagesInput>
+    connectOrCreate?: FileCreateOrConnectWithoutS480ImagesInput
+    connect?: FileWhereUniqueInput
+  }
+
+  export type FileCreateNestedOneWithoutS720ImagesInput = {
+    create?: XOR<FileCreateWithoutS720ImagesInput, FileUncheckedCreateWithoutS720ImagesInput>
+    connectOrCreate?: FileCreateOrConnectWithoutS720ImagesInput
+    connect?: FileWhereUniqueInput
+  }
+
+  export type FileCreateNestedOneWithoutS1080ImagesInput = {
+    create?: XOR<FileCreateWithoutS1080ImagesInput, FileUncheckedCreateWithoutS1080ImagesInput>
+    connectOrCreate?: FileCreateOrConnectWithoutS1080ImagesInput
+    connect?: FileWhereUniqueInput
+  }
+
+  export type CarImagesCreateNestedManyWithoutImagesInput = {
+    create?: XOR<CarImagesCreateWithoutImagesInput, CarImagesUncheckedCreateWithoutImagesInput> | CarImagesCreateWithoutImagesInput[] | CarImagesUncheckedCreateWithoutImagesInput[]
+    connectOrCreate?: CarImagesCreateOrConnectWithoutImagesInput | CarImagesCreateOrConnectWithoutImagesInput[]
+    createMany?: CarImagesCreateManyImagesInputEnvelope
+    connect?: CarImagesWhereUniqueInput | CarImagesWhereUniqueInput[]
+  }
+
+  export type CarImagesUncheckedCreateNestedManyWithoutImagesInput = {
+    create?: XOR<CarImagesCreateWithoutImagesInput, CarImagesUncheckedCreateWithoutImagesInput> | CarImagesCreateWithoutImagesInput[] | CarImagesUncheckedCreateWithoutImagesInput[]
+    connectOrCreate?: CarImagesCreateOrConnectWithoutImagesInput | CarImagesCreateOrConnectWithoutImagesInput[]
+    createMany?: CarImagesCreateManyImagesInputEnvelope
+    connect?: CarImagesWhereUniqueInput | CarImagesWhereUniqueInput[]
+  }
+
+  export type FileUpdateOneRequiredWithoutS240ImagesNestedInput = {
+    create?: XOR<FileCreateWithoutS240ImagesInput, FileUncheckedCreateWithoutS240ImagesInput>
+    connectOrCreate?: FileCreateOrConnectWithoutS240ImagesInput
+    upsert?: FileUpsertWithoutS240ImagesInput
+    connect?: FileWhereUniqueInput
+    update?: XOR<XOR<FileUpdateToOneWithWhereWithoutS240ImagesInput, FileUpdateWithoutS240ImagesInput>, FileUncheckedUpdateWithoutS240ImagesInput>
+  }
+
+  export type FileUpdateOneRequiredWithoutS480ImagesNestedInput = {
+    create?: XOR<FileCreateWithoutS480ImagesInput, FileUncheckedCreateWithoutS480ImagesInput>
+    connectOrCreate?: FileCreateOrConnectWithoutS480ImagesInput
+    upsert?: FileUpsertWithoutS480ImagesInput
+    connect?: FileWhereUniqueInput
+    update?: XOR<XOR<FileUpdateToOneWithWhereWithoutS480ImagesInput, FileUpdateWithoutS480ImagesInput>, FileUncheckedUpdateWithoutS480ImagesInput>
+  }
+
+  export type FileUpdateOneRequiredWithoutS720ImagesNestedInput = {
+    create?: XOR<FileCreateWithoutS720ImagesInput, FileUncheckedCreateWithoutS720ImagesInput>
+    connectOrCreate?: FileCreateOrConnectWithoutS720ImagesInput
+    upsert?: FileUpsertWithoutS720ImagesInput
+    connect?: FileWhereUniqueInput
+    update?: XOR<XOR<FileUpdateToOneWithWhereWithoutS720ImagesInput, FileUpdateWithoutS720ImagesInput>, FileUncheckedUpdateWithoutS720ImagesInput>
+  }
+
+  export type FileUpdateOneRequiredWithoutS1080ImagesNestedInput = {
+    create?: XOR<FileCreateWithoutS1080ImagesInput, FileUncheckedCreateWithoutS1080ImagesInput>
+    connectOrCreate?: FileCreateOrConnectWithoutS1080ImagesInput
+    upsert?: FileUpsertWithoutS1080ImagesInput
+    connect?: FileWhereUniqueInput
+    update?: XOR<XOR<FileUpdateToOneWithWhereWithoutS1080ImagesInput, FileUpdateWithoutS1080ImagesInput>, FileUncheckedUpdateWithoutS1080ImagesInput>
+  }
+
+  export type CarImagesUpdateManyWithoutImagesNestedInput = {
+    create?: XOR<CarImagesCreateWithoutImagesInput, CarImagesUncheckedCreateWithoutImagesInput> | CarImagesCreateWithoutImagesInput[] | CarImagesUncheckedCreateWithoutImagesInput[]
+    connectOrCreate?: CarImagesCreateOrConnectWithoutImagesInput | CarImagesCreateOrConnectWithoutImagesInput[]
+    upsert?: CarImagesUpsertWithWhereUniqueWithoutImagesInput | CarImagesUpsertWithWhereUniqueWithoutImagesInput[]
+    createMany?: CarImagesCreateManyImagesInputEnvelope
+    set?: CarImagesWhereUniqueInput | CarImagesWhereUniqueInput[]
+    disconnect?: CarImagesWhereUniqueInput | CarImagesWhereUniqueInput[]
+    delete?: CarImagesWhereUniqueInput | CarImagesWhereUniqueInput[]
+    connect?: CarImagesWhereUniqueInput | CarImagesWhereUniqueInput[]
+    update?: CarImagesUpdateWithWhereUniqueWithoutImagesInput | CarImagesUpdateWithWhereUniqueWithoutImagesInput[]
+    updateMany?: CarImagesUpdateManyWithWhereWithoutImagesInput | CarImagesUpdateManyWithWhereWithoutImagesInput[]
+    deleteMany?: CarImagesScalarWhereInput | CarImagesScalarWhereInput[]
+  }
+
+  export type CarImagesUncheckedUpdateManyWithoutImagesNestedInput = {
+    create?: XOR<CarImagesCreateWithoutImagesInput, CarImagesUncheckedCreateWithoutImagesInput> | CarImagesCreateWithoutImagesInput[] | CarImagesUncheckedCreateWithoutImagesInput[]
+    connectOrCreate?: CarImagesCreateOrConnectWithoutImagesInput | CarImagesCreateOrConnectWithoutImagesInput[]
+    upsert?: CarImagesUpsertWithWhereUniqueWithoutImagesInput | CarImagesUpsertWithWhereUniqueWithoutImagesInput[]
+    createMany?: CarImagesCreateManyImagesInputEnvelope
+    set?: CarImagesWhereUniqueInput | CarImagesWhereUniqueInput[]
+    disconnect?: CarImagesWhereUniqueInput | CarImagesWhereUniqueInput[]
+    delete?: CarImagesWhereUniqueInput | CarImagesWhereUniqueInput[]
+    connect?: CarImagesWhereUniqueInput | CarImagesWhereUniqueInput[]
+    update?: CarImagesUpdateWithWhereUniqueWithoutImagesInput | CarImagesUpdateWithWhereUniqueWithoutImagesInput[]
+    updateMany?: CarImagesUpdateManyWithWhereWithoutImagesInput | CarImagesUpdateManyWithWhereWithoutImagesInput[]
+    deleteMany?: CarImagesScalarWhereInput | CarImagesScalarWhereInput[]
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -9898,6 +13288,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     model: CarModelCreateNestedOneWithoutCarsInput
     user: UserCreateNestedOneWithoutCarsInput
+    carImages?: CarImagesCreateNestedManyWithoutCarInput
   }
 
   export type CarsUncheckedCreateWithoutMakeInput = {
@@ -9909,6 +13300,7 @@ export namespace Prisma {
     userId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    carImages?: CarImagesUncheckedCreateNestedManyWithoutCarInput
   }
 
   export type CarsCreateOrConnectWithoutMakeInput = {
@@ -10009,6 +13401,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     make: CarMakeCreateNestedOneWithoutCarsInput
     user: UserCreateNestedOneWithoutCarsInput
+    carImages?: CarImagesCreateNestedManyWithoutCarInput
   }
 
   export type CarsUncheckedCreateWithoutModelInput = {
@@ -10020,6 +13413,7 @@ export namespace Prisma {
     userId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    carImages?: CarImagesUncheckedCreateNestedManyWithoutCarInput
   }
 
   export type CarsCreateOrConnectWithoutModelInput = {
@@ -10144,6 +13538,25 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutCarsInput, UserUncheckedCreateWithoutCarsInput>
   }
 
+  export type CarImagesCreateWithoutCarInput = {
+    images: ImageCreateNestedOneWithoutCarImagesInput
+  }
+
+  export type CarImagesUncheckedCreateWithoutCarInput = {
+    id?: number
+    imageId: number
+  }
+
+  export type CarImagesCreateOrConnectWithoutCarInput = {
+    where: CarImagesWhereUniqueInput
+    create: XOR<CarImagesCreateWithoutCarInput, CarImagesUncheckedCreateWithoutCarInput>
+  }
+
+  export type CarImagesCreateManyCarInputEnvelope = {
+    data: CarImagesCreateManyCarInput | CarImagesCreateManyCarInput[]
+    skipDuplicates?: boolean
+  }
+
   export type CarMakeUpsertWithoutCarsInput = {
     update: XOR<CarMakeUpdateWithoutCarsInput, CarMakeUncheckedUpdateWithoutCarsInput>
     create: XOR<CarMakeCreateWithoutCarsInput, CarMakeUncheckedCreateWithoutCarsInput>
@@ -10228,6 +13641,139 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type CarImagesUpsertWithWhereUniqueWithoutCarInput = {
+    where: CarImagesWhereUniqueInput
+    update: XOR<CarImagesUpdateWithoutCarInput, CarImagesUncheckedUpdateWithoutCarInput>
+    create: XOR<CarImagesCreateWithoutCarInput, CarImagesUncheckedCreateWithoutCarInput>
+  }
+
+  export type CarImagesUpdateWithWhereUniqueWithoutCarInput = {
+    where: CarImagesWhereUniqueInput
+    data: XOR<CarImagesUpdateWithoutCarInput, CarImagesUncheckedUpdateWithoutCarInput>
+  }
+
+  export type CarImagesUpdateManyWithWhereWithoutCarInput = {
+    where: CarImagesScalarWhereInput
+    data: XOR<CarImagesUpdateManyMutationInput, CarImagesUncheckedUpdateManyWithoutCarInput>
+  }
+
+  export type CarImagesScalarWhereInput = {
+    AND?: CarImagesScalarWhereInput | CarImagesScalarWhereInput[]
+    OR?: CarImagesScalarWhereInput[]
+    NOT?: CarImagesScalarWhereInput | CarImagesScalarWhereInput[]
+    id?: IntFilter<"CarImages"> | number
+    carId?: IntFilter<"CarImages"> | number
+    imageId?: IntFilter<"CarImages"> | number
+  }
+
+  export type CarsCreateWithoutCarImagesInput = {
+    price: number
+    year: number
+    mileage: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    make: CarMakeCreateNestedOneWithoutCarsInput
+    model: CarModelCreateNestedOneWithoutCarsInput
+    user: UserCreateNestedOneWithoutCarsInput
+  }
+
+  export type CarsUncheckedCreateWithoutCarImagesInput = {
+    id?: number
+    makeId: number
+    modelId: number
+    price: number
+    year: number
+    mileage: number
+    userId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CarsCreateOrConnectWithoutCarImagesInput = {
+    where: CarsWhereUniqueInput
+    create: XOR<CarsCreateWithoutCarImagesInput, CarsUncheckedCreateWithoutCarImagesInput>
+  }
+
+  export type ImageCreateWithoutCarImagesInput = {
+    s240File: FileCreateNestedOneWithoutS240ImagesInput
+    s480File: FileCreateNestedOneWithoutS480ImagesInput
+    s720File: FileCreateNestedOneWithoutS720ImagesInput
+    s1080File: FileCreateNestedOneWithoutS1080ImagesInput
+  }
+
+  export type ImageUncheckedCreateWithoutCarImagesInput = {
+    id?: number
+    s240FileId: number
+    s480FileId: number
+    s720FileId: number
+    s1080FileId: number
+  }
+
+  export type ImageCreateOrConnectWithoutCarImagesInput = {
+    where: ImageWhereUniqueInput
+    create: XOR<ImageCreateWithoutCarImagesInput, ImageUncheckedCreateWithoutCarImagesInput>
+  }
+
+  export type CarsUpsertWithoutCarImagesInput = {
+    update: XOR<CarsUpdateWithoutCarImagesInput, CarsUncheckedUpdateWithoutCarImagesInput>
+    create: XOR<CarsCreateWithoutCarImagesInput, CarsUncheckedCreateWithoutCarImagesInput>
+    where?: CarsWhereInput
+  }
+
+  export type CarsUpdateToOneWithWhereWithoutCarImagesInput = {
+    where?: CarsWhereInput
+    data: XOR<CarsUpdateWithoutCarImagesInput, CarsUncheckedUpdateWithoutCarImagesInput>
+  }
+
+  export type CarsUpdateWithoutCarImagesInput = {
+    price?: IntFieldUpdateOperationsInput | number
+    year?: IntFieldUpdateOperationsInput | number
+    mileage?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    make?: CarMakeUpdateOneRequiredWithoutCarsNestedInput
+    model?: CarModelUpdateOneRequiredWithoutCarsNestedInput
+    user?: UserUpdateOneRequiredWithoutCarsNestedInput
+  }
+
+  export type CarsUncheckedUpdateWithoutCarImagesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    makeId?: IntFieldUpdateOperationsInput | number
+    modelId?: IntFieldUpdateOperationsInput | number
+    price?: IntFieldUpdateOperationsInput | number
+    year?: IntFieldUpdateOperationsInput | number
+    mileage?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ImageUpsertWithoutCarImagesInput = {
+    update: XOR<ImageUpdateWithoutCarImagesInput, ImageUncheckedUpdateWithoutCarImagesInput>
+    create: XOR<ImageCreateWithoutCarImagesInput, ImageUncheckedCreateWithoutCarImagesInput>
+    where?: ImageWhereInput
+  }
+
+  export type ImageUpdateToOneWithWhereWithoutCarImagesInput = {
+    where?: ImageWhereInput
+    data: XOR<ImageUpdateWithoutCarImagesInput, ImageUncheckedUpdateWithoutCarImagesInput>
+  }
+
+  export type ImageUpdateWithoutCarImagesInput = {
+    s240File?: FileUpdateOneRequiredWithoutS240ImagesNestedInput
+    s480File?: FileUpdateOneRequiredWithoutS480ImagesNestedInput
+    s720File?: FileUpdateOneRequiredWithoutS720ImagesNestedInput
+    s1080File?: FileUpdateOneRequiredWithoutS1080ImagesNestedInput
+  }
+
+  export type ImageUncheckedUpdateWithoutCarImagesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    s240FileId?: IntFieldUpdateOperationsInput | number
+    s480FileId?: IntFieldUpdateOperationsInput | number
+    s720FileId?: IntFieldUpdateOperationsInput | number
+    s1080FileId?: IntFieldUpdateOperationsInput | number
+  }
+
   export type CarsCreateWithoutUserInput = {
     price: number
     year: number
@@ -10236,6 +13782,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     make: CarMakeCreateNestedOneWithoutCarsInput
     model: CarModelCreateNestedOneWithoutCarsInput
+    carImages?: CarImagesCreateNestedManyWithoutCarInput
   }
 
   export type CarsUncheckedCreateWithoutUserInput = {
@@ -10247,6 +13794,7 @@ export namespace Prisma {
     mileage: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    carImages?: CarImagesUncheckedCreateNestedManyWithoutCarInput
   }
 
   export type CarsCreateOrConnectWithoutUserInput = {
@@ -10273,6 +13821,464 @@ export namespace Prisma {
   export type CarsUpdateManyWithWhereWithoutUserInput = {
     where: CarsScalarWhereInput
     data: XOR<CarsUpdateManyMutationInput, CarsUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ImageCreateWithoutS240FileInput = {
+    s480File: FileCreateNestedOneWithoutS480ImagesInput
+    s720File: FileCreateNestedOneWithoutS720ImagesInput
+    s1080File: FileCreateNestedOneWithoutS1080ImagesInput
+    CarImages?: CarImagesCreateNestedManyWithoutImagesInput
+  }
+
+  export type ImageUncheckedCreateWithoutS240FileInput = {
+    id?: number
+    s480FileId: number
+    s720FileId: number
+    s1080FileId: number
+    CarImages?: CarImagesUncheckedCreateNestedManyWithoutImagesInput
+  }
+
+  export type ImageCreateOrConnectWithoutS240FileInput = {
+    where: ImageWhereUniqueInput
+    create: XOR<ImageCreateWithoutS240FileInput, ImageUncheckedCreateWithoutS240FileInput>
+  }
+
+  export type ImageCreateManyS240FileInputEnvelope = {
+    data: ImageCreateManyS240FileInput | ImageCreateManyS240FileInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ImageCreateWithoutS480FileInput = {
+    s240File: FileCreateNestedOneWithoutS240ImagesInput
+    s720File: FileCreateNestedOneWithoutS720ImagesInput
+    s1080File: FileCreateNestedOneWithoutS1080ImagesInput
+    CarImages?: CarImagesCreateNestedManyWithoutImagesInput
+  }
+
+  export type ImageUncheckedCreateWithoutS480FileInput = {
+    id?: number
+    s240FileId: number
+    s720FileId: number
+    s1080FileId: number
+    CarImages?: CarImagesUncheckedCreateNestedManyWithoutImagesInput
+  }
+
+  export type ImageCreateOrConnectWithoutS480FileInput = {
+    where: ImageWhereUniqueInput
+    create: XOR<ImageCreateWithoutS480FileInput, ImageUncheckedCreateWithoutS480FileInput>
+  }
+
+  export type ImageCreateManyS480FileInputEnvelope = {
+    data: ImageCreateManyS480FileInput | ImageCreateManyS480FileInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ImageCreateWithoutS720FileInput = {
+    s240File: FileCreateNestedOneWithoutS240ImagesInput
+    s480File: FileCreateNestedOneWithoutS480ImagesInput
+    s1080File: FileCreateNestedOneWithoutS1080ImagesInput
+    CarImages?: CarImagesCreateNestedManyWithoutImagesInput
+  }
+
+  export type ImageUncheckedCreateWithoutS720FileInput = {
+    id?: number
+    s240FileId: number
+    s480FileId: number
+    s1080FileId: number
+    CarImages?: CarImagesUncheckedCreateNestedManyWithoutImagesInput
+  }
+
+  export type ImageCreateOrConnectWithoutS720FileInput = {
+    where: ImageWhereUniqueInput
+    create: XOR<ImageCreateWithoutS720FileInput, ImageUncheckedCreateWithoutS720FileInput>
+  }
+
+  export type ImageCreateManyS720FileInputEnvelope = {
+    data: ImageCreateManyS720FileInput | ImageCreateManyS720FileInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ImageCreateWithoutS1080FileInput = {
+    s240File: FileCreateNestedOneWithoutS240ImagesInput
+    s480File: FileCreateNestedOneWithoutS480ImagesInput
+    s720File: FileCreateNestedOneWithoutS720ImagesInput
+    CarImages?: CarImagesCreateNestedManyWithoutImagesInput
+  }
+
+  export type ImageUncheckedCreateWithoutS1080FileInput = {
+    id?: number
+    s240FileId: number
+    s480FileId: number
+    s720FileId: number
+    CarImages?: CarImagesUncheckedCreateNestedManyWithoutImagesInput
+  }
+
+  export type ImageCreateOrConnectWithoutS1080FileInput = {
+    where: ImageWhereUniqueInput
+    create: XOR<ImageCreateWithoutS1080FileInput, ImageUncheckedCreateWithoutS1080FileInput>
+  }
+
+  export type ImageCreateManyS1080FileInputEnvelope = {
+    data: ImageCreateManyS1080FileInput | ImageCreateManyS1080FileInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ImageUpsertWithWhereUniqueWithoutS240FileInput = {
+    where: ImageWhereUniqueInput
+    update: XOR<ImageUpdateWithoutS240FileInput, ImageUncheckedUpdateWithoutS240FileInput>
+    create: XOR<ImageCreateWithoutS240FileInput, ImageUncheckedCreateWithoutS240FileInput>
+  }
+
+  export type ImageUpdateWithWhereUniqueWithoutS240FileInput = {
+    where: ImageWhereUniqueInput
+    data: XOR<ImageUpdateWithoutS240FileInput, ImageUncheckedUpdateWithoutS240FileInput>
+  }
+
+  export type ImageUpdateManyWithWhereWithoutS240FileInput = {
+    where: ImageScalarWhereInput
+    data: XOR<ImageUpdateManyMutationInput, ImageUncheckedUpdateManyWithoutS240FileInput>
+  }
+
+  export type ImageScalarWhereInput = {
+    AND?: ImageScalarWhereInput | ImageScalarWhereInput[]
+    OR?: ImageScalarWhereInput[]
+    NOT?: ImageScalarWhereInput | ImageScalarWhereInput[]
+    id?: IntFilter<"Image"> | number
+    s240FileId?: IntFilter<"Image"> | number
+    s480FileId?: IntFilter<"Image"> | number
+    s720FileId?: IntFilter<"Image"> | number
+    s1080FileId?: IntFilter<"Image"> | number
+  }
+
+  export type ImageUpsertWithWhereUniqueWithoutS480FileInput = {
+    where: ImageWhereUniqueInput
+    update: XOR<ImageUpdateWithoutS480FileInput, ImageUncheckedUpdateWithoutS480FileInput>
+    create: XOR<ImageCreateWithoutS480FileInput, ImageUncheckedCreateWithoutS480FileInput>
+  }
+
+  export type ImageUpdateWithWhereUniqueWithoutS480FileInput = {
+    where: ImageWhereUniqueInput
+    data: XOR<ImageUpdateWithoutS480FileInput, ImageUncheckedUpdateWithoutS480FileInput>
+  }
+
+  export type ImageUpdateManyWithWhereWithoutS480FileInput = {
+    where: ImageScalarWhereInput
+    data: XOR<ImageUpdateManyMutationInput, ImageUncheckedUpdateManyWithoutS480FileInput>
+  }
+
+  export type ImageUpsertWithWhereUniqueWithoutS720FileInput = {
+    where: ImageWhereUniqueInput
+    update: XOR<ImageUpdateWithoutS720FileInput, ImageUncheckedUpdateWithoutS720FileInput>
+    create: XOR<ImageCreateWithoutS720FileInput, ImageUncheckedCreateWithoutS720FileInput>
+  }
+
+  export type ImageUpdateWithWhereUniqueWithoutS720FileInput = {
+    where: ImageWhereUniqueInput
+    data: XOR<ImageUpdateWithoutS720FileInput, ImageUncheckedUpdateWithoutS720FileInput>
+  }
+
+  export type ImageUpdateManyWithWhereWithoutS720FileInput = {
+    where: ImageScalarWhereInput
+    data: XOR<ImageUpdateManyMutationInput, ImageUncheckedUpdateManyWithoutS720FileInput>
+  }
+
+  export type ImageUpsertWithWhereUniqueWithoutS1080FileInput = {
+    where: ImageWhereUniqueInput
+    update: XOR<ImageUpdateWithoutS1080FileInput, ImageUncheckedUpdateWithoutS1080FileInput>
+    create: XOR<ImageCreateWithoutS1080FileInput, ImageUncheckedCreateWithoutS1080FileInput>
+  }
+
+  export type ImageUpdateWithWhereUniqueWithoutS1080FileInput = {
+    where: ImageWhereUniqueInput
+    data: XOR<ImageUpdateWithoutS1080FileInput, ImageUncheckedUpdateWithoutS1080FileInput>
+  }
+
+  export type ImageUpdateManyWithWhereWithoutS1080FileInput = {
+    where: ImageScalarWhereInput
+    data: XOR<ImageUpdateManyMutationInput, ImageUncheckedUpdateManyWithoutS1080FileInput>
+  }
+
+  export type FileCreateWithoutS240ImagesInput = {
+    url: string
+    mimeType: string
+    size: number
+    createdAt?: Date | string
+    toDeleteAt?: Date | string
+    s480Images?: ImageCreateNestedManyWithoutS480FileInput
+    s720Images?: ImageCreateNestedManyWithoutS720FileInput
+    s1080Images?: ImageCreateNestedManyWithoutS1080FileInput
+  }
+
+  export type FileUncheckedCreateWithoutS240ImagesInput = {
+    id?: number
+    url: string
+    mimeType: string
+    size: number
+    createdAt?: Date | string
+    toDeleteAt?: Date | string
+    s480Images?: ImageUncheckedCreateNestedManyWithoutS480FileInput
+    s720Images?: ImageUncheckedCreateNestedManyWithoutS720FileInput
+    s1080Images?: ImageUncheckedCreateNestedManyWithoutS1080FileInput
+  }
+
+  export type FileCreateOrConnectWithoutS240ImagesInput = {
+    where: FileWhereUniqueInput
+    create: XOR<FileCreateWithoutS240ImagesInput, FileUncheckedCreateWithoutS240ImagesInput>
+  }
+
+  export type FileCreateWithoutS480ImagesInput = {
+    url: string
+    mimeType: string
+    size: number
+    createdAt?: Date | string
+    toDeleteAt?: Date | string
+    s240Images?: ImageCreateNestedManyWithoutS240FileInput
+    s720Images?: ImageCreateNestedManyWithoutS720FileInput
+    s1080Images?: ImageCreateNestedManyWithoutS1080FileInput
+  }
+
+  export type FileUncheckedCreateWithoutS480ImagesInput = {
+    id?: number
+    url: string
+    mimeType: string
+    size: number
+    createdAt?: Date | string
+    toDeleteAt?: Date | string
+    s240Images?: ImageUncheckedCreateNestedManyWithoutS240FileInput
+    s720Images?: ImageUncheckedCreateNestedManyWithoutS720FileInput
+    s1080Images?: ImageUncheckedCreateNestedManyWithoutS1080FileInput
+  }
+
+  export type FileCreateOrConnectWithoutS480ImagesInput = {
+    where: FileWhereUniqueInput
+    create: XOR<FileCreateWithoutS480ImagesInput, FileUncheckedCreateWithoutS480ImagesInput>
+  }
+
+  export type FileCreateWithoutS720ImagesInput = {
+    url: string
+    mimeType: string
+    size: number
+    createdAt?: Date | string
+    toDeleteAt?: Date | string
+    s240Images?: ImageCreateNestedManyWithoutS240FileInput
+    s480Images?: ImageCreateNestedManyWithoutS480FileInput
+    s1080Images?: ImageCreateNestedManyWithoutS1080FileInput
+  }
+
+  export type FileUncheckedCreateWithoutS720ImagesInput = {
+    id?: number
+    url: string
+    mimeType: string
+    size: number
+    createdAt?: Date | string
+    toDeleteAt?: Date | string
+    s240Images?: ImageUncheckedCreateNestedManyWithoutS240FileInput
+    s480Images?: ImageUncheckedCreateNestedManyWithoutS480FileInput
+    s1080Images?: ImageUncheckedCreateNestedManyWithoutS1080FileInput
+  }
+
+  export type FileCreateOrConnectWithoutS720ImagesInput = {
+    where: FileWhereUniqueInput
+    create: XOR<FileCreateWithoutS720ImagesInput, FileUncheckedCreateWithoutS720ImagesInput>
+  }
+
+  export type FileCreateWithoutS1080ImagesInput = {
+    url: string
+    mimeType: string
+    size: number
+    createdAt?: Date | string
+    toDeleteAt?: Date | string
+    s240Images?: ImageCreateNestedManyWithoutS240FileInput
+    s480Images?: ImageCreateNestedManyWithoutS480FileInput
+    s720Images?: ImageCreateNestedManyWithoutS720FileInput
+  }
+
+  export type FileUncheckedCreateWithoutS1080ImagesInput = {
+    id?: number
+    url: string
+    mimeType: string
+    size: number
+    createdAt?: Date | string
+    toDeleteAt?: Date | string
+    s240Images?: ImageUncheckedCreateNestedManyWithoutS240FileInput
+    s480Images?: ImageUncheckedCreateNestedManyWithoutS480FileInput
+    s720Images?: ImageUncheckedCreateNestedManyWithoutS720FileInput
+  }
+
+  export type FileCreateOrConnectWithoutS1080ImagesInput = {
+    where: FileWhereUniqueInput
+    create: XOR<FileCreateWithoutS1080ImagesInput, FileUncheckedCreateWithoutS1080ImagesInput>
+  }
+
+  export type CarImagesCreateWithoutImagesInput = {
+    car: CarsCreateNestedOneWithoutCarImagesInput
+  }
+
+  export type CarImagesUncheckedCreateWithoutImagesInput = {
+    id?: number
+    carId: number
+  }
+
+  export type CarImagesCreateOrConnectWithoutImagesInput = {
+    where: CarImagesWhereUniqueInput
+    create: XOR<CarImagesCreateWithoutImagesInput, CarImagesUncheckedCreateWithoutImagesInput>
+  }
+
+  export type CarImagesCreateManyImagesInputEnvelope = {
+    data: CarImagesCreateManyImagesInput | CarImagesCreateManyImagesInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FileUpsertWithoutS240ImagesInput = {
+    update: XOR<FileUpdateWithoutS240ImagesInput, FileUncheckedUpdateWithoutS240ImagesInput>
+    create: XOR<FileCreateWithoutS240ImagesInput, FileUncheckedCreateWithoutS240ImagesInput>
+    where?: FileWhereInput
+  }
+
+  export type FileUpdateToOneWithWhereWithoutS240ImagesInput = {
+    where?: FileWhereInput
+    data: XOR<FileUpdateWithoutS240ImagesInput, FileUncheckedUpdateWithoutS240ImagesInput>
+  }
+
+  export type FileUpdateWithoutS240ImagesInput = {
+    url?: StringFieldUpdateOperationsInput | string
+    mimeType?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    toDeleteAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    s480Images?: ImageUpdateManyWithoutS480FileNestedInput
+    s720Images?: ImageUpdateManyWithoutS720FileNestedInput
+    s1080Images?: ImageUpdateManyWithoutS1080FileNestedInput
+  }
+
+  export type FileUncheckedUpdateWithoutS240ImagesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    url?: StringFieldUpdateOperationsInput | string
+    mimeType?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    toDeleteAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    s480Images?: ImageUncheckedUpdateManyWithoutS480FileNestedInput
+    s720Images?: ImageUncheckedUpdateManyWithoutS720FileNestedInput
+    s1080Images?: ImageUncheckedUpdateManyWithoutS1080FileNestedInput
+  }
+
+  export type FileUpsertWithoutS480ImagesInput = {
+    update: XOR<FileUpdateWithoutS480ImagesInput, FileUncheckedUpdateWithoutS480ImagesInput>
+    create: XOR<FileCreateWithoutS480ImagesInput, FileUncheckedCreateWithoutS480ImagesInput>
+    where?: FileWhereInput
+  }
+
+  export type FileUpdateToOneWithWhereWithoutS480ImagesInput = {
+    where?: FileWhereInput
+    data: XOR<FileUpdateWithoutS480ImagesInput, FileUncheckedUpdateWithoutS480ImagesInput>
+  }
+
+  export type FileUpdateWithoutS480ImagesInput = {
+    url?: StringFieldUpdateOperationsInput | string
+    mimeType?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    toDeleteAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    s240Images?: ImageUpdateManyWithoutS240FileNestedInput
+    s720Images?: ImageUpdateManyWithoutS720FileNestedInput
+    s1080Images?: ImageUpdateManyWithoutS1080FileNestedInput
+  }
+
+  export type FileUncheckedUpdateWithoutS480ImagesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    url?: StringFieldUpdateOperationsInput | string
+    mimeType?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    toDeleteAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    s240Images?: ImageUncheckedUpdateManyWithoutS240FileNestedInput
+    s720Images?: ImageUncheckedUpdateManyWithoutS720FileNestedInput
+    s1080Images?: ImageUncheckedUpdateManyWithoutS1080FileNestedInput
+  }
+
+  export type FileUpsertWithoutS720ImagesInput = {
+    update: XOR<FileUpdateWithoutS720ImagesInput, FileUncheckedUpdateWithoutS720ImagesInput>
+    create: XOR<FileCreateWithoutS720ImagesInput, FileUncheckedCreateWithoutS720ImagesInput>
+    where?: FileWhereInput
+  }
+
+  export type FileUpdateToOneWithWhereWithoutS720ImagesInput = {
+    where?: FileWhereInput
+    data: XOR<FileUpdateWithoutS720ImagesInput, FileUncheckedUpdateWithoutS720ImagesInput>
+  }
+
+  export type FileUpdateWithoutS720ImagesInput = {
+    url?: StringFieldUpdateOperationsInput | string
+    mimeType?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    toDeleteAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    s240Images?: ImageUpdateManyWithoutS240FileNestedInput
+    s480Images?: ImageUpdateManyWithoutS480FileNestedInput
+    s1080Images?: ImageUpdateManyWithoutS1080FileNestedInput
+  }
+
+  export type FileUncheckedUpdateWithoutS720ImagesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    url?: StringFieldUpdateOperationsInput | string
+    mimeType?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    toDeleteAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    s240Images?: ImageUncheckedUpdateManyWithoutS240FileNestedInput
+    s480Images?: ImageUncheckedUpdateManyWithoutS480FileNestedInput
+    s1080Images?: ImageUncheckedUpdateManyWithoutS1080FileNestedInput
+  }
+
+  export type FileUpsertWithoutS1080ImagesInput = {
+    update: XOR<FileUpdateWithoutS1080ImagesInput, FileUncheckedUpdateWithoutS1080ImagesInput>
+    create: XOR<FileCreateWithoutS1080ImagesInput, FileUncheckedCreateWithoutS1080ImagesInput>
+    where?: FileWhereInput
+  }
+
+  export type FileUpdateToOneWithWhereWithoutS1080ImagesInput = {
+    where?: FileWhereInput
+    data: XOR<FileUpdateWithoutS1080ImagesInput, FileUncheckedUpdateWithoutS1080ImagesInput>
+  }
+
+  export type FileUpdateWithoutS1080ImagesInput = {
+    url?: StringFieldUpdateOperationsInput | string
+    mimeType?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    toDeleteAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    s240Images?: ImageUpdateManyWithoutS240FileNestedInput
+    s480Images?: ImageUpdateManyWithoutS480FileNestedInput
+    s720Images?: ImageUpdateManyWithoutS720FileNestedInput
+  }
+
+  export type FileUncheckedUpdateWithoutS1080ImagesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    url?: StringFieldUpdateOperationsInput | string
+    mimeType?: StringFieldUpdateOperationsInput | string
+    size?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    toDeleteAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    s240Images?: ImageUncheckedUpdateManyWithoutS240FileNestedInput
+    s480Images?: ImageUncheckedUpdateManyWithoutS480FileNestedInput
+    s720Images?: ImageUncheckedUpdateManyWithoutS720FileNestedInput
+  }
+
+  export type CarImagesUpsertWithWhereUniqueWithoutImagesInput = {
+    where: CarImagesWhereUniqueInput
+    update: XOR<CarImagesUpdateWithoutImagesInput, CarImagesUncheckedUpdateWithoutImagesInput>
+    create: XOR<CarImagesCreateWithoutImagesInput, CarImagesUncheckedCreateWithoutImagesInput>
+  }
+
+  export type CarImagesUpdateWithWhereUniqueWithoutImagesInput = {
+    where: CarImagesWhereUniqueInput
+    data: XOR<CarImagesUpdateWithoutImagesInput, CarImagesUncheckedUpdateWithoutImagesInput>
+  }
+
+  export type CarImagesUpdateManyWithWhereWithoutImagesInput = {
+    where: CarImagesScalarWhereInput
+    data: XOR<CarImagesUpdateManyMutationInput, CarImagesUncheckedUpdateManyWithoutImagesInput>
   }
 
   export type CarModelCreateManyMakeInput = {
@@ -10315,6 +14321,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     model?: CarModelUpdateOneRequiredWithoutCarsNestedInput
     user?: UserUpdateOneRequiredWithoutCarsNestedInput
+    carImages?: CarImagesUpdateManyWithoutCarNestedInput
   }
 
   export type CarsUncheckedUpdateWithoutMakeInput = {
@@ -10326,6 +14333,7 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    carImages?: CarImagesUncheckedUpdateManyWithoutCarNestedInput
   }
 
   export type CarsUncheckedUpdateManyWithoutMakeInput = {
@@ -10358,6 +14366,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     make?: CarMakeUpdateOneRequiredWithoutCarsNestedInput
     user?: UserUpdateOneRequiredWithoutCarsNestedInput
+    carImages?: CarImagesUpdateManyWithoutCarNestedInput
   }
 
   export type CarsUncheckedUpdateWithoutModelInput = {
@@ -10369,6 +14378,7 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    carImages?: CarImagesUncheckedUpdateManyWithoutCarNestedInput
   }
 
   export type CarsUncheckedUpdateManyWithoutModelInput = {
@@ -10380,6 +14390,25 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CarImagesCreateManyCarInput = {
+    id?: number
+    imageId: number
+  }
+
+  export type CarImagesUpdateWithoutCarInput = {
+    images?: ImageUpdateOneRequiredWithoutCarImagesNestedInput
+  }
+
+  export type CarImagesUncheckedUpdateWithoutCarInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    imageId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CarImagesUncheckedUpdateManyWithoutCarInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    imageId?: IntFieldUpdateOperationsInput | number
   }
 
   export type CarsCreateManyUserInput = {
@@ -10401,6 +14430,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     make?: CarMakeUpdateOneRequiredWithoutCarsNestedInput
     model?: CarModelUpdateOneRequiredWithoutCarsNestedInput
+    carImages?: CarImagesUpdateManyWithoutCarNestedInput
   }
 
   export type CarsUncheckedUpdateWithoutUserInput = {
@@ -10412,6 +14442,7 @@ export namespace Prisma {
     mileage?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    carImages?: CarImagesUncheckedUpdateManyWithoutCarNestedInput
   }
 
   export type CarsUncheckedUpdateManyWithoutUserInput = {
@@ -10423,6 +14454,141 @@ export namespace Prisma {
     mileage?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ImageCreateManyS240FileInput = {
+    id?: number
+    s480FileId: number
+    s720FileId: number
+    s1080FileId: number
+  }
+
+  export type ImageCreateManyS480FileInput = {
+    id?: number
+    s240FileId: number
+    s720FileId: number
+    s1080FileId: number
+  }
+
+  export type ImageCreateManyS720FileInput = {
+    id?: number
+    s240FileId: number
+    s480FileId: number
+    s1080FileId: number
+  }
+
+  export type ImageCreateManyS1080FileInput = {
+    id?: number
+    s240FileId: number
+    s480FileId: number
+    s720FileId: number
+  }
+
+  export type ImageUpdateWithoutS240FileInput = {
+    s480File?: FileUpdateOneRequiredWithoutS480ImagesNestedInput
+    s720File?: FileUpdateOneRequiredWithoutS720ImagesNestedInput
+    s1080File?: FileUpdateOneRequiredWithoutS1080ImagesNestedInput
+    CarImages?: CarImagesUpdateManyWithoutImagesNestedInput
+  }
+
+  export type ImageUncheckedUpdateWithoutS240FileInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    s480FileId?: IntFieldUpdateOperationsInput | number
+    s720FileId?: IntFieldUpdateOperationsInput | number
+    s1080FileId?: IntFieldUpdateOperationsInput | number
+    CarImages?: CarImagesUncheckedUpdateManyWithoutImagesNestedInput
+  }
+
+  export type ImageUncheckedUpdateManyWithoutS240FileInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    s480FileId?: IntFieldUpdateOperationsInput | number
+    s720FileId?: IntFieldUpdateOperationsInput | number
+    s1080FileId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ImageUpdateWithoutS480FileInput = {
+    s240File?: FileUpdateOneRequiredWithoutS240ImagesNestedInput
+    s720File?: FileUpdateOneRequiredWithoutS720ImagesNestedInput
+    s1080File?: FileUpdateOneRequiredWithoutS1080ImagesNestedInput
+    CarImages?: CarImagesUpdateManyWithoutImagesNestedInput
+  }
+
+  export type ImageUncheckedUpdateWithoutS480FileInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    s240FileId?: IntFieldUpdateOperationsInput | number
+    s720FileId?: IntFieldUpdateOperationsInput | number
+    s1080FileId?: IntFieldUpdateOperationsInput | number
+    CarImages?: CarImagesUncheckedUpdateManyWithoutImagesNestedInput
+  }
+
+  export type ImageUncheckedUpdateManyWithoutS480FileInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    s240FileId?: IntFieldUpdateOperationsInput | number
+    s720FileId?: IntFieldUpdateOperationsInput | number
+    s1080FileId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ImageUpdateWithoutS720FileInput = {
+    s240File?: FileUpdateOneRequiredWithoutS240ImagesNestedInput
+    s480File?: FileUpdateOneRequiredWithoutS480ImagesNestedInput
+    s1080File?: FileUpdateOneRequiredWithoutS1080ImagesNestedInput
+    CarImages?: CarImagesUpdateManyWithoutImagesNestedInput
+  }
+
+  export type ImageUncheckedUpdateWithoutS720FileInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    s240FileId?: IntFieldUpdateOperationsInput | number
+    s480FileId?: IntFieldUpdateOperationsInput | number
+    s1080FileId?: IntFieldUpdateOperationsInput | number
+    CarImages?: CarImagesUncheckedUpdateManyWithoutImagesNestedInput
+  }
+
+  export type ImageUncheckedUpdateManyWithoutS720FileInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    s240FileId?: IntFieldUpdateOperationsInput | number
+    s480FileId?: IntFieldUpdateOperationsInput | number
+    s1080FileId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ImageUpdateWithoutS1080FileInput = {
+    s240File?: FileUpdateOneRequiredWithoutS240ImagesNestedInput
+    s480File?: FileUpdateOneRequiredWithoutS480ImagesNestedInput
+    s720File?: FileUpdateOneRequiredWithoutS720ImagesNestedInput
+    CarImages?: CarImagesUpdateManyWithoutImagesNestedInput
+  }
+
+  export type ImageUncheckedUpdateWithoutS1080FileInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    s240FileId?: IntFieldUpdateOperationsInput | number
+    s480FileId?: IntFieldUpdateOperationsInput | number
+    s720FileId?: IntFieldUpdateOperationsInput | number
+    CarImages?: CarImagesUncheckedUpdateManyWithoutImagesNestedInput
+  }
+
+  export type ImageUncheckedUpdateManyWithoutS1080FileInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    s240FileId?: IntFieldUpdateOperationsInput | number
+    s480FileId?: IntFieldUpdateOperationsInput | number
+    s720FileId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CarImagesCreateManyImagesInput = {
+    id?: number
+    carId: number
+  }
+
+  export type CarImagesUpdateWithoutImagesInput = {
+    car?: CarsUpdateOneRequiredWithoutCarImagesNestedInput
+  }
+
+  export type CarImagesUncheckedUpdateWithoutImagesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    carId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CarImagesUncheckedUpdateManyWithoutImagesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    carId?: IntFieldUpdateOperationsInput | number
   }
 
 

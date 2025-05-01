@@ -7,7 +7,7 @@
 		firstName: '',
 		lastName: '',
 		password: '',
-		repeatPassword: ''
+		repeatPassword: '',
 	});
 
 	const isLoading: Ref<boolean> = ref(false);
@@ -17,33 +17,28 @@
 			method: 'POST',
 			body: user.value,
 			onResponseError({ response }) {
-				console.log(response)
+				console.log(response);
 			},
 			onResponse({ response }) {
-				console.log(response)
-			}
+				console.log(response);
+			},
 		});
 	}
 
 	function handleSignUp() {
 		isLoading.value = true;
 
-		requestSignUp()
-		.finally(() => {
+		requestSignUp().finally(() => {
 			isLoading.value = false;
 		});
 	}
 </script>
 
 <template>
-	<q-card class="absolute-center q-pa-md" style="width: 350px;">
+	<q-card class="absolute-center q-pa-md" style="width: 350px">
 		<q-form @submit="handleSignUp">
-			<q-card-section>
-				<q-input
-					v-model="user.email"
-					:label="$t('email')"
-					:rules="[required, isEmail]"
-				>
+			<q-card-section class="q-gutter-y-sm">
+				<q-input v-model="user.email" :label="$t('email')" :rules="[required, isEmail]">
 					<template #prepend>
 						<q-icon name="mail" />
 					</template>
@@ -63,7 +58,10 @@
 						<q-icon name="lock" />
 					</template>
 				</q-input>
-				<q-input v-model="user.repeatPassword" :label="$t('repeatPassword')" :rules="[required]">
+				<q-input
+					v-model="user.repeatPassword"
+					:label="$t('repeatPassword')"
+					:rules="[required]">
 					<template #prepend>
 						<q-icon name="lock" />
 					</template>

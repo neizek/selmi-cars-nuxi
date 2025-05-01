@@ -1,6 +1,53 @@
-import { defineEventHandler, readMultipartFormData } from "h3";
-import { useStorage } from "#imports";
-import prisma from "~/utils/prisma";
+import { defineEventHandler, readMultipartFormData, type MultiPartData } from 'h3';
+import { useStorage } from '#imports';
+import prisma from '~/utils/prisma';
+import sharp from 'sharp';
+import type { File } from '~/types/files';
+
+const imageSizes = [240, 480, 720, 1080];
+
+async function saveImage(
+	width: number,
+	file: MultiPartData,
+	format: 'webp' | 'jpg' | 'png' | 'svg' = 'webp'
+): Promise<File> {
+	const storage = useStorage('uploads');
+	const { data, info } = await sharp(file.data)
+		.rotate()
+		.resize({ width: width })
+		.toFormat('webp')
+		.webp({ nearLossless: true, quality: 50 })
+		.toBuffer({ resolveWithObject: true });
+
+	const fileName = `${Date.now()}-s${width}.${format}`;
+
+	await storage.setItemRaw(fileName, data);
+
+	return {
+		url: `/uploads/${fileName}`,
+		mimeType: `image/${format}`,
+		size: info.size,
+	};
+}
+
+async function pushImagesToDB(files: File[]) {
+	const [s240File, s480File, s720File, s1080File] = await Promise.all(
+		files.map((file) =>
+			prisma.file.create({
+				data: file,
+			})
+		)
+	);
+
+	await prisma.image.create({
+		data: {
+			s240FileId: s240File.id,
+			s480FileId: s480File.id,
+			s720FileId: s720File.id,
+			s1080FileId: s1080File.id,
+		},
+	});
+}
 
 export default defineEventHandler(async (event) => {
 	try {
@@ -9,14 +56,14 @@ export default defineEventHandler(async (event) => {
 		if (!formData || formData.length === 0) {
 			return {
 				statusCode: 400,
-				body: { error: "No files uploaded" },
+				body: { error: 'No files uploaded' },
 			};
 		}
 
-		const uploadedFiles = [];
+		// const uploadedFiles = [];
 
 		for (const file of formData) {
-			if (!file.type?.startsWith("image/")) {
+			if (!file.type?.startsWith('image/')) {
 				return {
 					statusCode: 400,
 					body: { error: `File ${file.filename} is not an image` },
@@ -32,41 +79,26 @@ export default defineEventHandler(async (event) => {
 				};
 			}
 
-			const fileName = `${Date.now()}-${file.filename}`;
+			// let fileIds: number[] = [];
 
-			const storage = useStorage("uploads");
-			await storage.setItemRaw(fileName, file.data);
-
-			await prisma.file.create({
-				data: {
-					name: fileName,
-					url: `/uploads/${fileName}`,
-					mimeType: file.type,
-					size: "1234",
-				},
-			});
-
-			uploadedFiles.push({
-				originalName: file.filename,
-				storedName: fileName,
-				path: `/uploads/${fileName}`,
-				type: file.type,
-				size: file.data.length,
+			const imageModels = Promise.all(imageSizes.map((width) => saveImage(width, file)));
+			imageModels.then((files) => {
+				pushImagesToDB(files);
 			});
 		}
 
 		return {
 			statusCode: 201,
 			body: {
-				message: "Files uploaded successfully",
-				files: uploadedFiles,
+				message: 'Files uploaded successfully',
+				// files: uploadedFiles,
 			},
 		};
 	} catch (error) {
-		console.error("Error uploading files:", error);
+		console.error('Error uploading files:', error);
 		return {
 			statusCode: 500,
-			body: { error: "Error uploading files" },
+			body: { error: 'Error uploading files' },
 		};
 	}
 });
