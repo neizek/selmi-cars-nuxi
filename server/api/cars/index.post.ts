@@ -48,5 +48,13 @@ export default defineEventHandler(async (event) => {
 		where: filters.where ?? {},
 	});
 
-	return cars;
+	return cars.map((car) => ({
+		...car,
+		carImages: car.carImages.map((ci) => ({
+			s240: ci.images.s240File?.url,
+			s480: ci.images.s480File?.url,
+		})),
+	}));
+
+	// return cars;
 });

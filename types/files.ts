@@ -6,6 +6,13 @@ export interface Image {
 	s1080FileId: number;
 }
 
+export interface ImageSet {
+	s240: string;
+	s480: string;
+	s720: string;
+	s1080: string;
+}
+
 export interface File {
 	url: string;
 	mimeType: string;

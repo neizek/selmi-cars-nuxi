@@ -1,3 +1,5 @@
+import type { ImageSet } from './files';
+
 export interface Make {
 	id?: number;
 	name: string;
@@ -9,12 +11,6 @@ export interface Model {
 	name: string;
 }
 
-// export interface Car {
-// 	id: number;
-// 	makeId: number;
-// 	modelId: number;
-// }
-
 export interface CreateCar {
 	makeId?: number;
 	make?: Make;
@@ -24,8 +20,10 @@ export interface CreateCar {
 	year?: number;
 	mileage?: number;
 	userId?: number;
+	carImages?: number[];
 }
 
-export interface Car extends Required<CreateCar> {
+export type Car = Required<CreateCar> & {
 	id: number;
-}
+	carImages: ImageSet[];
+};

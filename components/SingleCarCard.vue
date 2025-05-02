@@ -2,18 +2,47 @@
 	import type { Car } from '~/types/cars';
 
 	const { car } = defineProps<{ car: Car }>();
-	const img = car.carImages[0].images.s240File?.url;
-	// const img =
-	// 	'https://stimg.cardekho.com/images/carexteriorimages/930x620/BMW/X5-2023/10452/1688992642182/front-left-side-47.jpg';
+
+	const imageBlock = ref(null);
+
+	function onMouseOver() {
+		const element = imageBlock.value as unknown as HTMLElement;
+		if (element) {
+			element.scrollTo({
+				left: element.scrollLeft + element.clientWidth,
+				behavior: 'smooth',
+			});
+		}
+	}
+
+	function onMouseOut() {
+		const element = imageBlock.value as unknown as HTMLElement;
+
+		if (element) {
+			element.scrollTo({
+				left: 0,
+				behavior: 'smooth',
+			});
+		}
+	}
+
+	function handleClick() {
+		console.log(car);
+	}
 </script>
 
 <template>
-	<q-card v-if="car !== undefined" :key="car.id" flat>
-		<div style="aspect-ratio: 4 / 3; width: 100%; overflow: hidden">
-			<q-img
-				:src="img"
-				:alt="`${car.make.name} ${car.model}`"
-				style="width: 100%; height: 100%" />
+	<q-card v-if="car !== undefined" :key="car.id" flat @click="handleClick">
+		<div
+			ref="imageBlock"
+			class="ImgBlock hide-scrollbar"
+			@mouseover="onMouseOver"
+			@mouseout="onMouseOut">
+			<NuxtImg
+				v-for="(imageSet, index) in car.carImages"
+				:key="index"
+				:srcset="`${imageSet.s240} 240w, ${imageSet.s480} 480w`"
+				style="width: 100%; height: 100%; object-fit: cover; flex: none" />
 		</div>
 		<q-item>
 			<q-item-section>
@@ -26,3 +55,13 @@
 		</q-item>
 	</q-card>
 </template>
+
+<style lang="scss">
+	.ImgBlock {
+		display: flex;
+		flex-direction: row;
+		aspect-ratio: 4 / 3;
+		overflow: hidden;
+		overflow-x: scroll;
+	}
+</style>

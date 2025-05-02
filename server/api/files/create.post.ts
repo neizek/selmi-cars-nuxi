@@ -39,7 +39,7 @@ async function pushImagesToDB(files: File[]) {
 		)
 	);
 
-	await prisma.image.create({
+	const imageSet = await prisma.image.create({
 		data: {
 			s240FileId: s240File.id,
 			s480FileId: s480File.id,
@@ -47,9 +47,13 @@ async function pushImagesToDB(files: File[]) {
 			s1080FileId: s1080File.id,
 		},
 	});
+
+	return imageSet.id;
 }
 
 export default defineEventHandler(async (event) => {
+	let imageSetIds: number[] = [];
+
 	try {
 		const formData = await readMultipartFormData(event);
 
@@ -59,8 +63,6 @@ export default defineEventHandler(async (event) => {
 				body: { error: 'No files uploaded' },
 			};
 		}
-
-		// const uploadedFiles = [];
 
 		for (const file of formData) {
 			if (!file.type?.startsWith('image/')) {
@@ -79,19 +81,19 @@ export default defineEventHandler(async (event) => {
 				};
 			}
 
-			// let fileIds: number[] = [];
+			const imageModels = await Promise.all(
+				imageSizes.map((width) => saveImage(width, file))
+			);
+			const imageSetId = await pushImagesToDB(imageModels);
 
-			const imageModels = Promise.all(imageSizes.map((width) => saveImage(width, file)));
-			imageModels.then((files) => {
-				pushImagesToDB(files);
-			});
+			imageSetIds = [...imageSetIds, imageSetId];
 		}
 
 		return {
 			statusCode: 201,
 			body: {
 				message: 'Files uploaded successfully',
-				// files: uploadedFiles,
+				files: imageSetIds,
 			},
 		};
 	} catch (error) {
