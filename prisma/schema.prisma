@@ -12,6 +12,7 @@ datasource db {
 model CarMake {
     id              Int        @id @default(autoincrement())
     name            String     @unique
+	slug			String
     countryOfOrigin String?
     logoUrl         String?
     createdAt       DateTime   @default(now())
@@ -25,6 +26,7 @@ model CarMake {
 model CarModel {
     id     Int     @id @default(autoincrement())
     name   String
+	slug   String
     makeId Int
     make   CarMake @relation(fields: [makeId], references: [id])
     cars   Cars[]

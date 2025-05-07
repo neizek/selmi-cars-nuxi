@@ -3,12 +3,14 @@ import type { ImageSet } from './files';
 export interface Make {
 	id?: number;
 	name: string;
+	slug: string;
 	models?: Model[];
 }
 
 export interface Model {
 	id?: number;
 	name: string;
+	slug: string;
 }
 
 export interface CreateCar {
@@ -20,7 +22,7 @@ export interface CreateCar {
 	year?: number;
 	mileage?: number;
 	userId?: number;
-	carImages?: number[];
+	carImages?: ImageSet[];
 }
 
 export type Car = Required<CreateCar> & {

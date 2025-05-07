@@ -1,4 +1,5 @@
 <script setup lang="ts">
+	import { SingleCarCardSkeleton } from '#components';
 	import type { Car } from '~/types/cars';
 
 	defineProps<{
@@ -14,7 +15,7 @@
 			<slot name="header" />
 		</div>
 		<div v-if="!isLoading && cars.length > 0" class="row q-col-gutter-md">
-			<div v-for="car in cars" :key="car.id" class="col-md-3 col-6">
+			<div v-for="car in cars" :key="car.id" class="col-md-3 col-sm-4 col-6">
 				<SingleCarCard :car="car" />
 			</div>
 		</div>

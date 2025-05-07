@@ -3,6 +3,8 @@
 	import { ref } from 'vue';
 	import type { Car, CreateCar, Make, Model } from '~/types/cars';
 
+	const step = ref(1);
+
 	definePageMeta({
 		middleware: ['auth'],
 	});
@@ -87,9 +89,10 @@
 <template>
 	<PageWrap>
 		<h3>Новое объявление</h3>
-		<q-card class="absolute-center q-pa-md" style="width: 350px">
-			<q-form @submit="handleCreateCar">
-				<q-card-section class="q-gutter-y-md">
+
+		<q-form @submit="handleCreateCar">
+			<q-stepper v-model="step" vertical color="primary" animated>
+				<q-step :name="1" title="Select campaign settings" icon="settings" :done="step > 1">
 					<q-uploader
 						v-model="createCar.carImages"
 						label="Добавить фото"
@@ -100,6 +103,11 @@
 						class="no-shadow"
 						multiple
 						@uploaded="onUploaded" />
+				</q-step>
+				<q-stepper-navigation>
+					<q-btn color="primary" label="Continue" @click="step = 2" />
+				</q-stepper-navigation>
+				<q-step :name="2" title="Select campaign settings" icon="settings" :done="step > 1">
 					<q-select v-model="createCar.makeId" :options="allMakes" label="Марка авто" />
 					<q-select
 						v-model="createCar.modelId"
@@ -110,11 +118,12 @@
 					<q-input v-model="createCar.price" type="number" label="Цена" />
 					<q-input v-model="createCar.year" type="number" label="Год" />
 					<q-input v-model="createCar.mileage" type="number" label="Пробег" />
-				</q-card-section>
-				<q-card-actions>
-					<q-btn type="submit" label="Добавить авто" />
-				</q-card-actions>
-			</q-form>
-		</q-card>
+					<q-stepper-navigation>
+						<q-btn color="primary" label="Continue" @click="step = 2" />
+						<q-btn type="submit" label="Добавить авто" />
+					</q-stepper-navigation>
+				</q-step>
+			</q-stepper>
+		</q-form>
 	</PageWrap>
 </template>

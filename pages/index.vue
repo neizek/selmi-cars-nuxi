@@ -6,22 +6,13 @@
 		lazy: true,
 	});
 
-	const { data: newCars, status } = useFetch('/api/cars', {
+	const { data: newCars, status } = useFetch('/api/cars/many', {
 		method: 'POST',
 		body: {
 			orderBy: { createdAt: 'desc' },
 		},
 		lazy: true,
 	});
-
-	// const carMock = {
-	// 	img: 'https://stimg.cardekho.com/images/carexteriorimages/930x620/BMW/X5-2023/10452/1688992642182/front-left-side-47.jpg',
-	// 	make: 'BMW',
-	// 	model: 'X5',
-	// 	price: 2500,
-	// 	year: 2024,
-	// 	mileage: 80000,
-	// };
 </script>
 
 <template>
@@ -31,12 +22,14 @@
 			:is-loading="status !== 'success'"
 			:expected-cars="4">
 			<template #header>
-				<span class="text-h4">Новые объявления</span>
+				<h2>Новые объявления</h2>
 			</template>
 		</CarCardsSection>
 		<div class="row q-gutter-md">
 			<div v-for="make in makes" :key="make.id">
-				<NuxtLink :to="$localePath('/cars')">{{ make.name }}</NuxtLink>
+				<NuxtLink :to="$localePath(`/cars/${make.name.toLocaleLowerCase()}`)">
+					{{ make.name }}
+				</NuxtLink>
 			</div>
 		</div>
 		<CarCardsSection
@@ -44,7 +37,7 @@
 			:is-loading="status !== 'success'"
 			:expected-cars="4">
 			<template #header>
-				<span class="text-h4">Популярные объявления</span>
+				<h2>Популярные объявления</h2>
 			</template>
 		</CarCardsSection>
 	</PageWrap>

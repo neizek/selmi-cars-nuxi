@@ -1820,6 +1820,7 @@ export namespace Prisma {
   export type CarMakeMinAggregateOutputType = {
     id: number | null
     name: string | null
+    slug: string | null
     countryOfOrigin: string | null
     logoUrl: string | null
     createdAt: Date | null
@@ -1829,6 +1830,7 @@ export namespace Prisma {
   export type CarMakeMaxAggregateOutputType = {
     id: number | null
     name: string | null
+    slug: string | null
     countryOfOrigin: string | null
     logoUrl: string | null
     createdAt: Date | null
@@ -1838,6 +1840,7 @@ export namespace Prisma {
   export type CarMakeCountAggregateOutputType = {
     id: number
     name: number
+    slug: number
     countryOfOrigin: number
     logoUrl: number
     createdAt: number
@@ -1857,6 +1860,7 @@ export namespace Prisma {
   export type CarMakeMinAggregateInputType = {
     id?: true
     name?: true
+    slug?: true
     countryOfOrigin?: true
     logoUrl?: true
     createdAt?: true
@@ -1866,6 +1870,7 @@ export namespace Prisma {
   export type CarMakeMaxAggregateInputType = {
     id?: true
     name?: true
+    slug?: true
     countryOfOrigin?: true
     logoUrl?: true
     createdAt?: true
@@ -1875,6 +1880,7 @@ export namespace Prisma {
   export type CarMakeCountAggregateInputType = {
     id?: true
     name?: true
+    slug?: true
     countryOfOrigin?: true
     logoUrl?: true
     createdAt?: true
@@ -1971,6 +1977,7 @@ export namespace Prisma {
   export type CarMakeGroupByOutputType = {
     id: number
     name: string
+    slug: string
     countryOfOrigin: string | null
     logoUrl: string | null
     createdAt: Date
@@ -1999,6 +2006,7 @@ export namespace Prisma {
   export type CarMakeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    slug?: boolean
     countryOfOrigin?: boolean
     logoUrl?: boolean
     createdAt?: boolean
@@ -2011,6 +2019,7 @@ export namespace Prisma {
   export type CarMakeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    slug?: boolean
     countryOfOrigin?: boolean
     logoUrl?: boolean
     createdAt?: boolean
@@ -2020,6 +2029,7 @@ export namespace Prisma {
   export type CarMakeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    slug?: boolean
     countryOfOrigin?: boolean
     logoUrl?: boolean
     createdAt?: boolean
@@ -2029,13 +2039,14 @@ export namespace Prisma {
   export type CarMakeSelectScalar = {
     id?: boolean
     name?: boolean
+    slug?: boolean
     countryOfOrigin?: boolean
     logoUrl?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type CarMakeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "countryOfOrigin" | "logoUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["carMake"]>
+  export type CarMakeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "countryOfOrigin" | "logoUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["carMake"]>
   export type CarMakeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     models?: boolean | CarMake$modelsArgs<ExtArgs>
     cars?: boolean | CarMake$carsArgs<ExtArgs>
@@ -2053,6 +2064,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
+      slug: string
       countryOfOrigin: string | null
       logoUrl: string | null
       createdAt: Date
@@ -2484,6 +2496,7 @@ export namespace Prisma {
   interface CarMakeFieldRefs {
     readonly id: FieldRef<"CarMake", 'Int'>
     readonly name: FieldRef<"CarMake", 'String'>
+    readonly slug: FieldRef<"CarMake", 'String'>
     readonly countryOfOrigin: FieldRef<"CarMake", 'String'>
     readonly logoUrl: FieldRef<"CarMake", 'String'>
     readonly createdAt: FieldRef<"CarMake", 'DateTime'>
@@ -2967,18 +2980,21 @@ export namespace Prisma {
   export type CarModelMinAggregateOutputType = {
     id: number | null
     name: string | null
+    slug: string | null
     makeId: number | null
   }
 
   export type CarModelMaxAggregateOutputType = {
     id: number | null
     name: string | null
+    slug: string | null
     makeId: number | null
   }
 
   export type CarModelCountAggregateOutputType = {
     id: number
     name: number
+    slug: number
     makeId: number
     _all: number
   }
@@ -2997,18 +3013,21 @@ export namespace Prisma {
   export type CarModelMinAggregateInputType = {
     id?: true
     name?: true
+    slug?: true
     makeId?: true
   }
 
   export type CarModelMaxAggregateInputType = {
     id?: true
     name?: true
+    slug?: true
     makeId?: true
   }
 
   export type CarModelCountAggregateInputType = {
     id?: true
     name?: true
+    slug?: true
     makeId?: true
     _all?: true
   }
@@ -3102,6 +3121,7 @@ export namespace Prisma {
   export type CarModelGroupByOutputType = {
     id: number
     name: string
+    slug: string
     makeId: number
     _count: CarModelCountAggregateOutputType | null
     _avg: CarModelAvgAggregateOutputType | null
@@ -3127,6 +3147,7 @@ export namespace Prisma {
   export type CarModelSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    slug?: boolean
     makeId?: boolean
     make?: boolean | CarMakeDefaultArgs<ExtArgs>
     cars?: boolean | CarModel$carsArgs<ExtArgs>
@@ -3136,6 +3157,7 @@ export namespace Prisma {
   export type CarModelSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    slug?: boolean
     makeId?: boolean
     make?: boolean | CarMakeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["carModel"]>
@@ -3143,6 +3165,7 @@ export namespace Prisma {
   export type CarModelSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    slug?: boolean
     makeId?: boolean
     make?: boolean | CarMakeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["carModel"]>
@@ -3150,10 +3173,11 @@ export namespace Prisma {
   export type CarModelSelectScalar = {
     id?: boolean
     name?: boolean
+    slug?: boolean
     makeId?: boolean
   }
 
-  export type CarModelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "makeId", ExtArgs["result"]["carModel"]>
+  export type CarModelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "makeId", ExtArgs["result"]["carModel"]>
   export type CarModelInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     make?: boolean | CarMakeDefaultArgs<ExtArgs>
     cars?: boolean | CarModel$carsArgs<ExtArgs>
@@ -3175,6 +3199,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
+      slug: string
       makeId: number
     }, ExtArgs["result"]["carModel"]>
     composites: {}
@@ -3603,6 +3628,7 @@ export namespace Prisma {
   interface CarModelFieldRefs {
     readonly id: FieldRef<"CarModel", 'Int'>
     readonly name: FieldRef<"CarModel", 'String'>
+    readonly slug: FieldRef<"CarModel", 'String'>
     readonly makeId: FieldRef<"CarModel", 'Int'>
   }
     
@@ -10855,6 +10881,7 @@ export namespace Prisma {
   export const CarMakeScalarFieldEnum: {
     id: 'id',
     name: 'name',
+    slug: 'slug',
     countryOfOrigin: 'countryOfOrigin',
     logoUrl: 'logoUrl',
     createdAt: 'createdAt',
@@ -10867,6 +10894,7 @@ export namespace Prisma {
   export const CarModelScalarFieldEnum: {
     id: 'id',
     name: 'name',
+    slug: 'slug',
     makeId: 'makeId'
   };
 
@@ -11050,6 +11078,7 @@ export namespace Prisma {
     NOT?: CarMakeWhereInput | CarMakeWhereInput[]
     id?: IntFilter<"CarMake"> | number
     name?: StringFilter<"CarMake"> | string
+    slug?: StringFilter<"CarMake"> | string
     countryOfOrigin?: StringNullableFilter<"CarMake"> | string | null
     logoUrl?: StringNullableFilter<"CarMake"> | string | null
     createdAt?: DateTimeFilter<"CarMake"> | Date | string
@@ -11061,6 +11090,7 @@ export namespace Prisma {
   export type CarMakeOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
+    slug?: SortOrder
     countryOfOrigin?: SortOrderInput | SortOrder
     logoUrl?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -11075,6 +11105,7 @@ export namespace Prisma {
     AND?: CarMakeWhereInput | CarMakeWhereInput[]
     OR?: CarMakeWhereInput[]
     NOT?: CarMakeWhereInput | CarMakeWhereInput[]
+    slug?: StringFilter<"CarMake"> | string
     countryOfOrigin?: StringNullableFilter<"CarMake"> | string | null
     logoUrl?: StringNullableFilter<"CarMake"> | string | null
     createdAt?: DateTimeFilter<"CarMake"> | Date | string
@@ -11086,6 +11117,7 @@ export namespace Prisma {
   export type CarMakeOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
+    slug?: SortOrder
     countryOfOrigin?: SortOrderInput | SortOrder
     logoUrl?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -11103,6 +11135,7 @@ export namespace Prisma {
     NOT?: CarMakeScalarWhereWithAggregatesInput | CarMakeScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"CarMake"> | number
     name?: StringWithAggregatesFilter<"CarMake"> | string
+    slug?: StringWithAggregatesFilter<"CarMake"> | string
     countryOfOrigin?: StringNullableWithAggregatesFilter<"CarMake"> | string | null
     logoUrl?: StringNullableWithAggregatesFilter<"CarMake"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"CarMake"> | Date | string
@@ -11115,6 +11148,7 @@ export namespace Prisma {
     NOT?: CarModelWhereInput | CarModelWhereInput[]
     id?: IntFilter<"CarModel"> | number
     name?: StringFilter<"CarModel"> | string
+    slug?: StringFilter<"CarModel"> | string
     makeId?: IntFilter<"CarModel"> | number
     make?: XOR<CarMakeScalarRelationFilter, CarMakeWhereInput>
     cars?: CarsListRelationFilter
@@ -11123,6 +11157,7 @@ export namespace Prisma {
   export type CarModelOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
+    slug?: SortOrder
     makeId?: SortOrder
     make?: CarMakeOrderByWithRelationInput
     cars?: CarsOrderByRelationAggregateInput
@@ -11135,6 +11170,7 @@ export namespace Prisma {
     OR?: CarModelWhereInput[]
     NOT?: CarModelWhereInput | CarModelWhereInput[]
     name?: StringFilter<"CarModel"> | string
+    slug?: StringFilter<"CarModel"> | string
     makeId?: IntFilter<"CarModel"> | number
     make?: XOR<CarMakeScalarRelationFilter, CarMakeWhereInput>
     cars?: CarsListRelationFilter
@@ -11143,6 +11179,7 @@ export namespace Prisma {
   export type CarModelOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
+    slug?: SortOrder
     makeId?: SortOrder
     _count?: CarModelCountOrderByAggregateInput
     _avg?: CarModelAvgOrderByAggregateInput
@@ -11157,6 +11194,7 @@ export namespace Prisma {
     NOT?: CarModelScalarWhereWithAggregatesInput | CarModelScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"CarModel"> | number
     name?: StringWithAggregatesFilter<"CarModel"> | string
+    slug?: StringWithAggregatesFilter<"CarModel"> | string
     makeId?: IntWithAggregatesFilter<"CarModel"> | number
   }
 
@@ -11549,6 +11587,7 @@ export namespace Prisma {
 
   export type CarMakeCreateInput = {
     name: string
+    slug: string
     countryOfOrigin?: string | null
     logoUrl?: string | null
     createdAt?: Date | string
@@ -11560,6 +11599,7 @@ export namespace Prisma {
   export type CarMakeUncheckedCreateInput = {
     id?: number
     name: string
+    slug: string
     countryOfOrigin?: string | null
     logoUrl?: string | null
     createdAt?: Date | string
@@ -11570,6 +11610,7 @@ export namespace Prisma {
 
   export type CarMakeUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     countryOfOrigin?: NullableStringFieldUpdateOperationsInput | string | null
     logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11581,6 +11622,7 @@ export namespace Prisma {
   export type CarMakeUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     countryOfOrigin?: NullableStringFieldUpdateOperationsInput | string | null
     logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11592,6 +11634,7 @@ export namespace Prisma {
   export type CarMakeCreateManyInput = {
     id?: number
     name: string
+    slug: string
     countryOfOrigin?: string | null
     logoUrl?: string | null
     createdAt?: Date | string
@@ -11600,6 +11643,7 @@ export namespace Prisma {
 
   export type CarMakeUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     countryOfOrigin?: NullableStringFieldUpdateOperationsInput | string | null
     logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11609,6 +11653,7 @@ export namespace Prisma {
   export type CarMakeUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     countryOfOrigin?: NullableStringFieldUpdateOperationsInput | string | null
     logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11617,6 +11662,7 @@ export namespace Prisma {
 
   export type CarModelCreateInput = {
     name: string
+    slug: string
     make: CarMakeCreateNestedOneWithoutModelsInput
     cars?: CarsCreateNestedManyWithoutModelInput
   }
@@ -11624,12 +11670,14 @@ export namespace Prisma {
   export type CarModelUncheckedCreateInput = {
     id?: number
     name: string
+    slug: string
     makeId: number
     cars?: CarsUncheckedCreateNestedManyWithoutModelInput
   }
 
   export type CarModelUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     make?: CarMakeUpdateOneRequiredWithoutModelsNestedInput
     cars?: CarsUpdateManyWithoutModelNestedInput
   }
@@ -11637,6 +11685,7 @@ export namespace Prisma {
   export type CarModelUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     makeId?: IntFieldUpdateOperationsInput | number
     cars?: CarsUncheckedUpdateManyWithoutModelNestedInput
   }
@@ -11644,16 +11693,19 @@ export namespace Prisma {
   export type CarModelCreateManyInput = {
     id?: number
     name: string
+    slug: string
     makeId: number
   }
 
   export type CarModelUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
   }
 
   export type CarModelUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     makeId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -12097,6 +12149,7 @@ export namespace Prisma {
   export type CarMakeCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    slug?: SortOrder
     countryOfOrigin?: SortOrder
     logoUrl?: SortOrder
     createdAt?: SortOrder
@@ -12110,6 +12163,7 @@ export namespace Prisma {
   export type CarMakeMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    slug?: SortOrder
     countryOfOrigin?: SortOrder
     logoUrl?: SortOrder
     createdAt?: SortOrder
@@ -12119,6 +12173,7 @@ export namespace Prisma {
   export type CarMakeMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    slug?: SortOrder
     countryOfOrigin?: SortOrder
     logoUrl?: SortOrder
     createdAt?: SortOrder
@@ -12208,6 +12263,7 @@ export namespace Prisma {
   export type CarModelCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    slug?: SortOrder
     makeId?: SortOrder
   }
 
@@ -12219,12 +12275,14 @@ export namespace Prisma {
   export type CarModelMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    slug?: SortOrder
     makeId?: SortOrder
   }
 
   export type CarModelMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    slug?: SortOrder
     makeId?: SortOrder
   }
 
@@ -13261,12 +13319,14 @@ export namespace Prisma {
 
   export type CarModelCreateWithoutMakeInput = {
     name: string
+    slug: string
     cars?: CarsCreateNestedManyWithoutModelInput
   }
 
   export type CarModelUncheckedCreateWithoutMakeInput = {
     id?: number
     name: string
+    slug: string
     cars?: CarsUncheckedCreateNestedManyWithoutModelInput
   }
 
@@ -13335,6 +13395,7 @@ export namespace Prisma {
     NOT?: CarModelScalarWhereInput | CarModelScalarWhereInput[]
     id?: IntFilter<"CarModel"> | number
     name?: StringFilter<"CarModel"> | string
+    slug?: StringFilter<"CarModel"> | string
     makeId?: IntFilter<"CarModel"> | number
   }
 
@@ -13371,6 +13432,7 @@ export namespace Prisma {
 
   export type CarMakeCreateWithoutModelsInput = {
     name: string
+    slug: string
     countryOfOrigin?: string | null
     logoUrl?: string | null
     createdAt?: Date | string
@@ -13381,6 +13443,7 @@ export namespace Prisma {
   export type CarMakeUncheckedCreateWithoutModelsInput = {
     id?: number
     name: string
+    slug: string
     countryOfOrigin?: string | null
     logoUrl?: string | null
     createdAt?: Date | string
@@ -13439,6 +13502,7 @@ export namespace Prisma {
 
   export type CarMakeUpdateWithoutModelsInput = {
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     countryOfOrigin?: NullableStringFieldUpdateOperationsInput | string | null
     logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13449,6 +13513,7 @@ export namespace Prisma {
   export type CarMakeUncheckedUpdateWithoutModelsInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     countryOfOrigin?: NullableStringFieldUpdateOperationsInput | string | null
     logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13474,6 +13539,7 @@ export namespace Prisma {
 
   export type CarMakeCreateWithoutCarsInput = {
     name: string
+    slug: string
     countryOfOrigin?: string | null
     logoUrl?: string | null
     createdAt?: Date | string
@@ -13484,6 +13550,7 @@ export namespace Prisma {
   export type CarMakeUncheckedCreateWithoutCarsInput = {
     id?: number
     name: string
+    slug: string
     countryOfOrigin?: string | null
     logoUrl?: string | null
     createdAt?: Date | string
@@ -13498,12 +13565,14 @@ export namespace Prisma {
 
   export type CarModelCreateWithoutCarsInput = {
     name: string
+    slug: string
     make: CarMakeCreateNestedOneWithoutModelsInput
   }
 
   export type CarModelUncheckedCreateWithoutCarsInput = {
     id?: number
     name: string
+    slug: string
     makeId: number
   }
 
@@ -13570,6 +13639,7 @@ export namespace Prisma {
 
   export type CarMakeUpdateWithoutCarsInput = {
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     countryOfOrigin?: NullableStringFieldUpdateOperationsInput | string | null
     logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13580,6 +13650,7 @@ export namespace Prisma {
   export type CarMakeUncheckedUpdateWithoutCarsInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     countryOfOrigin?: NullableStringFieldUpdateOperationsInput | string | null
     logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13600,12 +13671,14 @@ export namespace Prisma {
 
   export type CarModelUpdateWithoutCarsInput = {
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     make?: CarMakeUpdateOneRequiredWithoutModelsNestedInput
   }
 
   export type CarModelUncheckedUpdateWithoutCarsInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     makeId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -14284,6 +14357,7 @@ export namespace Prisma {
   export type CarModelCreateManyMakeInput = {
     id?: number
     name: string
+    slug: string
   }
 
   export type CarsCreateManyMakeInput = {
@@ -14299,18 +14373,21 @@ export namespace Prisma {
 
   export type CarModelUpdateWithoutMakeInput = {
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     cars?: CarsUpdateManyWithoutModelNestedInput
   }
 
   export type CarModelUncheckedUpdateWithoutMakeInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     cars?: CarsUncheckedUpdateManyWithoutModelNestedInput
   }
 
   export type CarModelUncheckedUpdateManyWithoutMakeInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
   }
 
   export type CarsUpdateWithoutMakeInput = {

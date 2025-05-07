@@ -8,10 +8,12 @@ export default defineEventHandler(async (event) => {
 			make: {
 				select: {
 					name: true,
+					slug: true,
 				},
 			},
 			model: {
 				select: {
+					slug: true,
 					name: true,
 				},
 			},
@@ -53,6 +55,8 @@ export default defineEventHandler(async (event) => {
 		carImages: car.carImages.map((ci) => ({
 			s240: ci.images.s240File?.url,
 			s480: ci.images.s480File?.url,
+			s720: ci.images.s720File?.url,
+			s1080: ci.images.s1080File?.url,
 		})),
 	}));
 

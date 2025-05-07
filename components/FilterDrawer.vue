@@ -1,44 +1,45 @@
 <script setup lang="ts">
 	import type { QSelectOption } from 'quasar';
-	import type { Car } from '~/types/cars';
+	import type { Car, Make } from '~/types/cars';
 	import type { Filter } from '~/types/filters';
 
 	const { filters } = defineProps<{ filters: Filter<Car> }>();
 
-	const chosenMake = ref(undefined);
-	const chosenModel = ref(undefined);
+	const chosenMake: Ref<string | undefined> = ref(undefined);
+	const chosenModel: Ref<string | undefined> = ref(undefined);
 
 	const options: Ref<{ makes: QSelectOption[]; models: QSelectOption[] }> = ref({
 		makes: [],
 		models: [],
 	});
 
-	const { data: makes, status } = useFetch('/api/cars/make', {
+	const { data: makes, status } = useFetch<Make[]>('/api/cars/make', {
 		method: 'get',
 		lazy: true,
 		onResponse: () => {
-			chosenMake.value = filters.where?.makeId ?? undefined;
-			chosenModel.value = filters.where?.modelId ?? undefined;
+			chosenMake.value = filters.where?.make?.slug ?? undefined;
+			chosenModel.value = filters.where?.model?.slug ?? undefined;
 		},
 	});
 
 	watch(makes, () => {
 		options.value.makes = (makes.value ?? []).map((make) => ({
 			label: make.name,
-			value: String(make.id),
+			value: make.slug,
 		}));
 	});
 
 	watch(chosenMake, () => {
+		chosenModel.value = undefined;
 		if (!makes || !makes.value) {
 			return;
 		}
-		const chosenMakeObject = makes.value.find((make) => make.id === Number(chosenMake.value));
+		const chosenMakeObject = makes.value.find((make) => make.slug === chosenMake.value);
 
 		if (chosenMakeObject && chosenMakeObject.models) {
 			options.value.models = chosenMakeObject.models.map((model) => ({
-				value: String(model.id),
 				label: model.name,
+				value: model.slug,
 			}));
 		}
 	});
@@ -51,8 +52,8 @@
 				price: 'asc',
 			},
 			where: {
-				makeId: Number(chosenMake.value),
-				modelId: Number(chosenModel.value),
+				make: { slug: chosenMake.value },
+				model: { slug: chosenModel.value },
 			},
 		});
 	}

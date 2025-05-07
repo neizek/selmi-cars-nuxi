@@ -1,17 +1,14 @@
 export type OrderByDirection = 'asc' | 'desc';
 
-// export interface Filter {
-// 	where?: {
-// 		[prop: string]: string | number | boolean | null;
-// 	}[];
-// 	orderBy?: {
-// 		[prop: string]: OrderByDirection;
-// 	};
-// }
+type RelativeField<T> = {
+	[K in keyof T]?: T[K] extends object ? RelativeField<T[K]> : string;
+};
 
 export interface Filter<T> {
 	where?: {
-		[P in keyof T]?: string | number | boolean | null;
+		[P in keyof T]?: T[P] extends object
+			? RelativeField<T[P]>
+			: string | number | boolean | null;
 	};
 	orderBy?: {
 		[P in keyof T]?: OrderByDirection;
