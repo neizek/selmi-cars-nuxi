@@ -31,6 +31,7 @@
 
 	watch(chosenMake, () => {
 		chosenModel.value = undefined;
+
 		if (!makes || !makes.value) {
 			return;
 		}
@@ -48,16 +49,14 @@
 
 	function acceptFilters() {
 		emit('updateValue', {
-			orderBy: {
-				price: 'asc',
-			},
+			orderBy: filters.orderBy,
 			where: {
 				make: { slug: chosenMake.value },
 				model: { slug: chosenModel.value },
 			},
 		});
 	}
-	console.log(filters);
+	// console.log(filters);
 </script>
 
 <template>
@@ -74,6 +73,7 @@
 				:options="options.models"
 				:loading="status !== 'success'" />
 		</q-card-section>
+		<q-separator inset />
 		<q-card-actions vertical class="q-pa-md">
 			<q-btn label="Филтровать" @click="acceptFilters" />
 		</q-card-actions>
