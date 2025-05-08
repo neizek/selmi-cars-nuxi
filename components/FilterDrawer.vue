@@ -7,13 +7,17 @@
 
 	const chosenMake: Ref<string | undefined> = ref(undefined);
 	const chosenModel: Ref<string | undefined> = ref(undefined);
+	const yearFrom = ref(undefined);
+	const yearTo = ref(undefined);
+	const mileageFrom = ref(undefined);
+	const mileageTo = ref(undefined);
 
 	const options: Ref<{ makes: QSelectOption[]; models: QSelectOption[] }> = ref({
 		makes: [],
 		models: [],
 	});
 
-	const { data: makes, status } = useFetch<Make[]>('/api/cars/make', {
+	const { data: makes, status } = useFetch<Make[]>('/api/makes/many?includeModels=true', {
 		method: 'get',
 		lazy: true,
 		onResponse: () => {
@@ -53,10 +57,17 @@
 			where: {
 				make: { slug: chosenMake.value },
 				model: { slug: chosenModel.value },
+				year: {
+					gt: yearFrom.value ? Number(yearFrom.value) : undefined,
+					lt: yearTo.value ? Number(yearTo.value) : undefined,
+				},
+				mileage: {
+					gt: mileageFrom.value ? Number(mileageFrom.value) : undefined,
+					lt: mileageTo.value ? Number(mileageTo.value) : undefined,
+				},
 			},
 		});
 	}
-	// console.log(filters);
 </script>
 
 <template>
@@ -72,10 +83,25 @@
 				label="Модель"
 				:options="options.models"
 				:loading="status !== 'success'" />
+			<div class="column q-gutter-y-xs">
+				<span>Год выпуска</span>
+				<div class="row q-col-gutter-x-sm">
+					<q-input v-model="yearFrom" label="от" class="col-6" />
+					<q-input v-model="yearTo" label="до" class="col-6" />
+				</div>
+			</div>
+			<div class="column q-gutter-y-xs">
+				<span>Пробег</span>
+				<div class="row q-col-gutter-x-sm">
+					<q-input v-model="mileageFrom" type="number" label="от" class="col-6" />
+					<q-input v-model="mileageTo" type="number" label="до" class="col-6" />
+				</div>
+			</div>
 		</q-card-section>
 		<q-separator inset />
 		<q-card-actions vertical class="q-pa-md">
 			<q-btn label="Филтровать" @click="acceptFilters" />
+			<q-btn flat color="red" label="Отменить все филтьры" />
 		</q-card-actions>
 	</q-card>
 </template>

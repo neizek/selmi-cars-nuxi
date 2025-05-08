@@ -43,12 +43,12 @@
 						<q-icon name="mail" />
 					</template>
 				</q-input>
-				<q-input v-model="user.firstName" :label="$t('firstName')" :rules="[required]">
+				<q-input v-model="user.firstname" :label="$t('firstName')" :rules="[required]">
 					<template #prepend>
 						<q-icon name="person" />
 					</template>
 				</q-input>
-				<q-input v-model="user.lastName" :label="$t('lastName')" :rules="[required]">
+				<q-input v-model="user.lastname" :label="$t('lastName')" :rules="[required]">
 					<template #prepend>
 						<q-icon name="person" />
 					</template>

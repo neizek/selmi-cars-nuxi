@@ -12,7 +12,6 @@
 	<q-card
 		v-if="car !== undefined"
 		:key="car.id"
-		flat
 		class="cursor-pointer"
 		@click="() => handleClick(car.id)">
 		<SingleCarCardGallery :images="car.carImages" />

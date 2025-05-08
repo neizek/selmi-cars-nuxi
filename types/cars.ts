@@ -29,3 +29,8 @@ export type Car = Required<CreateCar> & {
 	id: number;
 	carImages: ImageSet[];
 };
+
+export type ContactCard = {
+	name: string;
+	isEntity: boolean;
+};

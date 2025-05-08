@@ -4,9 +4,9 @@ import prisma from '~/utils/prisma';
 export default defineEventHandler(async (event) => {
 	try {
 		// Extract userId from the query parameters
-		const { userId } = getQuery(event);
+		const { id } = getQuery(event);
 
-		if (!userId) {
+		if (!id) {
 			throw createError({
 				statusCode: 400,
 				statusMessage: 'Missing userId in query parameters',
@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
 		// Fetch user data from the database
 		const user = await prisma.user.findUnique({
 			where: {
-				id: Number(userId),
+				id: Number(id),
 			},
 		});
 

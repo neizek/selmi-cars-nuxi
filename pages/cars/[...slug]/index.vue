@@ -49,9 +49,9 @@
 			<template #header>
 				<div class="row flex-center">
 					<div class="column">
-						<h2 class="q-ma-none">Каталог</h2>
+						<h1>Каталог</h1>
 						<q-breadcrumbs>
-							<q-breadcrumbs-el label="Каталог" />
+							<q-breadcrumbs-el label="Все авто" :to="$localePath('/cars/all')" />
 							<q-breadcrumbs-el v-if="make !== 'all'" :label="make" />
 							<q-breadcrumbs-el v-if="model !== 'all'" :label="model" />
 						</q-breadcrumbs>

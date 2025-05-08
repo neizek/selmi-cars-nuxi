@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import CarCardsSection from '~/components/CarCardsSection.vue';
 
-	const { data: makes } = useFetch('/api/cars/make', {
+	const { data: makes } = useFetch('/api/makes/many', {
 		method: 'get',
 		lazy: true,
 	});
@@ -10,6 +10,7 @@
 		method: 'POST',
 		body: {
 			orderBy: { createdAt: 'desc' },
+			take: 4,
 		},
 		lazy: true,
 	});

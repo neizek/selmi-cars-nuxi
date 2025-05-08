@@ -1,15 +1,15 @@
 export interface SingleUser {
 	id: number;
-	firstName: string;
-	lastName: string;
+	firstname: string;
+	lastname: string;
 	email: string;
 	password: string;
 }
 
-export type UserSession = Omit<SingleUser, "password">;
+export type UserSession = Omit<SingleUser, 'password'>;
 
-export type UserSignInPayload = Pick<SingleUser, "email" | "password">;
+export type UserSignInPayload = Pick<SingleUser, 'email' | 'password'>;
 
-export type UserSignUpPayload = Omit<SingleUser, "id"> & {
+export type UserSignUpPayload = Omit<SingleUser, 'id'> & {
 	repeatPassword: string;
 };

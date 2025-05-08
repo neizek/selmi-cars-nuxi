@@ -14,7 +14,7 @@
 <template>
 	<PageWrap>
 		<CarCardsSection :cars="cars || []" :is-loading="status !== 'success'" :expected-cars="4">
-			<template #header><h2>Мои объявления</h2></template>
+			<template #header><h1>Мои объявления</h1></template>
 		</CarCardsSection>
 	</PageWrap>
 </template>

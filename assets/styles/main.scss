@@ -8,20 +8,10 @@
 
 .shadower {
 	box-shadow: 0 4px 32px #1314161f;
+	-webkit-box-shadow: 0 4px 32px #1314161f;
+	-moz-box-shadow: 0 4px 32px #1314161f;
 }
 
-// .q-field__native {
-// 	padding: 0;
-// }
-
-// .q-field__label {
-// 	top: 10px;
-// }
-
-// .q-field__control {
-// 	display: flex;
-// 	align-items: center;
-// 	height: 40px;
-// 	font-size: 16px;
-// 	padding: 8px 0;
-// }
+.q-card {
+	border-radius: 8px;
+}

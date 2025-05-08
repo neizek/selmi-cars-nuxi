@@ -44,6 +44,9 @@ export default defineNuxtConfig({
 					outlined: true,
 					dense: true,
 				},
+				QCard: {
+					flat: true,
+				},
 			},
 		},
 		config: {

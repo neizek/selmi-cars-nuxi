@@ -45,6 +45,7 @@ model Cars {
     price     Int
     year      Int
     mileage   Int
+	transmissionType TransmissionType
 	userId    Int
 	user	  User @relation(fields: [userId], references: [id])
 	carImages CarImages[]

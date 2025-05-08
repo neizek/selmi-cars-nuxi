@@ -1,6 +1,6 @@
 <template>
-	<q-card flat>
-		<div style="aspect-ratio: 4 / 3; width: 100%;">
+	<q-card>
+		<div style="aspect-ratio: 4 / 3; width: 100%">
 			<q-skeleton type="rect" height="100%" />
 		</div>
 		<q-item>

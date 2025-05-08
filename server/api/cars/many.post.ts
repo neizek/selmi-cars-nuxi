@@ -18,6 +18,7 @@ export default defineEventHandler(async (event) => {
 				},
 			},
 			carImages: {
+				take: 4,
 				select: {
 					images: {
 						select: {
@@ -46,6 +47,7 @@ export default defineEventHandler(async (event) => {
 				},
 			},
 		},
+		take: filters.take,
 		orderBy: filters.orderBy,
 		where: filters.where ?? {},
 	});
