@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 	import { useFetch } from 'nuxt/app';
+	import type { QSelectOption } from 'quasar';
 	import { ref } from 'vue';
-	import type { Car, CreateCar, Make } from '~/types/cars';
+	import type { CreateCar, Make } from '~/types/cars';
 
 	const step = ref(1);
 
@@ -13,28 +14,6 @@
 		method: 'GET',
 	});
 
-	// const isLoadingModels = ref(false);
-
-	// async function getModels(makeId: number) {
-	// 	isLoadingModels.value = true;
-	// 	const { data: models } = await useFetch<Model[]>('/api/models/many', {
-	// 		method: 'POST',
-	// 		body: {
-	// 			makeId: makeId,
-	// 		},
-	// 		onResponse: () => {
-	// 			isLoadingModels.value = false;
-	// 		},
-	// 	});
-
-	// 	if (models.value) {
-	// 		allModels.value = Object.values(models.value).map((model) => ({
-	// 			label: model.name,
-	// 			value: model.id,
-	// 		})) as unknown as Car[];
-	// 	}
-	// }
-
 	const allMakes = makes.value
 		? Object.values(makes.value).map((make) => {
 				return {
@@ -44,7 +23,7 @@
 		  })
 		: undefined;
 
-	const allModels: Ref<Car[] | undefined> = ref(undefined);
+	const allModels: Ref<QSelectOption[]> = ref([]);
 	const { user } = useUserSession();
 
 	const createCar: Ref<CreateCar> = ref({
@@ -68,7 +47,7 @@
 					return {
 						label: model.name,
 						value: model.id,
-					};
+					} as unknown as QSelectOption;
 				});
 			}
 		}

@@ -37,19 +37,23 @@ model CarModel {
 }
 
 model Cars {
-  id        Int         @id @default(autoincrement())
-  makeId    Int
-  make      CarMake     @relation(fields: [makeId], references: [id])
-  modelId   Int
-  model     CarModel    @relation(fields: [modelId], references: [id])
-  price     Int
-  year      Int
-  mileage   Int
-  userId    Int
-  user      User        @relation(fields: [userId], references: [id])
-  carImages CarImages[]
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
+  id               Int              @id @default(autoincrement())
+  makeId           Int
+  make             CarMake          @relation(fields: [makeId], references: [id])
+  modelId          Int
+  model            CarModel         @relation(fields: [modelId], references: [id])
+  price            Int
+  year             Int
+  mileage          Int
+  transmissionType TransmissionType
+  fuelTyoe         FuelType
+  bodyStyle        BodyStyle
+  engineVolume     Int
+  userId           Int
+  user             User             @relation(fields: [userId], references: [id])
+  carImages        CarImages[]
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
 
   @@index([userId])
   @@index([makeId])
