@@ -2,10 +2,13 @@
 	import type { UserSignUpPayload } from '~/types/users';
 	import { required, isEmail } from '~/utils/forms/validators';
 
+	const $q = useQuasar();
+	const localePath = useLocalePath();
+
 	const user: Ref<UserSignUpPayload> = ref({
 		email: '',
-		firstName: '',
-		lastName: '',
+		firstname: '',
+		lastname: '',
 		password: '',
 		repeatPassword: '',
 	});
@@ -17,10 +20,21 @@
 			method: 'POST',
 			body: user.value,
 			onResponseError({ response }) {
+				$q.notify({
+					type: 'negative',
+					message: 'Произошла ошибка, попробуйте ещё раз.',
+				});
 				console.log(response);
 			},
 			onResponse({ response }) {
-				console.log(response);
+				if (response._data.statusCode !== 400) {
+					$q.notify({
+						type: 'positive',
+						message: 'Поздравляем с успешной регистрацией!',
+					});
+					navigateTo(localePath('/user/signin'));
+					console.log(response);
+				}
 			},
 		});
 	}

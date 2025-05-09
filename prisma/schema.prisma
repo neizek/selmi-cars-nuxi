@@ -13,10 +13,10 @@ model CarMake {
     id              Int        @id @default(autoincrement())
     name            String     @unique
 	slug			String
-    countryOfOrigin String?
-    logoUrl         String?
-    createdAt       DateTime   @default(now())
-    updatedAt       DateTime   @updatedAt
+    countryOfOrigin String?    @map("country_of_origin")
+    logoUrl         String?	   @map("logo_url")
+    createdAt       DateTime   @default(now()) @map("created_at")
+    updatedAt       DateTime   @updatedAt @map("updated_at")
     models          CarModel[]
     cars            Cars[]
 
@@ -27,7 +27,7 @@ model CarModel {
     id     Int     @id @default(autoincrement())
     name   String
 	slug   String
-    makeId Int
+    makeId Int     @map("make_id")
     make   CarMake @relation(fields: [makeId], references: [id])
     cars   Cars[]
 
@@ -37,23 +37,25 @@ model CarModel {
 }
 
 model Cars {
-    id        			Int      @id @default(autoincrement())
-    makeId    			Int
-    make      			CarMake  @relation(fields: [makeId], references: [id])
-    modelId   			Int
-    model     			CarModel @relation(fields: [modelId], references: [id])
+    id        			Int      					@id @default(autoincrement())
+    makeId    			Int      					@map("make_id") 
+    make      			CarMake  					@relation(fields: [makeId], references: [id])
+    modelId   			Int							@map("model_id")
+    model     			CarModel					@relation(fields: [modelId], references: [id])
     price     			Int
     year      			Int
     mileage   			Int
-	transmissionType	TransmissionType
-	fuelTyoe			FuelType
-	bodyStyle			BodyStyle
-	engineVolume		Int
-	userId    			Int
-	user	  			User @relation(fields: [userId], references: [id])
+	transmissionType	TransmissionType			@map("transmission_type")
+	fuelType			FuelType					@map("fuel_type")
+	bodyStyle			BodyStyle					@map("body_style")
+	engineVolume		Float						@map("engine_volume")
+	userId    			Int							@map("user_id")
+	user	  			User 						@relation(fields: [userId], references: [id])
 	carImages 			CarImages[]
-    createdAt 			DateTime @default(now())
-    updatedAt 			DateTime @updatedAt
+    createdAt 			DateTime @default(now())	@map("created_at")
+    updatedAt 			DateTime @updatedAt			@map("updated_at")
+	views				Views[]
+	favorites			Favorites[]
 
 	@@index([userId])
     @@index([makeId])
@@ -62,15 +64,39 @@ model Cars {
 }
 
 model CarImages {
-    id        Int      @id @default(autoincrement())
-	carId	  Int
-	car		  Cars @relation(fields: [carId], references: [id])
-	imageId	  Int
-	images	  Image  @relation(fields: [imageId], references: [id])
+    id        Int		@id @default(autoincrement())
+	carId	  Int		@map("car_id")
+	car		  Cars		@relation(fields: [carId], references: [id])
+	imageId	  Int		@map("image_id")
+	images	  Image		@relation(fields: [imageId], references: [id])
 
 	@@index([carId])
 	@@map("car_images")
 	@@index([imageId])
+}
+
+model Views {
+    id		Int     @id @default(autoincrement())
+	carId	Int		@map("car_id")
+	car		Cars	@relation(fields: [carId], references: [id])
+	userId	Int		@map("user_id")
+	user	User	@relation(fields: [userId], references: [id])
+
+	@@index([carId])
+	@@index([userId])
+	@@map("views")
+}
+
+model Favorites {
+    id		Int     @id @default(autoincrement())
+	carId	Int		@map("car_id")
+	car		Cars	@relation(fields: [carId], references: [id])
+	userId	Int		@map("user_id")
+	user	User	@relation(fields: [userId], references: [id])
+
+	@@index([userId])
+	@@index([carId])
+	@@map("favorites")
 }
 
 model User {
@@ -80,53 +106,72 @@ model User {
     lastname  String
     password  String
     role      Role     @default(USER)
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
 	cars      Cars[]
+	entity    Entity[]
+	reviews   Reviews[]
+	views	  Views[]
+	favorites Favorites[]
 
     @@map("users")
 }
 
 model Entity {
-    id                 Int    @id @default(autoincrement())
-    registrationnumber String
+    id                 	Int		@id @default(autoincrement())
+    registrationNumber	String	@map("registration_number")
+	name				String	
+	userId				Int		@map("user_id")
+	user				User	@relation(fields: [userId], references: [id])
 
+	@@index([userId])
     @@map("entities")
 }
 
+model Reviews {
+	id		Int		@id @default(autoincrement())
+	userId	Int		@map("user_id")
+	user	User	@relation(fields: [userId], references: [id])
+	rate	Int
+	text	String
+
+	@@index([userId])
+	@@map("reviews")
+}
+
 model File {
-    id          Int    @id @default(autoincrement())
+    id			Int			@id @default(autoincrement())
     url			String
-    mimeType	String
-    size		Int
-    createdAt   DateTime  @default(now())
-    toDeleteAt	DateTime  @default(now())
-    s240Images	Image[] @relation("S240FileRelation")
-	s480Images	Image[] @relation("S480FileRelation")
-	s720Images	Image[] @relation("S720FileRelation")
-	s1080Images	Image[] @relation("S1080FileRelation")
+    mimeType	String		@map("mime_type")
+    size		Int			
+    createdAt	DateTime	@default(now()) @map("created_at")
+    toDeleteAt	DateTime	@default(now())	@map("to_delete_at")
+    s240Images	Image[]		@relation("S240FileRelation")
+	s480Images	Image[]		@relation("S480FileRelation")
+	s720Images	Image[]		@relation("S720FileRelation")
+	s1080Images	Image[]		@relation("S1080FileRelation")
 
     @@map("files")
 }
 
 model Image {
-	id          Int    @id @default(autoincrement())
-	s240FileId	Int
+	id          Int		@id @default(autoincrement())
+	s240FileId	Int		@map("s240_file_id")
     s240File	File	@relation("S240FileRelation", fields: [s240FileId], references: [id])
-    s480FileId	Int
+    s480FileId	Int		@map("s480_file_id")
     s480File	File	@relation("S480FileRelation", fields: [s480FileId], references: [id])
-	s720FileId	Int
+	s720FileId	Int		@map("s720_file_id")
 	s720File	File	@relation("S720FileRelation", fields: [s720FileId], references: [id])
-	s1080FileId	Int
+	s1080FileId	Int		@map("s1080_file_id")
 	s1080File	File	@relation("S1080FileRelation", fields: [s1080FileId], references: [id])
 	CarImages   CarImages[]
 
 
-	@@map("images")
 	@@index([s240FileId])
 	@@index([s480FileId])
 	@@index([s720FileId])
 	@@index([s1080FileId])
+	@@map("images")
 }
 
 enum Role {

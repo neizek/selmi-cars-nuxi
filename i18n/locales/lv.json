@@ -1,5 +1,8 @@
 {
 	"password": "Parole",
+	"repeatPassword": "Atkārtojiet paroli",
+	"firstName": "Vārds",
+	"lastName": "Uzvārds",
 	"signIn": "Pieslēgties",
 	"signUp": "Reģistrēties",
 	"signOut": "Izrakstieties",
@@ -13,5 +16,4 @@
 		"rememberMe": "Atcerieties mani",
 		"forgotPassword": "Aizmirsāt paroli?"
 	}
-
 }

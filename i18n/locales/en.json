@@ -1,5 +1,8 @@
 {
 	"password": "Password",
+	"repeatPassword": "Repeat password",
+	"firstName": "First name",
+	"lastName": "Last name",
 	"signIn": "Sign in",
 	"signUp": "Sign up",
 	"signOut": "Sign out",

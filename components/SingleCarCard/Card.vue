@@ -3,6 +3,8 @@
 
 	const { car } = defineProps<{ car: Car }>();
 
+	const newCarPeriod = 3600000; // 1 hour
+
 	function handleClick(id: number) {
 		navigateTo(`/car/${id}`);
 	}
@@ -26,5 +28,8 @@
 				<q-item-label>{{ toPriceFormat(car.price) }}</q-item-label>
 			</q-item-section>
 		</q-item>
+		<SingleCarCardBadges
+			:viewed="true"
+			:new="new Date().getTime() - new Date(car.createdAt).getTime() < newCarPeriod" />
 	</q-card>
 </template>

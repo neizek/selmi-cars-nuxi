@@ -15,6 +15,7 @@
 
 	const contact: Ref<ContactCard | undefined> = ref(undefined);
 	const parameters: Ref<Parameter> = ref({
+		bodyStyle: { icon: 'directions_car', label: 'Тип кузова', value: '' },
 		mileage: { icon: 'route', label: 'Пробег', value: '' },
 		year: { icon: 'calendar_today', label: 'Год выпуска', value: '' },
 		transmissionType: { icon: 'settings', label: 'Коробка', value: 'Автоматическая' },
@@ -46,8 +47,11 @@
 					isEntity: false,
 				};
 
+				parameters.value.bodyStyle.value = car.bodyStyle;
 				parameters.value.mileage.value = car.mileage;
 				parameters.value.year.value = car.year;
+				parameters.value.transmissionType.value = car.transmissionType;
+				parameters.value.engine.value = `${car.engineVolume} / ${car.fuelType}`;
 			}
 		},
 	});

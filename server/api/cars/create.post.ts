@@ -11,10 +11,10 @@ export default defineEventHandler(async (event) => {
 		};
 	}
 
-	if (!car.makeId || !car.modelId) {
+	if (!car.makeId || !car.modelId || !car.fuelType || !car.bodyStyle || !car.transmissionType) {
 		return {
 			statusCode: 400,
-			body: { error: 'Car make and model are required' },
+			body: { error: 'Some required fields are missing' },
 		};
 	}
 
@@ -26,6 +26,10 @@ export default defineEventHandler(async (event) => {
 			price: Number(car.price),
 			mileage: Number(car.mileage),
 			userId: Number(car.userId),
+			bodyStyle: car.bodyStyle,
+			fuelType: car.fuelType,
+			engineVolume: Number(car.engineVolume),
+			transmissionType: car.transmissionType,
 		},
 	});
 

@@ -45,7 +45,7 @@
 </script>
 
 <template>
-	<div class="relative-position">
+	<div class="relative-position overflow-hidden">
 		<div
 			ref="imageBlock"
 			class="ImageBlock hide-scrollbar"

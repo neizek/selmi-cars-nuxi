@@ -15,7 +15,7 @@
 		{
 			icon: 'message',
 			label: 'Сообщения',
-			link: '/',
+			link: user.value ? `/user/${user.value.id}/messages` : '',
 		},
 		{
 			icon: 'favorite',

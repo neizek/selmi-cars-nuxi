@@ -1,5 +1,8 @@
 {
 	"password": "Пароль",
+	"repeatPassword": "Повторите пароль",
+	"firstName": "Имя",
+	"lastName": "Фамилия",
 	"signIn": "Войти",
 	"signUp": "Регистрация",
 	"signOut": "Выйти из аккаунта",

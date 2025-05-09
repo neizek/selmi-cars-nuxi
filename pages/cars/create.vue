@@ -2,7 +2,7 @@
 	import { useFetch } from 'nuxt/app';
 	import type { QSelectOption } from 'quasar';
 	import { ref } from 'vue';
-	import type { CreateCar, Make } from '~/types/cars';
+	import { BodyStyle, FuelType, TransmissionType, type CreateCar, type Make } from '~/types/cars';
 
 	const step = ref(1);
 
@@ -26,6 +26,22 @@
 	const allModels: Ref<QSelectOption[]> = ref([]);
 	const { user } = useUserSession();
 
+	const transmissionTypes = [
+		{ label: 'Автомат', value: TransmissionType.AUTOMATIC },
+		{ label: 'Ручная', value: TransmissionType.MANUAL },
+	];
+
+	const bodyStyles = [
+		{ label: 'SUV', value: BodyStyle.SUV },
+		{ label: 'Седан', value: BodyStyle.SEDAN },
+		{ label: 'Хетчбек', value: BodyStyle.HATCHBACK },
+	];
+
+	const fuelTypes = [
+		{ label: 'Бензин', value: FuelType.GASOLINE },
+		{ label: 'Дизель', value: FuelType.DIESEL },
+	];
+
 	const createCar: Ref<CreateCar> = ref({
 		makeId: undefined,
 		modelId: undefined,
@@ -34,6 +50,10 @@
 		mileage: undefined,
 		userId: user.value?.id,
 		carImages: [],
+		transmissionType: undefined,
+		bodyStyle: undefined,
+		fuelType: undefined,
+		engineVolume: undefined,
 	});
 
 	watch(
@@ -117,6 +137,11 @@
 							@uploaded="onUploaded" />
 						<q-stepper-navigation>
 							<q-btn
+								flat
+								icon="keyboard_double_arrow_left"
+								label="Назад"
+								@click="step = 1" />
+							<q-btn
 								icon-right="keyboard_double_arrow_right"
 								color="primary"
 								label="Continue"
@@ -128,8 +153,39 @@
 							<q-input v-model="createCar.price" type="number" label="Цена" />
 							<q-input v-model="createCar.year" type="number" label="Год" />
 							<q-input v-model="createCar.mileage" type="number" label="Пробег" />
+							<q-input
+								v-model="createCar.engineVolume"
+								type="number"
+								label="Объём двигателя" />
+							<q-select
+								v-model="createCar.bodyStyle"
+								:options="bodyStyles"
+								label="Тип кузова" />
+							<div>
+								Коробка передач
+								<q-option-group
+									v-model="createCar.transmissionType"
+									:options="transmissionTypes"
+									color="primary"
+									inline
+									dense />
+							</div>
+							<div>
+								Тип двигателя
+								<q-option-group
+									v-model="createCar.fuelType"
+									:options="fuelTypes"
+									color="primary"
+									inline
+									dense />
+							</div>
 						</div>
 						<q-stepper-navigation class="q-gutter-x-md">
+							<q-btn
+								flat
+								icon="keyboard_double_arrow_left"
+								label="Назад"
+								@click="step = 2" />
 							<q-btn type="submit" label="Добавить авто" />
 						</q-stepper-navigation>
 					</q-step>

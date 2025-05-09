@@ -13,6 +13,29 @@ export interface Model {
 	slug: string;
 }
 
+export enum TransmissionType {
+	AUTOMATIC = 'AUTOMATIC',
+	MANUAL = 'MANUAL',
+}
+
+export enum BodyStyle {
+	SEDAN = 'SEDAN',
+	SUV = 'SUV',
+	HATCHBACK = 'HATCHBACK',
+	COUPE = 'COUPE',
+	CONVERTIBLE = 'CONVERTIBLE',
+	WAGON = 'WAGON',
+	VAN = 'VAN',
+	TRUCK = 'TRUCK',
+	CROSSOVER = 'CROSSOVER',
+	MINIVAN = 'MINIVAN',
+}
+
+export enum FuelType {
+	GASOLINE = 'GASOLINE',
+	DIESEL = 'DIESEL',
+}
+
 export interface CreateCar {
 	makeId?: number;
 	make?: Make;
@@ -23,11 +46,15 @@ export interface CreateCar {
 	mileage?: number;
 	userId?: number;
 	carImages?: ImageSet[];
+	transmissionType?: TransmissionType;
+	bodyStyle?: BodyStyle;
+	fuelType?: FuelType;
+	engineVolume?: number;
 }
 
 export type Car = Required<CreateCar> & {
 	id: number;
-	carImages: ImageSet[];
+	createdAt: Date;
 };
 
 export type ContactCard = {

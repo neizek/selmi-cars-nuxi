@@ -21,8 +21,7 @@ export default defineNuxtConfig({
 	},
 	css: ['~/assets/styles/typography.scss'],
 	quasar: {
-		// sassVariables: '~/assets/styles/quasar-variables.scss',
-		// sassVariables: true,
+		plugins: ['Notify'],
 		cssAddon: true,
 		components: {
 			defaults: {

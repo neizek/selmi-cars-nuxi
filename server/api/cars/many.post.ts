@@ -4,7 +4,12 @@ export default defineEventHandler(async (event) => {
 	const filters = await readBody(event);
 
 	const cars = await prisma.cars.findMany({
-		include: {
+		select: {
+			id: true,
+			year: true,
+			mileage: true,
+			createdAt: true,
+			price: true,
 			make: {
 				select: {
 					name: true,
