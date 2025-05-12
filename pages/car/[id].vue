@@ -1,4 +1,5 @@
 <script setup lang="ts">
+	import { SingleCarControls } from '#components';
 	import type { ContactCard } from '~/types/cars';
 
 	interface Parameter {
@@ -11,6 +12,7 @@
 	}
 
 	const route = useRoute();
+
 	const id = route.params.id;
 
 	const contact: Ref<ContactCard | undefined> = ref(undefined);
@@ -86,13 +88,7 @@
 				</q-card>
 			</div>
 			<div class="col-4 q-gutter-y-md">
-				<q-card class="bg-transparent shadower">
-					<q-card-actions align="right">
-						<q-btn round color="grey-4" text-color="grey-8" icon="share" />
-						<q-btn round color="grey-4" text-color="grey-8" icon="favorite" />
-						<q-btn round color="grey-4" text-color="grey-8" icon="more_horiz" />
-					</q-card-actions>
-				</q-card>
+				<SingleCarControls :id="Number(id)" />
 
 				<SingleCarOwnerCard :contact="contact" />
 

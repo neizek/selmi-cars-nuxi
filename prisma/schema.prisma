@@ -94,6 +94,8 @@ model Favorites {
 	userId	Int		@map("user_id")
 	user	User	@relation(fields: [userId], references: [id])
 
+
+	@@unique([carId, userId])
 	@@index([userId])
 	@@index([carId])
 	@@map("favorites")

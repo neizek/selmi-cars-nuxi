@@ -20,7 +20,7 @@
 		{
 			icon: 'favorite',
 			label: 'Избранное',
-			link: '/',
+			link: user.value ? `/user/${user.value.id}/favorites` : '',
 		},
 		{
 			icon: 'settings',
