@@ -29,7 +29,7 @@
 			</q-item-section>
 		</q-item>
 		<SingleCarCardBadges
-			:viewed="true"
+			:viewed="car.views.length > 0"
 			:new="new Date().getTime() - new Date(car.createdAt).getTime() < newCarPeriod" />
 	</q-card>
 </template>

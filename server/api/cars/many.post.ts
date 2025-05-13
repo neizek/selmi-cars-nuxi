@@ -3,6 +3,8 @@ import prisma from '~/utils/prisma';
 export default defineEventHandler(async (event) => {
 	const filters = await readBody(event);
 
+	const userSession = await getUserSession(event);
+
 	const cars = await prisma.cars.findMany({
 		select: {
 			id: true,
@@ -49,6 +51,11 @@ export default defineEventHandler(async (event) => {
 							},
 						},
 					},
+				},
+			},
+			views: {
+				where: {
+					userId: userSession?.userId as number,
 				},
 			},
 		},

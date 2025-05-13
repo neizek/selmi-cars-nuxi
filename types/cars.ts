@@ -50,6 +50,13 @@ export interface CreateCar {
 	bodyStyle?: BodyStyle;
 	fuelType?: FuelType;
 	engineVolume?: number;
+	views?: View[];
+}
+
+export interface View {
+	id?: number;
+	carId?: number;
+	userId?: number;
 }
 
 export type Car = Required<CreateCar> & {

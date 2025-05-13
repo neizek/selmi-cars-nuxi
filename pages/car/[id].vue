@@ -12,7 +12,7 @@
 	}
 
 	const route = useRoute();
-
+	const { user } = useUserSession();
 	const id = route.params.id;
 
 	const contact: Ref<ContactCard | undefined> = ref(undefined);
@@ -56,6 +56,18 @@
 				parameters.value.engine.value = `${car.engineVolume} / ${car.fuelType}`;
 			}
 		},
+	});
+
+	onMounted(() => {
+		if (user) {
+			$fetch('/api/views/create', {
+				method: 'POST',
+				body: {
+					userId: user.value?.id,
+					carId: id,
+				},
+			});
+		}
 	});
 </script>
 
