@@ -1,5 +1,7 @@
 <template>
-	<q-page class="q-mt-xl q-px-md q-gutter-md">
+	<!-- <q-page> -->
+	<div class="q-mt-xl q-px-md q-col-gutter-md">
 		<slot />
-	</q-page>
+	</div>
+	<!-- </q-page> -->
 </template>

@@ -1,25 +1,31 @@
 <script lang="ts" setup>
+	import { favorites } from '~/lib/stores/favorites';
+	import { views } from '~/lib/stores/views';
 	import { isEmail, required } from '~/utils/forms/validators';
 
-	const credentials = ref({
+	const credentials = reactive({
 		email: '',
 		password: '',
 		rememberMe: false,
 	});
 
 	const { fetch: refreshSession } = useUserSession();
+	const router = useRouter();
+	const localePath = useLocalePath();
 
 	const showPassword = ref(false);
 	const isLoading = ref(false);
 	const signInError = ref('');
+	const previousRoute = computed(() => router.options.history.state.back);
 
 	async function requestSignIn() {
+		console.log(previousRoute.value);
 		await useFetch('/api/users/signin', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: credentials.value,
+			body: credentials,
 			onResponseError({ response }) {
 				if (response.status === 401) {
 					signInError.value = 'Неверные данные';
@@ -29,8 +35,11 @@
 			},
 			onResponse({ response }) {
 				if (response.status === 200) {
+					favorites.value = response._data.favorites;
+					views.value = response._data.views;
+					console.log(favorites.value, views.value);
 					refreshSession();
-					navigateTo('/');
+					navigateTo(localePath(previousRoute.value as string));
 				}
 			},
 		});
@@ -47,7 +56,7 @@
 </script>
 
 <template>
-	<q-card class="absolute-center q-py-lg" style="width: 350px">
+	<q-card class="absolute-center q-py-lg shadower" style="width: 350px">
 		<q-form @submit="handleLogin">
 			<q-card-section>
 				<div class="text-h6 text-center">

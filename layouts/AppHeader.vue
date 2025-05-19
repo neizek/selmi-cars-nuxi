@@ -15,6 +15,7 @@
 			<q-btn
 				v-if="$q.screen.gt.xs"
 				:label="$t('addAd')"
+				color="primary"
 				icon="add"
 				:to="$localePath('/cars/create')" />
 			<q-btn

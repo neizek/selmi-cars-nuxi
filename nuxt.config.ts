@@ -21,8 +21,13 @@ export default defineNuxtConfig({
 	},
 	css: ['~/assets/styles/typography.scss'],
 	quasar: {
-		plugins: ['Notify'],
+		plugins: ['Notify', 'Dialog'],
 		cssAddon: true,
+		quietSassWarnings: true,
+		sassVariables: './assets/styles/quasar.variables.scss',
+		extras: {
+			font: 'roboto-font-latin-ext',
+		},
 		components: {
 			defaults: {
 				QBtn: {
@@ -49,10 +54,10 @@ export default defineNuxtConfig({
 			},
 		},
 		config: {
-			brand: {
-				primary: '#008ccf',
-				secondary: '#32cd32',
-			},
+			// brand: {
+			// 	// primary: '#008ccf',
+			// 	secondary: '#32cd32',
+			// },
 		},
 	},
 });

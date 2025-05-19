@@ -1,1 +1,1 @@
-export const favorites = useState('counter', (): number[] => []);
+export const favorites = useState('favorites', (): number[] => []);

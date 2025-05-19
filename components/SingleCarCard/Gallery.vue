@@ -3,12 +3,14 @@
 
 	const props = defineProps<{
 		images: ImageSet[];
+		isViewed: boolean;
 	}>();
 
 	const imageBlock = ref(null);
 	const imagesCount = props.images.length;
 	const activeImageIndex = ref(0);
 	const showNavigation = ref(false);
+	const oneImageInPercents = 100 / imagesCount;
 
 	function onMouseOver() {
 		showNavigation.value = true;
@@ -19,7 +21,6 @@
 		const rect = element.getBoundingClientRect();
 		const x = event.clientX - rect.left;
 		const percent = (x / rect.width) * 100;
-		const oneImageInPercents = 100 / imagesCount;
 
 		if (element && percent) {
 			activeImageIndex.value = Math.floor(percent / oneImageInPercents);
@@ -35,6 +36,7 @@
 		showNavigation.value = false;
 		const element = imageBlock.value as unknown as HTMLElement;
 		activeImageIndex.value = 0;
+
 		if (element) {
 			element.scrollTo({
 				left: 0,
@@ -51,13 +53,14 @@
 			class="ImageBlock hide-scrollbar"
 			@mouseover="onMouseOver"
 			@mousemove="onMouseMove"
-			@mouseout="onMouseOut">
+			@mouseleave="onMouseOut">
 			<NuxtImg
 				v-for="(imageSet, index) in images"
 				:key="index"
 				:srcset="`${imageSet.s240} 240w, ${imageSet.s480} 480w, ${imageSet.s720} 720w, ${imageSet.s1080} 1080w`"
 				sizes="(max-width: 600px) 50vw, (max-width: 1024px) 33vw, 280px"
-				style="width: 100%; height: 100%; object-fit: cover; flex: none" />
+				class="ImageBlock-image"
+				:class="{ opacity: isViewed }" />
 		</div>
 		<div v-if="showNavigation && imagesCount > 1" class="Navigation">
 			<div
@@ -76,6 +79,17 @@
 		aspect-ratio: 4 / 3;
 		overflow: hidden;
 		overflow-x: scroll;
+
+		&-image {
+			flex: none;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+
+			// &.viewed {
+			// 	filter: opacity(0.7);
+			// }
+		}
 	}
 
 	.Navigation {

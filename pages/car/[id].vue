@@ -1,5 +1,6 @@
 <script setup lang="ts">
-	import { SingleCarControls } from '#components';
+	import { PageWrap, SingleCarControls } from '#components';
+	import { views } from '~/lib/stores/views';
 	import type { ContactCard } from '~/types/cars';
 
 	interface Parameter {
@@ -59,13 +60,15 @@
 	});
 
 	onMounted(() => {
-		if (user) {
+		if (user && !views.value.includes(Number(id))) {
 			$fetch('/api/views/create', {
 				method: 'POST',
 				body: {
 					userId: user.value?.id,
 					carId: id,
 				},
+			}).then(() => {
+				views.value.push(Number(id));
 			});
 		}
 	});

@@ -19,6 +19,7 @@
 	--h4-letter-spacing: -0.00333em;
 	--h4-font-weight: 400;
 }
+// $typography-font-family: 'YourFont', sans-serif !default;
 
 h1,
 h2,
@@ -26,6 +27,7 @@ h3,
 h4,
 h5,
 h6 {
+	// font-family: 'inter', sans-serif;
 	margin: 0;
 }
 
@@ -36,12 +38,19 @@ h1 {
 	font-weight: var(--h1-font-weight);
 }
 
-h2 {
-	font-size: var(--h2-size);
-	line-height: var(--h2-line-height);
-	letter-spacing: var(--h2-letter-spacing);
-	font-weight: var(--h2-font-weight);
-}
+// $h2: (
+// 	size: 1.7rem,
+// 	line-height: 3rem,
+// 	letter-spacing: -0.00833em,
+// 	weight: 400,
+// ) !default;
+
+// h2 {
+// 	font-size: var(--h2-size);
+// 	line-height: var(--h2-line-height);
+// 	letter-spacing: var(--h2-letter-spacing);
+// 	font-weight: var(--h2-font-weight);
+// }
 
 h3 {
 	font-size: var(--h3-size);

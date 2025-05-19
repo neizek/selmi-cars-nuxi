@@ -4,6 +4,7 @@
 	const { car } = defineProps<{ car: Car }>();
 
 	const newCarPeriod = 3600000; // 1 hour
+	const isViewed = car.views.length > 0;
 
 	function handleClick(id: number) {
 		navigateTo(`/car/${id}`);
@@ -16,7 +17,7 @@
 		:key="car.id"
 		class="cursor-pointer"
 		@click="() => handleClick(car.id)">
-		<SingleCarCardGallery :images="car.carImages" />
+		<SingleCarCardGallery :images="car.carImages" :is-viewed="isViewed" />
 		<q-item>
 			<q-item-section>
 				<q-item-label>{{ car.make.name }} {{ car.model.name }}</q-item-label>
@@ -29,7 +30,7 @@
 			</q-item-section>
 		</q-item>
 		<SingleCarCardBadges
-			:viewed="car.views.length > 0"
+			:viewed="isViewed"
 			:new="new Date().getTime() - new Date(car.createdAt).getTime() < newCarPeriod" />
 	</q-card>
 </template>

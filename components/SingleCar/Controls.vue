@@ -1,5 +1,7 @@
 <script setup lang="ts">
 	import { favorites } from '~/lib/stores/favorites';
+	import ShareDialog from '../Dialogs/ShareDialog.vue';
+	import SignInRequired from '../Dialogs/SignInRequired.vue';
 
 	const props = defineProps({
 		id: {
@@ -15,6 +17,15 @@
 	});
 
 	function addToFavorites() {
+		if (!user.value) {
+			$q.dialog({
+				component: SignInRequired,
+				componentProps: {
+					message: 'Чтобы добавить в избранное, необходимо войти в аккаунт',
+				},
+			});
+			return;
+		}
 		$fetch('/api/favorites/create', {
 			method: 'POST',
 			body: { carId: props.id, userId: user.value?.id },
@@ -55,19 +66,41 @@
 				console.error('Error deleting from favorites:', error);
 			});
 	}
+
+	function openSharingBox() {
+		$q.dialog({
+			component: ShareDialog,
+			componentProps: {
+				link: window.location.href,
+			},
+		});
+	}
 </script>
 
 <template>
-	<q-card class="bg-transparent shadower">
+	<q-card class="bg-transparent">
 		<q-card-actions align="right">
-			<q-btn round color="grey-4" text-color="grey-8" icon="share" />
+			<q-btn round color="grey-4" text-color="grey-8" icon="share" @click="openSharingBox" />
 			<q-btn
 				round
 				color="grey-4"
 				:text-color="isFavorite ? 'primary' : 'grey-8'"
 				icon="favorite"
 				@click="isFavorite ? deleteFromFavorites() : addToFavorites()" />
-			<q-btn round color="grey-4" text-color="grey-8" icon="more_horiz" />
+			<q-btn round color="grey-4" text-color="grey-8" icon="more_horiz">
+				<q-menu>
+					<q-list>
+						<q-item clickable>
+							<q-item-section class="row">
+								<div class="row no-wrap items-center q-gutter-sm">
+									<q-icon name="block" size="1.5rem" />
+									<span>Пожаловаться</span>
+								</div>
+							</q-item-section>
+						</q-item>
+					</q-list>
+				</q-menu>
+			</q-btn>
 		</q-card-actions>
 	</q-card>
 </template>
