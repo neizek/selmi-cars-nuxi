@@ -16,18 +16,18 @@
 				v-if="$q.screen.gt.xs"
 				:label="$t('addAd')"
 				color="primary"
-				icon="add"
+				icon="fas fa-plus"
 				:to="$localePath('/cars/create')" />
 			<q-btn
 				v-if="!loggedIn"
 				:label="$q.screen.gt.xs ? $t('signUp') : ''"
 				:to="$localePath('/user/signup')"
-				icon="person"
+				icon="fas fa-user"
 				outline />
-			<q-btn v-if="loggedIn" icon="person" flat>
+			<q-btn v-if="loggedIn" icon="fas fa-user" flat>
 				<ProfileMenu />
 			</q-btn>
-			<q-btn icon="translate" flat>
+			<q-btn icon="fas fa-globe" flat>
 				<q-menu>
 					<q-list>
 						<q-item

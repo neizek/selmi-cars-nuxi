@@ -25,9 +25,12 @@ export default defineNuxtConfig({
 		cssAddon: true,
 		quietSassWarnings: true,
 		sassVariables: './assets/styles/quasar.variables.scss',
+		iconSet: 'fontawesome-v6',
 		extras: {
 			font: 'roboto-font-latin-ext',
+			fontIcons: ['fontawesome-v6'],
 		},
+
 		components: {
 			defaults: {
 				QBtn: {

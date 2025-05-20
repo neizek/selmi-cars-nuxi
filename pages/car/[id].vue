@@ -18,21 +18,21 @@
 
 	const contact: Ref<ContactCard | undefined> = ref(undefined);
 	const parameters: Ref<Parameter> = ref({
-		bodyStyle: { icon: 'directions_car', label: 'Тип кузова', value: '' },
-		mileage: { icon: 'route', label: 'Пробег', value: '' },
-		year: { icon: 'calendar_today', label: 'Год выпуска', value: '' },
-		transmissionType: { icon: 'settings', label: 'Коробка', value: 'Автоматическая' },
-		engine: { icon: 'rocket', label: 'Двигатель', value: '3.0 Бензин' },
-		color: { icon: 'palette', label: 'Цвет', value: 'Серебристый' },
-		vin: { icon: 'grading', label: 'VIN код', value: 'WBAFA*******', side: 'Показать' },
+		bodyStyle: { icon: 'fas fa-car-side', label: 'Тип кузова', value: '' },
+		mileage: { icon: 'fas fa-route', label: 'Пробег', value: '' },
+		year: { icon: 'fas fa-calendar', label: 'Год выпуска', value: '' },
+		transmissionType: { icon: 'fas fa-gears', label: 'Коробка', value: 'Автоматическая' },
+		engine: { icon: 'fas fa-rocket', label: 'Двигатель', value: '3.0 Бензин' },
+		color: { icon: 'fas fa-palette', label: 'Цвет', value: 'Серебристый' },
+		vin: { icon: 'fas fa-barcode', label: 'VIN код', value: 'WBAFA*******', side: 'Показать' },
 		registrationNumber: {
-			icon: 'pin',
+			icon: 'fas fa-hashtag',
 			label: 'Гос. номер',
 			value: 'MZ-****',
 			side: 'Показать',
 		},
 		inspectionDate: {
-			icon: 'policy',
+			icon: 'fas fa-certificate',
 			label: 'Тех. осмотр',
 			value: '02 Февраля 2025',
 		},
@@ -126,7 +126,7 @@
 							v-for="parameter in Object.values(parameters)"
 							:key="parameter.value">
 							<q-item-section avatar>
-								<q-icon :name="parameter.icon" />
+								<q-icon :name="parameter.icon" class="self-center text-grey-8" />
 							</q-item-section>
 							<q-item-section>
 								<q-item-label caption>{{ parameter.label }}</q-item-label>
@@ -152,11 +152,22 @@
 					</q-item>
 					<q-item>
 						<div>
-							<q-chip icon="verified_user" label="Безопасность" />
-							<q-chip icon="ac_unit" label="Комфорт" />
-							<q-chip icon="chair" label="Салон" />
-							<q-chip icon="volume_up" label="Мультимедия" />
+							<q-chip icon="fas fa-shield-halved" label="Безопасность" />
+							<q-chip icon="fas fa-fan" label="Комфорт" />
+							<q-chip icon="fas fa-couch" label="Салон" />
+							<q-chip icon="fas fa-music" label="Мультимедия" />
 						</div>
+					</q-item>
+				</q-card>
+
+				<q-card class="bg-transparent">
+					<q-item class="justify-evenly">
+						<q-chip color="transparent" icon="fas fa-eye" label="24" disable />
+						<q-chip
+							color="transparent"
+							icon="fas fa-calendar"
+							label="24.05.2024"
+							disable />
 					</q-item>
 				</q-card>
 			</div>

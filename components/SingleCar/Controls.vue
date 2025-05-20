@@ -80,20 +80,25 @@
 <template>
 	<q-card class="bg-transparent">
 		<q-card-actions align="right">
-			<q-btn round color="grey-4" text-color="grey-8" icon="share" @click="openSharingBox" />
+			<q-btn
+				round
+				color="grey-4"
+				text-color="grey-8"
+				icon="fas fa-share"
+				@click="openSharingBox" />
 			<q-btn
 				round
 				color="grey-4"
 				:text-color="isFavorite ? 'primary' : 'grey-8'"
-				icon="favorite"
+				icon="fas fa-heart"
 				@click="isFavorite ? deleteFromFavorites() : addToFavorites()" />
-			<q-btn round color="grey-4" text-color="grey-8" icon="more_horiz">
+			<q-btn round color="grey-4" text-color="grey-8" icon="fas fa-ellipsis">
 				<q-menu>
 					<q-list>
 						<q-item clickable>
 							<q-item-section class="row">
 								<div class="row no-wrap items-center q-gutter-sm">
-									<q-icon name="block" size="1.5rem" />
+									<q-icon name="fas fa-ban" size="1.5rem" />
 									<span>Пожаловаться</span>
 								</div>
 							</q-item-section>

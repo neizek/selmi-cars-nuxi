@@ -54,22 +54,22 @@
 			<q-card-section class="q-gutter-y-sm">
 				<q-input v-model="user.email" :label="$t('email')" :rules="[required, isEmail]">
 					<template #prepend>
-						<q-icon name="mail" />
+						<q-icon name="fas fa-envelope" />
 					</template>
 				</q-input>
 				<q-input v-model="user.firstname" :label="$t('firstName')" :rules="[required]">
 					<template #prepend>
-						<q-icon name="person" />
+						<q-icon name="fas fa-user" />
 					</template>
 				</q-input>
 				<q-input v-model="user.lastname" :label="$t('lastName')" :rules="[required]">
 					<template #prepend>
-						<q-icon name="person" />
+						<q-icon name="fas fa-user-tie" />
 					</template>
 				</q-input>
 				<q-input v-model="user.password" :label="$t('password')" :rules="[required]">
 					<template #prepend>
-						<q-icon name="lock" />
+						<q-icon name="fas fa-lock" />
 					</template>
 				</q-input>
 				<q-input
@@ -77,7 +77,7 @@
 					:label="$t('repeatPassword')"
 					:rules="[required]">
 					<template #prepend>
-						<q-icon name="lock" />
+						<q-icon name="fas fa-lock" />
 					</template>
 				</q-input>
 			</q-card-section>

@@ -29,7 +29,7 @@
 		},
 	});
 
-	const { data: cars, status } = await useFetch('/api/cars/many', {
+	const { data: cars, status } = await useFetch<Car[]>('/api/cars/many', {
 		method: 'POST',
 		body: computed(() => filters.value),
 		watch: [filters],
@@ -61,7 +61,7 @@
 						<q-select v-model="filters.orderBy" dense :options="sortOptions" />
 						<q-btn
 							flat
-							icon="tune"
+							icon="fas fa-filter"
 							style="height: 40px"
 							@click="areFiltersOpen = !areFiltersOpen" />
 					</div>

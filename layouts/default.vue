@@ -35,11 +35,12 @@
 
 <template>
 	<div>
-		<q-layout view="hHh lpR fff" class="bg-grey-2">
+		<q-layout view="lHh lpR fff" class="bg-grey-2">
 			<AppHeader />
 			<q-page-container class="wrapper w1200">
 				<slot />
 			</q-page-container>
+			<MessengerDrawer />
 			<BottomBar />
 			<AppFooter />
 		</q-layout>

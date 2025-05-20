@@ -77,7 +77,7 @@
 					lazy-rules
 					hide-bottom-space>
 					<template #prepend>
-						<q-icon name="person" />
+						<q-icon name="fas fa-user" />
 					</template>
 				</q-input>
 				<q-input
@@ -88,11 +88,11 @@
 					:rules="[required]"
 					lazy-rules>
 					<template #prepend>
-						<q-icon name="lock" />
+						<q-icon name="fas fa-lock" />
 					</template>
 					<template #append>
 						<q-icon
-							:name="showPassword ? 'visibility' : 'visibility_off'"
+							:name="showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"
 							class="cursor-pointer"
 							@click="showPassword = !showPassword" />
 					</template>
@@ -113,7 +113,7 @@
 					:loading="isLoading"
 					class="full-width"
 					:label="$t('signIn')"
-					icon="login"
+					icon="fas fa-arrow-right-to-bracket"
 					color="primary"
 					@click="handleLogin" />
 				<div class="text-center text-caption text-grey-7">

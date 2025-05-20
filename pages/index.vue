@@ -1,12 +1,13 @@
 <script setup lang="ts">
 	import CarCardsSection from '~/components/CarCardsSection.vue';
+	import type { Car, Make } from '~/types/cars';
 
-	const { data: makes } = useFetch('/api/makes/many', {
+	const { data: makes } = useFetch<Make[]>('/api/makes/many', {
 		method: 'get',
 		lazy: true,
 	});
 
-	const { data: newCars, status } = useFetch('/api/cars/many', {
+	const { data: newCars, status } = useFetch<Car[]>('/api/cars/many', {
 		method: 'POST',
 		body: {
 			orderBy: { createdAt: 'desc' },
