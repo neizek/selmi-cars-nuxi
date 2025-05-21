@@ -1,10 +1,10 @@
 <script setup lang="ts">
 	import AppFooter from './AppFooter.vue';
-	import AppHeader from './AppHeader.vue';
 	import '~/assets/styles/main.scss';
 	import BottomBar from './BottomBar.vue';
 	import { favorites } from '~/lib/stores/favorites';
 	import { views } from '~/lib/stores/views';
+	import HeaderBar from './HeaderBar.vue';
 
 	const { loggedIn, user } = useUserSession();
 
@@ -36,7 +36,7 @@
 <template>
 	<div>
 		<q-layout view="lHh lpR fff" class="bg-grey-2">
-			<AppHeader />
+			<HeaderBar />
 			<q-page-container class="wrapper w1200">
 				<slot />
 			</q-page-container>

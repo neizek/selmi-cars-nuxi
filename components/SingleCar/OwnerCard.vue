@@ -4,6 +4,8 @@
 	defineProps<{
 		contact: ContactCard | undefined;
 	}>();
+
+	const rate = ref(3);
 </script>
 <template>
 	<q-card v-if="contact" class="q-pa-sm">
@@ -20,18 +22,26 @@
 				</q-item-label>
 				<q-item-label caption>Частное лицо</q-item-label>
 			</q-item-section>
-			<q-item-section side top>
+			<q-item-section side>
+				<q-item-label>
+					<q-rating
+						v-model="rate"
+						icon="fas fa-star"
+						:max="5"
+						color="secondary"
+						readonly />
+				</q-item-label>
 				<q-item-label caption>10 отзывов</q-item-label>
-				<div class="text-orange">
+				<!-- <div class="text-orange">
 					<q-icon name="fas fa-star" />
 					<q-icon name="fas fa-star" />
 					<q-icon name="fas fa-star" />
-				</div>
+				</div> -->
 			</q-item-section>
 		</q-item>
-		<q-card-actions class="full-width">
-			<q-btn icon="fas fa-comment-dots" color="secondary" label="Написать" style="flex: 1" />
-			<q-btn icon="fas fa-phone" color="primary" label="Позвонить" />
+		<q-card-actions class="full-width q-gutter-x-sm">
+			<q-btn icon="fas fa-comment-dots" color="secondary" label="Написать" class="col" />
+			<q-btn icon="fas fa-phone" color="primary" label="Позвонить" class="col" />
 		</q-card-actions>
 	</q-card>
 	<q-card v-else class="q-pa-sm">

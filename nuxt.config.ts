@@ -2,7 +2,14 @@
 export default defineNuxtConfig({
 	compatibilityDate: '2024-11-01',
 	devtools: { enabled: true },
-	modules: ['@nuxt/eslint', 'nuxt-quasar-ui', 'nuxt-auth-utils', '@nuxtjs/i18n', '@nuxt/image'],
+	modules: [
+		'@nuxt/eslint',
+		'nuxt-quasar-ui',
+		'nuxt-auth-utils',
+		'@nuxtjs/i18n',
+		'@nuxt/image',
+		'nuxt-svgo',
+	],
 	nitro: {
 		storage: {
 			uploads: {
@@ -20,6 +27,9 @@ export default defineNuxtConfig({
 		],
 	},
 	css: ['~/assets/styles/typography.scss'],
+	svgo: {
+		defaultImport: 'component',
+	},
 	quasar: {
 		plugins: ['Notify', 'Dialog'],
 		cssAddon: true,

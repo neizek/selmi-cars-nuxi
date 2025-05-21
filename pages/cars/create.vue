@@ -101,7 +101,7 @@
 			<h3>Новое объявление</h3>
 			<q-form @submit="handleCreateCar">
 				<q-stepper v-model="step" flat vertical color="primary" animated class="q-pa-sm">
-					<q-step :name="1" title="Модель и марка" icon="settings" :done="step > 1">
+					<q-step :name="1" title="Модель и марка" icon="fas fa-gear" :done="step > 1">
 						<div class="q-gutter-y-md">
 							<q-select
 								v-model="createCar.makeId"
@@ -119,12 +119,12 @@
 						<q-stepper-navigation>
 							<q-btn
 								color="primary"
-								icon-right="keyboard_double_arrow_right"
+								icon-right="fas fa-chevron-right"
 								label="Continue"
 								@click="step = 2" />
 						</q-stepper-navigation>
 					</q-step>
-					<q-step :name="2" title="Медиафайлы" icon="settings" :done="step > 2">
+					<q-step :name="2" title="Медиафайлы" icon="fas fa-gear" :done="step > 2">
 						<q-uploader
 							v-model="createCar.carImages"
 							label="Добавить фото"
@@ -138,17 +138,21 @@
 						<q-stepper-navigation>
 							<q-btn
 								flat
-								icon="keyboard_double_arrow_left"
+								icon="fas fa-chevron-left"
 								label="Назад"
 								@click="step = 1" />
 							<q-btn
-								icon-right="keyboard_double_arrow_right"
+								icon-right="fas fa-chevron-right"
 								color="primary"
 								label="Continue"
 								@click="step = 3" />
 						</q-stepper-navigation>
 					</q-step>
-					<q-step :name="3" title="Детальное описание" icon="settings" :done="step > 3">
+					<q-step
+						:name="3"
+						title="Детальное описание"
+						icon="fas fa-gear"
+						:done="step > 3">
 						<div class="q-gutter-y-md">
 							<q-input v-model="createCar.price" type="number" label="Цена" />
 							<q-input v-model="createCar.year" type="number" label="Год" />
@@ -183,7 +187,7 @@
 						<q-stepper-navigation class="q-gutter-x-md">
 							<q-btn
 								flat
-								icon="keyboard_double_arrow_left"
+								icon="fas fa-chevron-left"
 								label="Назад"
 								@click="step = 2" />
 							<q-btn type="submit" label="Добавить авто" />

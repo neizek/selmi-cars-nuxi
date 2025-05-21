@@ -21,7 +21,14 @@ export default defineEventHandler(async (event) => {
 			include: {
 				make: true,
 				model: true,
-				user: true,
+				user: {
+					select: {
+						firstname: true,
+						lastname: true,
+						entity: true,
+						reviews: true,
+					},
+				},
 				carImages: {
 					select: {
 						images: {

@@ -67,4 +67,5 @@ export type Car = Required<CreateCar> & {
 export type ContactCard = {
 	name: string;
 	isEntity: boolean;
+	rate: number;
 };

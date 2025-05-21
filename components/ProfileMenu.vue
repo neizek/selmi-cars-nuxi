@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { messengerOpen } from '~/lib/stores/messenger';
+	// import { messengerOpen } from '~/lib/stores/messenger';
 
 	interface ProfileMenuItem {
 		icon: string;
@@ -22,16 +22,16 @@
 			label: 'Мои объявления',
 			link: user.value ? `/user/${user.value.id}/ads` : '',
 		},
-		{
-			icon: 'fas fa-comments',
-			label: 'Сообщения',
-			action: () => (messengerOpen.value = !messengerOpen.value),
-		},
-		{
-			icon: 'fas fa-heart',
-			label: 'Избранное',
-			link: user.value ? `/user/${user.value.id}/favorites` : '',
-		},
+		// {
+		// 	icon: 'fas fa-comments',
+		// 	label: 'Сообщения',
+		// 	action: () => (messengerOpen.value = !messengerOpen.value),
+		// },
+		// {
+		// 	icon: 'fas fa-heart',
+		// 	label: 'Избранное',
+		// 	link: user.value ? `/user/${user.value.id}/favorites` : '',
+		// },
 		{
 			icon: 'fas fa-gear',
 			label: 'Редактировать профиль',
@@ -46,16 +46,16 @@
 </script>
 
 <template>
-	<q-menu v-if="user" style="width: 250px">
+	<q-menu v-if="user" style="width: 280px" class="shadower">
 		<q-list>
-			<q-item class="row q-gutter-x-md">
-				<q-avatar>
+			<q-item class="q-pa-md">
+				<q-item-section avatar>
 					<q-icon name="fas fa-user-circle" size="48px" class="text-grey-7" />
-				</q-avatar>
-				<div class="column">
+				</q-item-section>
+				<q-item-section class="column">
 					<div class="text-subtitle1">{{ user.firstname }} {{ user.lastname }}</div>
 					<div class="text-caption text-grey-7">{{ user.email }}</div>
-				</div>
+				</q-item-section>
 			</q-item>
 			<q-separator />
 			<q-item
@@ -64,13 +64,13 @@
 				v-ripple
 				clickable
 				@click="handleClick(menuItem)">
-				<q-item-section avatar>
+				<q-item-section avatar class="items-center">
 					<q-icon :name="menuItem.icon" color="primary" />
 				</q-item-section>
 				<q-item-section>{{ menuItem.label }}</q-item-section>
 			</q-item>
 			<q-separator />
-			<q-item>
+			<q-item class="q-pa-md">
 				<q-btn
 					v-close-popup
 					color="primary"

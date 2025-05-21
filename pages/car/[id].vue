@@ -21,8 +21,8 @@
 		bodyStyle: { icon: 'fas fa-car-side', label: 'Тип кузова', value: '' },
 		mileage: { icon: 'fas fa-route', label: 'Пробег', value: '' },
 		year: { icon: 'fas fa-calendar', label: 'Год выпуска', value: '' },
-		transmissionType: { icon: 'fas fa-gears', label: 'Коробка', value: 'Автоматическая' },
-		engine: { icon: 'fas fa-rocket', label: 'Двигатель', value: '3.0 Бензин' },
+		transmissionType: { icon: 'fas fa-gears', label: 'Коробка', value: '' },
+		engine: { icon: 'fas fa-rocket', label: 'Двигатель', value: '' },
 		color: { icon: 'fas fa-palette', label: 'Цвет', value: 'Серебристый' },
 		vin: { icon: 'fas fa-barcode', label: 'VIN код', value: 'WBAFA*******', side: 'Показать' },
 		registrationNumber: {
@@ -48,6 +48,7 @@
 				contact.value = {
 					name: `${car.user.firstname} ${car.user.lastname}`,
 					isEntity: false,
+					rate: 3,
 				};
 
 				parameters.value.bodyStyle.value = car.bodyStyle;
@@ -76,9 +77,10 @@
 
 <template>
 	<PageWrap>
-		<div v-if="car" class="row q-col-gutter-x-md">
+		<div class="row q-col-gutter-x-md">
 			<div class="col-8 q-gutter-y-md">
-				<SingleCarGallery :images="car.carImages" />
+				<SingleCarGallery v-if="car" :images="car.carImages" />
+				<SingleCarGallerySkeleton v-else />
 				<q-card class="q-pa-sm">
 					<q-item>
 						<q-item-section>
@@ -110,13 +112,19 @@
 				<q-card class="q-pa-sm">
 					<q-item>
 						<q-item-section>
-							<q-item-label>
+							<q-item-label v-if="car">
 								<h3>{{ car.make.name }} {{ car.model.name }}</h3>
+							</q-item-label>
+							<q-item-label v-else>
+								<q-skeleton type="text" class="text-h3" />
 							</q-item-label>
 						</q-item-section>
 						<q-item-section side>
-							<q-item-label>
+							<q-item-label v-if="car">
 								<h3 class="text-primary">{{ toPriceFormat(car.price) }}</h3>
+							</q-item-label>
+							<q-item-label v-else>
+								<q-skeleton type="text" class="text-h3" style="width: 100px" />
 							</q-item-label>
 						</q-item-section>
 					</q-item>
@@ -171,9 +179,6 @@
 					</q-item>
 				</q-card>
 			</div>
-		</div>
-		<div v-else>
-			<span>Loading</span>
 		</div>
 	</PageWrap>
 </template>

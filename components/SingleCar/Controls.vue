@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { favorites } from '~/lib/stores/favorites';
+	import { addFavorite, favorites, removeFavorite } from '~/lib/stores/favorites';
 	import ShareDialog from '../Dialogs/ShareDialog.vue';
 	import SignInRequired from '../Dialogs/SignInRequired.vue';
 
@@ -26,45 +26,36 @@
 			});
 			return;
 		}
+
+		addFavorite(props.id);
+
 		$fetch('/api/favorites/create', {
 			method: 'POST',
 			body: { carId: props.id, userId: user.value?.id },
-		})
-			.then(() => {
-				favorites.value.push(props.id);
-				$q.notify({
-					message: 'Автомобиль добавлен в избранное',
-					type: 'positive',
-				});
-			})
-			.catch((error) => {
-				$q.notify({
-					message: 'Ошибка при добавлении в избранное',
-					type: 'negative',
-				});
-				console.error('Error adding to favorites:', error);
+		}).catch(() => {
+			removeFavorite(props.id);
+
+			$q.notify({
+				message: 'Ошибка при добавлении в избранное',
+				type: 'negative',
 			});
+		});
 	}
 
 	function deleteFromFavorites() {
+		removeFavorite(props.id);
+
 		$fetch('/api/favorites/delete', {
 			method: 'POST',
 			body: { carId: props.id, userId: user.value?.id },
-		})
-			.then(() => {
-				favorites.value = favorites.value.filter((carId) => carId !== props.id);
-				$q.notify({
-					message: 'Автомобиль удален из избранного',
-					type: 'positive',
-				});
-			})
-			.catch((error) => {
-				$q.notify({
-					message: 'Ошибка при удалении из избранного',
-					type: 'negative',
-				});
-				console.error('Error deleting from favorites:', error);
+		}).catch(() => {
+			addFavorite(props.id);
+
+			$q.notify({
+				message: 'Не удалось удалить из избранных. Попробуйте еще раз.',
+				type: 'negative',
 			});
+		});
 	}
 
 	function openSharingBox() {
@@ -83,16 +74,16 @@
 			<q-btn
 				round
 				color="grey-4"
-				text-color="grey-8"
+				text-color="grey-7"
 				icon="fas fa-share"
 				@click="openSharingBox" />
 			<q-btn
 				round
 				color="grey-4"
-				:text-color="isFavorite ? 'primary' : 'grey-8'"
+				:text-color="isFavorite ? 'primary' : 'grey-7'"
 				icon="fas fa-heart"
 				@click="isFavorite ? deleteFromFavorites() : addToFavorites()" />
-			<q-btn round color="grey-4" text-color="grey-8" icon="fas fa-ellipsis">
+			<q-btn round color="grey-4" text-color="grey-7" icon="fas fa-ellipsis">
 				<q-menu>
 					<q-list>
 						<q-item clickable>

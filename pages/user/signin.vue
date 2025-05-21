@@ -2,6 +2,7 @@
 	import { favorites } from '~/lib/stores/favorites';
 	import { views } from '~/lib/stores/views';
 	import { isEmail, required } from '~/utils/forms/validators';
+	import LogoSVG from '~/assets/logo.svg';
 
 	const credentials = reactive({
 		email: '',
@@ -56,11 +57,11 @@
 </script>
 
 <template>
-	<q-card class="absolute-center q-py-lg shadower" style="width: 350px">
+	<q-card class="absolute-center q-py-lg q-px-md shadower" style="width: 350px">
 		<q-form @submit="handleLogin">
 			<q-card-section>
 				<div class="text-h6 text-center">
-					<img src="~/assets/logo.svg" style="height: 36px" />
+					<LogoSVG style="height: 36px" />
 				</div>
 				<div class="text-center text-caption text-grey-7">
 					{{ $t('signInPage.useThisFormToSignIn') }}
@@ -97,9 +98,10 @@
 							@click="showPassword = !showPassword" />
 					</template>
 				</q-input>
-				<div class="row">
+				<div class="row text-grey-8">
 					<q-checkbox
 						v-model="credentials.rememberMe"
+						color="secondary"
 						:label="$t('signInPage.rememberMe')" />
 					<q-space />
 					<NuxtLink to="/restorepassword" style="align-content: center">

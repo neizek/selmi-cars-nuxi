@@ -19,6 +19,7 @@
 		"nuxt": "^3.16.2",
 		"nuxt-auth-utils": "^0.5.19",
 		"nuxt-quasar-ui": "^2.1.12",
+		"nuxt-svgo": "^4.2.1",
 		"quasar": "^2.18.1",
 		"sass": "^1.58.3",
 		"sharp": "^0.34.1",
