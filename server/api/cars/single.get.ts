@@ -23,6 +23,7 @@ export default defineEventHandler(async (event) => {
 				model: true,
 				user: {
 					select: {
+						id: true,
 						firstname: true,
 						lastname: true,
 						entity: true,

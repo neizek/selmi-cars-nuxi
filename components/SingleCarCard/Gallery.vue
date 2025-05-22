@@ -85,10 +85,6 @@
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
-
-			// &.viewed {
-			// 	filter: opacity(0.7);
-			// }
 		}
 	}
 

@@ -76,15 +76,25 @@ model CarImages {
 }
 
 model Views {
-  id     Int  @id @default(autoincrement())
-  carId  Int  @map("car_id")
-  car    Cars @relation(fields: [carId], references: [id])
-  userId Int  @map("user_id")
-  user   User @relation(fields: [userId], references: [id])
+  id        Int       @id @default(autoincrement())
+  carId     Int       @map("car_id")
+  car       Cars      @relation(fields: [carId], references: [id])
+  userId    Int?      @map("user_id")
+  user      User?     @relation(fields: [userId], references: [id])
+  visitorId Int?      @map("visitor_id")
+  visitor   Visitors? @relation(fields: [visitorId], references: [id])
 
   @@index([carId])
   @@index([userId])
+  @@index([visitorId])
   @@map("views")
+}
+
+model Visitors {
+  id    Int     @id @default(autoincrement())
+  views Views[]
+
+  @@map("visitors")
 }
 
 model Favorites {
@@ -94,48 +104,73 @@ model Favorites {
   userId Int  @map("user_id")
   user   User @relation(fields: [userId], references: [id])
 
+  @@unique([carId, userId])
   @@index([userId])
   @@index([carId])
   @@map("favorites")
 }
 
 model User {
-  id        Int         @id @default(autoincrement())
-  email     String      @unique
-  firstname String
-  lastname  String
-  password  String
-  role      Role        @default(USER)
-  createdAt DateTime    @default(now()) @map("created_at")
-  updatedAt DateTime    @updatedAt @map("updated_at")
-  cars      Cars[]
-  entity    Entity[]
-  reviews   Reviews[]
-  views     Views[]
-  favorites Favorites[]
+  id               Int         @id @default(autoincrement())
+  email            String      @unique
+  firstname        String
+  lastname         String
+  password         String
+  phone            String?
+  role             Role        @default(USER)
+  isEmailConfirmed Boolean     @default(false) @map("is_email_confirmed")
+  isPhoneConfirmed Boolean     @default(false) @map("is_phone_confirmed")
+  createdAt        DateTime    @default(now()) @map("created_at")
+  updatedAt        DateTime    @updatedAt @map("updated_at")
+  cars             Cars[]
+  entity           Entity[]
+  reviews          Reviews[]   @relation("ReceivedReviews")
+  reviewed         Reviews[]   @relation("GivenReviews")
+  views            Views[]
+  favorites        Favorites[]
+  sentMessages     Message[]   @relation("MessagesSent")
+  receivedMessages Message[]   @relation("MessagesReceived")
 
   @@map("users")
 }
 
+model Message {
+  id         Int  @id @default(autoincrement())
+  fromUserId Int
+  fromUser   User @relation("MessagesSent", fields: [fromUserId], references: [id])
+  toUserId   Int
+  toUser     User @relation("MessagesReceived", fields: [toUserId], references: [id])
+
+  @@index([fromUserId])
+  @@index([toUserId])
+  @@map("messages")
+}
+
 model Entity {
-  id                 Int    @id @default(autoincrement())
-  registrationNumber String @map("registration_number")
+  id                 Int       @id @default(autoincrement())
+  registrationNumber String    @map("registration_number")
   name               String
-  userId             Int    @map("user_id")
-  user               User   @relation(fields: [userId], references: [id])
+  userId             Int       @map("user_id")
+  user               User      @relation(fields: [userId], references: [id])
+  reviews            Reviews[]
 
   @@index([userId])
   @@map("entities")
 }
 
 model Reviews {
-  id     Int    @id @default(autoincrement())
-  userId Int    @map("user_id")
-  user   User   @relation(fields: [userId], references: [id])
-  rate   Int
-  text   String
+  id       Int     @id @default(autoincrement())
+  userId   Int?    @map("user_id")
+  user     User?   @relation("ReceivedReviews", fields: [userId], references: [id])
+  entityId Int?    @map("entity_id")
+  entity   Entity? @relation(fields: [entityId], references: [id])
+  authorId Int
+  author   User    @relation("GivenReviews", fields: [authorId], references: [id])
+  rate     Int
+  text     String
 
   @@index([userId])
+  @@index([entityId])
   @@map("reviews")
 }
 

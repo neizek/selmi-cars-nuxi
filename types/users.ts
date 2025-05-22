@@ -1,7 +1,10 @@
+import type { Review } from './reviews';
+
 export interface SingleUser {
 	id: number;
 	firstname: string;
 	lastname: string;
+	reviews: Review[];
 	email: string;
 	password: string;
 }

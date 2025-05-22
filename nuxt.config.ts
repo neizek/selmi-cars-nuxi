@@ -64,13 +64,10 @@ export default defineNuxtConfig({
 				QCard: {
 					flat: true,
 				},
+				QRating: {
+					color: 'secondary',
+				},
 			},
-		},
-		config: {
-			// brand: {
-			// 	// primary: '#008ccf',
-			// 	secondary: '#32cd32',
-			// },
 		},
 	},
 });

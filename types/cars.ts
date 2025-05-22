@@ -1,4 +1,5 @@
 import type { ImageSet } from './files';
+import type { SingleUser } from './users';
 
 export interface Make {
 	id?: number;
@@ -45,6 +46,7 @@ export interface CreateCar {
 	year?: number;
 	mileage?: number;
 	userId?: number;
+	user?: SingleUser;
 	carImages?: ImageSet[];
 	transmissionType?: TransmissionType;
 	bodyStyle?: BodyStyle;
@@ -69,3 +71,12 @@ export type ContactCard = {
 	isEntity: boolean;
 	rate: number;
 };
+
+export interface CarParameter {
+	[prop: string]: {
+		icon: string;
+		label: string;
+		value: string;
+		side?: string;
+	};
+}

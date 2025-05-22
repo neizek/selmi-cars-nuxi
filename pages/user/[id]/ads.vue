@@ -13,8 +13,15 @@
 
 <template>
 	<PageWrap>
-		<CarCardsSection :cars="cars || []" :is-loading="status !== 'success'" :expected-cars="4">
+		<!-- <CarCardsSection :cars="cars || []" :is-loading="status !== 'success'" :expected-cars="4">
 			<template #header><h1>Мои объявления</h1></template>
-		</CarCardsSection>
+		</CarCardsSection> -->
+		<div class="flex items-center justify-between">
+			<h1>Мои объявления</h1>
+			<q-btn outline label="Добавить объявление" />
+		</div>
+		<div class="q-gutter-y-lg">
+			<MyCarCard v-for="car in cars" :key="car.id" :car="car" />
+		</div>
 	</PageWrap>
 </template>
