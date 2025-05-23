@@ -80,7 +80,7 @@
 				<SingleCarParameters :parameters="parameters" />
 				<SingleCarEquipment />
 
-				<SingleCarOtherInfo />
+				<!-- <SingleCarOtherInfo /> -->
 			</div>
 		</div>
 	</PageWrap>

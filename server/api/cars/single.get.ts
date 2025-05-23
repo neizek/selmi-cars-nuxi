@@ -30,6 +30,11 @@ export default defineEventHandler(async (event) => {
 						reviews: true,
 					},
 				},
+				_count: {
+					select: {
+						views: true,
+					},
+				},
 				carImages: {
 					select: {
 						images: {

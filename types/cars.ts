@@ -66,6 +66,14 @@ export type Car = Required<CreateCar> & {
 	createdAt: Date;
 };
 
+export type SingleCar = Required<CreateCar> & {
+	id: number;
+	createdAt: Date;
+	_count: {
+		views: number;
+	};
+};
+
 export type ContactCard = {
 	name: string;
 	isEntity: boolean;

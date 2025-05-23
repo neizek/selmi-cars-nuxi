@@ -2,20 +2,26 @@
 	import { SingleCarReviews } from '#components';
 	import type { SingleUser } from '~/types/users';
 
-	defineProps<{
+	const props = defineProps<{
 		user: SingleUser | undefined;
 	}>();
 
-	const rate = ref(3);
+	const rate = ref(0);
 	const reviewsOpened = ref(false);
+
+	if (props.user?.reviews && props.user.reviews.length > 0) {
+		rate.value =
+			props.user.reviews.reduce((total, review) => total + (review.rate || 0), 0) /
+			props.user.reviews.length;
+	} else {
+		rate.value = 0;
+	}
 </script>
 <template>
 	<q-card v-if="user" class="q-pa-sm">
 		<q-item clickable @click="reviewsOpened = !reviewsOpened">
 			<q-item-section avatar>
-				<q-avatar>
-					<q-icon name="fas fa-user-circle" size="48px" class="text-grey-7" />
-				</q-avatar>
+				<q-icon name="fas fa-user-circle" size="48px" class="text-grey-7" />
 			</q-item-section>
 
 			<q-item-section>
@@ -32,11 +38,6 @@
 						readonly />
 				</q-item-label>
 				<q-item-label caption>{{ user.reviews.length }} отзывов</q-item-label>
-				<!-- <div class="text-orange">
-					<q-icon name="fas fa-star" />
-					<q-icon name="fas fa-star" />
-					<q-icon name="fas fa-star" />
-				</div> -->
 			</q-item-section>
 		</q-item>
 		<q-card-actions class="full-width q-gutter-x-sm">
@@ -45,6 +46,9 @@
 		</q-card-actions>
 		<SingleCarReviews v-model="reviewsOpened" :user="user" />
 	</q-card>
+
+	<!-- SKELETON -->
+
 	<q-card v-else class="q-pa-sm">
 		<q-item>
 			<q-item-section avatar>
@@ -65,8 +69,8 @@
 			</q-item-section>
 		</q-item>
 		<q-card-actions class="full-width q-gutter-x-sm">
-			<q-skeleton type="QBtn" style="flex: 1" />
-			<q-skeleton type="QBtn" />
+			<q-skeleton type="QBtn" class="col" />
+			<q-skeleton type="QBtn" class="col" />
 		</q-card-actions>
 	</q-card>
 </template>
